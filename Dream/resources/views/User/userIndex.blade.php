@@ -6,5 +6,12 @@ The current UNIX timestamp is {{ time() }}
 
 
 @foreach ($getPuttBooks as $user)
+@if ($loop->first)
+This is the first iteration.
+@endif
+
+@if ($loop->last)
+This is the last iteration.
+@endif
     <p>This is user {{ $user['title'] }}</p>
 @endforeach
