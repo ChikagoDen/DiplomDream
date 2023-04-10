@@ -7,11 +7,11 @@ The current UNIX timestamp is {{ time() }}
 
 @foreach ($getPuttBooks as $user)
 @if ($loop->first)
-This is the first iteration.
+Это первый{{ $user['id'] }}
 @endif
 
 @if ($loop->last)
-This is the last iteration.
+Это последний.{{ $user['id'] }}
 @endif
-    <p>This is user {{ $user['title'] }}</p>
+    <p>This is user {{ $user['title'] }}</p><br>
 @endforeach

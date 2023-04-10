@@ -1,0 +1,5 @@
+@media print  {
+    header { background: none; color: #000; }
+    header img { filter: url(inverse.svg#negative);
+    -webkit-filter: invert(100%); filter: invert(100%); }
+    }
