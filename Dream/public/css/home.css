@@ -20,6 +20,7 @@ html {
   padding: 0;
   width: 100%;
   height: 100%;
+  background-color: black;
 }
 
 body {
@@ -71,7 +72,7 @@ header .authorization {
 }
 
 nav {
-  background-color: rgb(255, 255, 127);
+  background-color: rgb(254, 198, 6);
   width: 100%;
   margin: 0;
   padding: 0;
@@ -91,7 +92,7 @@ nav .basic-navigation .basic-navigation-button {
   outline: none;
   text-align: center;
   text-decoration: none;
-  background: rgb(254, 198, 6);
+  background: rgb(255, 234, 122);
   display: block;
   font-size: 16px;
   border: 1px solid;
@@ -128,7 +129,7 @@ nav .sources-navigation .letters-navigation .button {
   outline: none;
   text-align: center;
   text-decoration: none;
-  background: rgb(254, 198, 6);
+  background: rgb(255, 234, 122);
   display: block;
   font-size: 22px;
   border: 1px solid;
@@ -144,20 +145,142 @@ nav .sources-navigation .letters-navigation .button:active {
 }
 
 main {
-  background-color: rgb(228, 60, 186);
+  display: flex;
   width: 100%;
+  align-items: normal;
+  align-self: normal;
+  background-color: rgb(255, 234, 122);
+  border-bottom: 2px solid;
+}
+
+.h {
+  text-align: center;
 }
 
 article {
-  background-color: rgb(14, 10, 235);
+  width: 80%;
+  flex-basis: 80%;
+  margin: 0px 10px 5px 10px;
+}
+article .basic-navigation-button {
+  background: rgb(254, 198, 6);
+  width: 20%;
+  margin: 0 auto;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 3px 7px;
+}
+article .text {
+  font-size: 15px;
+  text-align: justify;
+  text-indent: 25px;
+  margin: 0 10px;
+}
+article .nested-container {
   width: 100%;
+  min-height: 190px;
+  border: 1px solid;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  text-align: center;
 }
 
 aside {
-  background-color: rgb(134, 130, 212);
-  width: 100%;
+  width: 20%;
+  flex-basis: 20%;
+  flex-shrink: 0;
+  text-align: center;
+  border-left: 1px solid;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  width: auto;
+  color: black;
+  font-weight: bold;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+.prev {
+  left: 255px;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 222px;
+  border-radius: 3px 0 0 3px;
+  top: 14px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+/* Caption text */
+/* Number text (1/3 etc) */
+.numbertext {
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
 footer {
   background-color: rgb(237, 92, 8);
 }
