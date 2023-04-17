@@ -8,6 +8,10 @@
   
     <link rel="stylesheet" href="{{ asset('css/home.css')}}">
     <link rel="stylesheet" href="{{ asset('css/print/print.css')}}" media="print">
+    {{-- foetr znak --}}
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!--[if IE 9]>
       <style>
         @media print { 
@@ -42,11 +46,10 @@
 
   <body>
         <header>
-            <h1 class="hidden">Мы уверены, что понимание смысла своих снов и знание гороскопа помогают лучше понимать себя и других, принимать важные решения и строить качественные отношения. </h1>
-            <a href="#" class="logotype-a">
-                <img src="{{asset('../resources/img/logo.png')}}" alt="Логотип кошка" class="logotype">                    
+            <a href="#">
+                <img src="{{asset('../resources/img/logo.png')}}" alt="Логотип организации Приснилось" class="logotype">                    
             </a>
-            <h2 class="heading">Мы считаем, что понимание смысла снов и гороскопа помогает лучше понимать себя и других, принимать важные решения и улучшать отношения.</h2>
+            <h1 class="heading">Мы считаем, что понимание смысла снов и гороскопа помогает лучше понимать себя и других, принимать важные решения и улучшать отношения.</h1>
             <a href="#">
                 <p class="authorization">войти</p>
             </a>
@@ -59,7 +62,7 @@
                 <li><a href="#" class="basic-navigation-button">Магазин</a></li>
             </ul>
             <hr>
-            <h3 class="h3-navigation">Для поиска толкования воспользуйтесь поиском или алфавитным указателем.</h3>
+            <h2 class="h2-navigation">Для поиска толкования воспользуйтесь поиском или алфавитным указателем.</h2>
             <section class="sources-navigation">
                 <form method="get" name="form-navigation">
                     <input type="search" name="search-form-navigation" placeholder="Ключевое слово из сна">
@@ -98,11 +101,9 @@
                 </ul>                
             </section>
         </nav>
-        <!-- Здесь основное содержимое нашей страницы -->
         <main>
-            <!-- Она содержит статью -->
             <article>
-                <h3 class="h">"ПРИСНИЛОСЬ" - сайт, где вы можете узнать значение своих снов и получить гороскоп по дате рождения. </h3>
+                <h2 class="h">"ПРИСНИЛОСЬ" - сайт, где вы можете узнать значение своих снов и получить гороскоп по дате рождения. </h2>
                 <p class="text">Добро пожаловать на наш сайт! Здесь вы найдете подробные объяснения значений ваших снов и гороскоп на
                     основе даты рождения. Наша база данных содержит тысячи наиболее распространенных символов и предметов,
                     которые могут встречаться в ваших снах. Просто введите ключевые слова или описание сна, и наш алгоритм предоставит вам
@@ -112,14 +113,12 @@
                     Наш сайт также содержит различные статьи и советы по толкованию снов и гороскопа, чтобы помочь вам лучше понимать их
                     значение и влияние на вашу жизнь. С помощью нашего сайта вы сможете получить новые идеи, озарения и увидеть свою жизнь
                     по-новому.</p>
-                <h3 class="h">Используемые сонники</h3>
-                <!-- Slideshow container -->
+                <h2 class="h">Используемые сонники</h2>
                 <div class="slideshow-container">
-                    <!-- Full-width images with number and caption text -->
                     <div class="mySlides fade">
                         <div class="numbertext">1 / 3</div>
                            <div  class="nested-container">
-                                <h4><a href="#" class="basic-navigation-button" title="Перейти в сонник">Сонник  Фрейда</a></h4>
+                                <h3><a href="#" class="basic-navigation-button" title="Перейти в сонник">Сонник  Фрейда</a></h3>
                                 <p class="text">
                                     Сонник Фрейда - это книга, в которой австрийский психоаналитик Зигмунд Фрейд описывает свои теории о символическом значении снов и их связи с бессознательным. Он предлагает интерпретировать сны, как отражение подсознательных желаний и конфликтов, которые могут быть связаны с детством и сексуальностью. Фрейд утверждал, что понимание смысла снов может помочь людям понять свои эмоции и проблемы в жизни и дать возможность решить их.
                                 </p>
@@ -129,26 +128,26 @@
                     <div class="mySlides fade">
                         <div class="numbertext">2 / 3</div>
                         <div  class="nested-container">
-                            <h4><a href="#" class="basic-navigation-button" title="Перейти в сонник">Сонник Миллера</a></h4>
+                            <h3><a href="#" class="basic-navigation-button" title="Перейти в сонник">Сонник Миллера</a></h3>
                             <p class="text">
-                                Сонник Миллера - это книга, в которой американский писатель Густав Миллер описывает тысячи символов, которые могут встречаться в снах, и предлагает их интерпретацию. Сонник Миллера является одним из наиболее распространенных и широко используемых сонников в мире.                            </p>
+                                Сонник Миллера - это книга, в которой американский писатель Густав Миллер описывает тысячи символов, которые могут встречаться в снах, и предлагает их интерпретацию. Сонник Миллера является одним из наиболее распространенных и широко используемых сонников в мире.                            
+                            </p>
                        </div>
                     </div>
                 
                     <div class="mySlides fade">
                         <div class="numbertext">3 / 3</div>
                         <div  class="nested-container">
-                            <h4><a href="#" class="basic-navigation-button" title="Перейти в сонник">Сонник Ванги</a></h4>
+                            <h3><a href="#" class="basic-navigation-button" title="Перейти в сонник">Сонник Ванги</a></h3>
                             <p class="text">
-                                Сонник Ванги - это книга, в которой болгарская ясновидящая Ванга описывает символы и события, которые могут появиться в снах, и предлагает их интерпретацию.                             </p>
+                                Сонник Ванги - это книга, в которой болгарская ясновидящая Ванга описывает символы и события, которые могут появиться в снах, и предлагает их интерпретацию.                             
+                            </p>
                        </div>
                     </div>
-                    <!-- Next and previous buttons -->
                     <a class="prev" onclick="plusSlides(-1)"><p>назад  &#10094;</p></a>
                     <a class="next" onclick="plusSlides(1)"><p>&#10095;  следующий</p></a>
                 </div>
                 <br>
-                <!-- The dots/circles -->
                 <div style="text-align:center">
                     <span class="dot" onclick="currentSlide(1)"></span>
                     <span class="dot" onclick="currentSlide(2)"></span>
@@ -156,92 +155,101 @@
                 </div>
             </article>
             <script src="{{ asset('js/carusel.js') }}"></script>
-            <!-- Дополнительный контент также может быть вложен в основной контент -->
             <aside>
-            <h3>Гороскоп</h3>
-    
-            <ul class="horoscope">
-                <li>
-                    <a href="#" >
-                        <img src="{{asset('../resources/img/zodiac_signs/Aquarius.png')}}" alt="Водолей" class="zodiac-signs">
-                    </a>
-                    <p>Водолей:<br> 21 января –<br> 19 февраля</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Pisces.png')}}" alt="Рыбы" class="zodiac-signs">
-                    </a>
-                    <p>Рыбы:<br> 20 февраля –<br> 20 марта</p>                    
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Aries.png')}}" alt="Овен" class="zodiac-signs">
-                    </a>
-                    <p>Овен:<br> 21 марта –<br> 20 апреля</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Taurus.png')}}" alt="Телец" class="zodiac-signs">
-                    </a>
-                    <p>Телец:<br> 21 апреля –<br> 21 мая</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Gemini.png')}}" alt="Близнецы"  class="zodiac-signs">
-                    </a> 
-                    <p>Близнецы:<br> 22 мая –<br> 21 июня</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Cancer.png')}}" alt="Рак"  class="zodiac-signs">
-                    </a>
-                    <p>Рак:<br> 22 июня –<br> 22 июля</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Leo.png')}}" alt="Лев"  class="zodiac-signs">
-                    </a>
-                    <p>Лев:<br> 23 июля –<br> 21 августа</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Virgo.png')}}" alt="Дева"  class="zodiac-signs">
-                    </a>
-                    <p>Дева:<br> 22 августа –<br> 23 сентября</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Libra.png')}}" alt="Весы"  class="zodiac-signs">
-                    </a>
-                    <p>Весы:<br> 24 сентября –<br> 23 октября</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Scorpio.png')}}" alt="Скорпион"  class="zodiac-signs">
-                    </a>
-                    <p>Скорпион:<br> 24 октября –<br> 22 ноября</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Sagittarius.png')}}" alt="Стрелец"  class="zodiac-signs">
-                    </a>
-                    <p>Стрелец:<br> 23 ноября –<br> 22 декабря</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{asset('../resources/img/zodiac_signs/Capricorn.png')}}" alt="Козерог"  class="zodiac-signs">
-                    </a>
-                    <p>Козерог:<br> 23 декабря –<br> 20 января</p>
-                </li>
-            </ul>
+                <h3>Гороскоп</h3>
+                <ul class="horoscope">
+                    <li>
+                        <a href="#" >
+                            <img src="{{asset('../resources/img/zodiac_signs/Aquarius.png')}}" alt="Водолей" class="zodiac-signs">
+                        </a>
+                        <p>Водолей:<br> 21 января –<br> 19 февраля</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Pisces.png')}}" alt="Рыбы" class="zodiac-signs">
+                        </a>
+                        <p>Рыбы:<br> 20 февраля –<br> 20 марта</p>                    
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Aries.png')}}" alt="Овен" class="zodiac-signs">
+                        </a>
+                        <p>Овен:<br> 21 марта –<br> 20 апреля</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Taurus.png')}}" alt="Телец" class="zodiac-signs">
+                        </a>
+                        <p>Телец:<br> 21 апреля –<br> 21 мая</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Gemini.png')}}" alt="Близнецы"  class="zodiac-signs">
+                        </a> 
+                        <p>Близнецы:<br> 22 мая –<br> 21 июня</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Cancer.png')}}" alt="Рак"  class="zodiac-signs">
+                        </a>
+                        <p>Рак:<br> 22 июня –<br> 22 июля</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Leo.png')}}" alt="Лев"  class="zodiac-signs">
+                        </a>
+                        <p>Лев:<br> 23 июля –<br> 21 августа</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Virgo.png')}}" alt="Дева"  class="zodiac-signs">
+                        </a>
+                        <p>Дева:<br> 22 августа –<br> 23 сентября</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Libra.png')}}" alt="Весы"  class="zodiac-signs">
+                        </a>
+                        <p>Весы:<br> 24 сентября –<br> 23 октября</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Scorpio.png')}}" alt="Скорпион"  class="zodiac-signs">
+                        </a>
+                        <p>Скорпион:<br> 24 октября –<br> 22 ноября</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Sagittarius.png')}}" alt="Стрелец"  class="zodiac-signs">
+                        </a>
+                        <p>Стрелец:<br> 23 ноября –<br> 22 декабря</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{asset('../resources/img/zodiac_signs/Capricorn.png')}}" alt="Козерог"  class="zodiac-signs">
+                        </a>
+                        <p>Козерог:<br> 23 декабря –<br> 20 января</p>
+                    </li>
+                </ul>
             </aside>
-    
         </main>
-        
-        <!-- И вот наш главный нижний колонтитул, который используется на всех страницах нашего веб-сайта -->
-      <footer>
-        <p>©Авторские права никому не принадлежат, 2050. Все права защищены.</p>
+      <footer role="contentinfo">
+        <div class="row">
+            <a href="#"><i class="fa fa-facebook "></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <div class="row general-information">
+            <ul>
+                <li><a href="#" class="basic-navigation-button">Свяжитесь с нами</a></li>
+                <li><a href="#" class="basic-navigation-button">Политика конфиденциальности</a></li>
+                <li><a href="#" class="basic-navigation-button">Правила и условия</a></li>
+            </ul>
+        </div>
+        <p>
+             Авторское право. &copy; Все права защищены: <a href="/">ООО "Аркаим" </a><?php echo date('Y'); ?>г. || Автор: ЧикагоДен. 
+        </p>
       </footer>
-    
   </body>
 </html>

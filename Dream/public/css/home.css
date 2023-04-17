@@ -1,18 +1,26 @@
-.hidden {
-  display: none;
-}
-
 a {
   border: 0;
   text-decoration: none;
   color: black;
+  transition: 0.5s;
 }
 
 a:hover {
   border: 0;
   text-decoration: none;
-  color: rgb(151, 103, 50);
+  color: black;
   opacity: 0.5;
+}
+
+a:active {
+  border: 0;
+  text-decoration: none;
+  color: black;
+  opacity: 0.5;
+}
+
+li {
+  display: inline-block;
 }
 
 html {
@@ -35,7 +43,6 @@ body {
   padding-right: 16px;
   display: flex;
   flex-direction: column;
-  /* background-color: rgb(113, 116, 115); */
 }
 
 header {
@@ -80,7 +87,6 @@ nav {
   border-bottom: 2px solid;
 }
 nav .basic-navigation {
-  margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -99,7 +105,7 @@ nav .basic-navigation .basic-navigation-button {
   border-radius: 3px;
   padding: 3px 7px;
 }
-nav .h3-navigation {
+nav .h2-navigation {
   text-align: center;
   font-size: 16px;
   margin: 0;
@@ -117,7 +123,6 @@ nav .sources-navigation input[type=search], nav .sources-navigation input[type=s
 nav .sources-navigation .letters-navigation {
   margin: 10px;
   padding: 0;
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
@@ -137,11 +142,18 @@ nav .sources-navigation .letters-navigation .button {
   margin: 5px;
 }
 nav .sources-navigation .letters-navigation .button:hover {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid;
+  border-radius: 20%;
+  margin: 5px;
+  color: white;
+  background-color: rgb(254, 198, 6);
 }
 nav .sources-navigation .letters-navigation .button:active {
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid;
+  border-radius: 20%;
+  margin: 5px;
+  color: white;
+  background-color: rgb(254, 198, 6);
 }
 
 main {
@@ -152,17 +164,42 @@ main {
   background-color: rgb(255, 234, 122);
   border-bottom: 2px solid;
 }
-
-.h {
-  text-align: center;
-}
-
-article {
+main article {
   width: 80%;
   flex-basis: 80%;
   margin: 0px 10px 5px 10px;
 }
-article .basic-navigation-button {
+main article .h {
+  text-align: center;
+}
+main article .text {
+  font-size: 15px;
+  text-align: justify;
+  text-indent: 25px;
+  margin: 0 10px;
+}
+main article .slideshow-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+}
+main article .slideshow-container .mySlides {
+  display: none;
+}
+main article .slideshow-container .mySlides .numbertext {
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+main article .slideshow-container .mySlides .nested-container {
+  width: 100%;
+  min-height: 190px;
+  border: 1px solid;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  text-align: center;
+}
+main article .slideshow-container .mySlides .nested-container .basic-navigation-button {
   background: rgb(254, 198, 6);
   width: 20%;
   margin: 0 auto;
@@ -175,105 +212,28 @@ article .basic-navigation-button {
   border-radius: 3px;
   padding: 3px 7px;
 }
-article .text {
-  font-size: 15px;
-  text-align: justify;
-  text-indent: 25px;
-  margin: 0 10px;
-}
-article .nested-container {
-  width: 100%;
-  min-height: 190px;
-  border: 1px solid;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  text-align: center;
-}
-
-aside {
-  width: 26%;
-  flex-basis: 26%;
-  flex-shrink: 0;
-  text-align: center;
-  border-left: 1px solid;
-}
-aside .horoscope {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 5px;
-  padding: 0;
-  justify-content: space-around;
-  align-items: baseline;
-}
-aside .horoscope li {
-  margin: 0;
-}
-aside .horoscope p {
-  font-size: 14px;
-  width: 81px;
-  margin: -9px 0px 9px 0;
-  padding: 0;
-}
-aside .horoscope .zodiac-signs {
-  max-width: 75px;
-  max-height: 70px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 100%;
-  position: relative;
-  margin: auto;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-
-/* Next & previous buttons */
-.prev, .next {
+main article .slideshow-container .prev, main article .slideshow-container .next {
   cursor: pointer;
   position: absolute;
-  top: 16px;
+  top: 7px;
   width: auto;
   color: black;
   font-weight: bold;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
-
-.prev {
-  left: 255px;
+main article .slideshow-container .prev {
+  left: 235px;
 }
-
-/* Position the "next button" to the right */
-.next {
-  right: 222px;
+main article .slideshow-container .next {
+  right: 190px;
   border-radius: 3px 0 0 3px;
-  top: 14px;
+  top: 5px;
 }
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
+main article .slideshow-container .prev:hover, main article .slideshow-container .next:hover {
   color: rgba(0, 0, 0, 0.2);
 }
-
-/* Caption text */
-/* Number text (1/3 etc) */
-.numbertext {
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
+main article .dot {
   cursor: pointer;
   height: 15px;
   width: 15px;
@@ -283,13 +243,10 @@ aside .horoscope .zodiac-signs {
   display: inline-block;
   transition: background-color 0.6s ease;
 }
-
-.active, .dot:hover {
+main article .active, main article .dot:hover {
   background-color: #717171;
 }
-
-/* Fading animation */
-.fade {
+main article .fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
@@ -303,6 +260,86 @@ aside .horoscope .zodiac-signs {
     opacity: 1;
   }
 }
+main aside {
+  width: 26%;
+  flex-basis: 26%;
+  flex-shrink: 0;
+  text-align: center;
+  border-left: 1px solid;
+}
+main aside .horoscope {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 5px;
+  padding: 0;
+  justify-content: space-around;
+  align-items: baseline;
+}
+main aside .horoscope li {
+  margin: 0;
+}
+main aside .horoscope p {
+  font-size: 14px;
+  width: 81px;
+  margin: -9px 0px 9px 0;
+  padding: 0;
+}
+main aside .horoscope .zodiac-signs {
+  max-width: 75px;
+  max-height: 70px;
+}
+
 footer {
   background-color: rgb(237, 92, 8);
+  text-align: center;
+}
+footer .row {
+  width: 100%;
+  margin: 2% 0%;
+}
+footer .row a i {
+  font-size: 35px;
+  margin: 0% 2%;
+}
+footer .row a:hover {
+  color: #fff;
+}
+footer .general-information {
+  border-top: 1px solid;
+}
+footer .general-information ul {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+footer .general-information ul .basic-navigation-button {
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  background: rgb(254, 198, 6);
+  display: block;
+  font-size: 16px;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 3px 7px;
+}
+footer p {
+  font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  footer {
+    text-align: left;
+    padding: 5%;
+  }
+  .row ul li {
+    display: block;
+    margin: 10px 0px;
+    text-align: left;
+  }
+  footer .row a i {
+    margin: 0% 3%;
+  }
 }
