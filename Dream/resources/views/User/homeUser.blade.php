@@ -8,10 +8,12 @@
   
     <link rel="stylesheet" href="{{ asset('css/home.css')}}">
     <link rel="stylesheet" href="{{ asset('css/print/print.css')}}" media="print">
-    {{-- foetr znak --}}
-    <!--FONT AWESOME-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="icon" type="image/x-icon"   href="{{ asset('favicon.ico')}}">
+    <!-- следующие 3 строки нужны для корректного отображения семантических элементов HTML5 в старых версиях Internet Explorer-->
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
     <!--[if IE 9]>
       <style>
         @media print { 
@@ -27,21 +29,6 @@
     <meta property="og:locale" content="ru_RU">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    {{-- <meta property="og:url" content="https://www.mywebsite.com/page"> --}}
-    {{-- <link rel="canonical" href="https://www.mywebsite.com/page"> --}}
-  
-    <link rel="icon" href="/favicon.ico за ссылку на иконку сайта, которая отображается во вкладке браузера">
-    {{-- <link rel="icon" href="/favicon.svg" type="image/svg+xml"> --}}
-    {{-- <link rel="apple-touch-icon" href="/apple-touch-icon.png казывает на иконку, которая будет использоваться в качестве значка приложения на устройствах Apple (iPhone, iPad, iPod Touch) вместо обычной иконки сайта. Файл иконки должен иметь формат PNG и размеры 180x180 пикселей для устройств с Retina-экранами и 60x60 пикселей для более старых устройств"> --}}
-    {{-- <link rel="manifest" href="/my.webmanifest  это тег, который связывает веб-страницу с файлом манифеста, который обычно называется webmanifest. --}}
-    {{-- Манифест - это файл JSON, который определяет настройки и параметры для веб-приложения. Например, в манифесте можно указать иконки, цвета, описание и т.д."> --}}
-    {{-- <meta name="theme-color" content="#FF00FF который используется для задания цвета темы на мобильных устройствах. Он указывает браузеру, какой цвет должен быть использован для отображения адресной строки и других элементов пользовательского интерфейса браузера. --}}
-    {{-- В данном случае, заданный цвет - это ярко-розовый (#FF00FF). Если вы откроете сайт на поддерживаемом браузере на мобильном устройстве, вы можете увидеть, что цвет адресной строки и других элементов пользовательского интерфейса браузера будет соответствовать указанному цвету."> --}}
-
-    <!-- следующие 3 строки нужны для корректного отображения семантических элементов HTML5 в старых версиях Internet Explorer-->
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    <![endif]-->
   </head>
 
   <body>
