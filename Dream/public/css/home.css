@@ -2,7 +2,8 @@ a {
   border: 0;
   text-decoration: none;
   color: black;
-  transition: 0.5s;
+  opacity: 1;
+  transition: 0.2s;
 }
 
 a:hover {

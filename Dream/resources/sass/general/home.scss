@@ -2,23 +2,22 @@ $primary-color: rgb(254,198,6);
 $additional-color:rgb(255, 234, 122);
 $footer-color:rgb(237, 92, 8);
 
-a{
+@mixin a-body($opacity){
   border: 0;
   text-decoration: none;
   color: black;
-  transition:0.5s;
+  opacity: $opacity;
+}
+
+a{
+  @include a-body(1);
+  transition:0.2s;
 }
 a:hover{
-  border: 0;
-  text-decoration: none;
-  color: black;
-  opacity: 0.5;
+  @include a-body(0.5);
 }
 a:active{
-  border: 0;
-  text-decoration: none;
-  color: black;
-  opacity: 0.5;
+  @include a-body(0.5);
 }
 
 li{
