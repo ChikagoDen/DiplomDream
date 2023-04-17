@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/home.css')}}">
     <link rel="stylesheet" href="{{ asset('css/print/print.css')}}" media="print">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/x-icon"   href="{{ asset('favicon.ico')}}">
+    <link rel="icon"  href="{{ asset('favicon.ico')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('../recources/img/icon/faviconpng.png')}}" type="image/x-icon">
     <!-- следующие 3 строки нужны для корректного отображения семантических элементов HTML5 в старых версиях Internet Explorer-->
     <!--[if lt IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
