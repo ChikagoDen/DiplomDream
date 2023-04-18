@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/print/print.css')}}" media="print">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon"  href="{{ asset('favicon.ico')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('../recources/img/icon/faviconpng.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('../resources/img/icon/favicon.png')}}" type="image/x-icon">
     <!-- следующие 3 строки нужны для корректного отображения семантических элементов HTML5 в старых версиях Internet Explorer-->
     <!--[if lt IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -18,10 +18,16 @@
     <!--[if IE 9]>
       <style>
         @media print { 
-                header:after { content:""; display: block;height: 1px; width: 1px; position: absolute; top: 100px; right: 100px;outline: 100px solid invert; } 
+            header:after { content:"";
+            display: block;height: 1px;
+            width: 1px;
+            position: absolute;
+            top: 100px;
+            right: 100px;
+            outline: 100px solid invert; } 
         }
       </style>
-   <![endif]-->
+    <![endif]-->
     <meta name="description" content="Наш сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака. Мы также предлагаем ежедневные гороскопы для всех знаков зодиака. Мы уверены, что понимание смысла своих снов и знание гороскопа помогают лучше понимать себя и других, принимать важные решения и строить качественные отношения.">
     <meta property="og:title" content="Хотите разгадать тайны своих снов и лучше понимать свой характер? На нашем сайте вы найдете толкование снов по различным сонникам и описание знаков зодиака. Получите новые знания и научитесь принимать верные решения в жизни.">
     <meta property="og:description" content="Наш сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака. Мы также предлагаем ежедневные гороскопы для всех знаков зодиака. Мы уверены, что понимание смысла своих снов и знание гороскопа помогают лучше понимать себя и других, принимать важные решения и строить качественные отношения.">
