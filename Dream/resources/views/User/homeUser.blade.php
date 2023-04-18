@@ -148,7 +148,7 @@
                     <span class="dot" onclick="currentSlide(3)"></span>
                 </div>
             </article>
-            <script src="{{ asset('js/carusel.js') }}"></script>
+            <script src="{{ asset('../resources/js/carusel.js') }}" async></script>
             <aside>
                 <h3>Гороскоп</h3>
                 <ul class="horoscope">
