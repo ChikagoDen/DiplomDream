@@ -1,41 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-    <title>Приснилось</title>
-  
-    <link rel="stylesheet" href="{{ asset('css/home.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/print/print.css')}}" media="print">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon"  href="{{ asset('favicon.ico')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('../resources/img/icon/favicon.png')}}" type="image/x-icon">
-    <!-- следующие 3 строки нужны для корректного отображения семантических элементов HTML5 в старых версиях Internet Explorer-->
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    <![endif]-->
-    <!--[if IE 9]>
-      <style>
-        @media print { 
-            header:after { content:"";
-            display: block;height: 1px;
-            width: 1px;
-            position: absolute;
-            top: 100px;
-            right: 100px;
-            outline: 100px solid invert; } 
-        }
-      </style>
-    <![endif]-->
-    <meta name="description" content="Наш сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака. Мы также предлагаем ежедневные гороскопы для всех знаков зодиака. Мы уверены, что понимание смысла своих снов и знание гороскопа помогают лучше понимать себя и других, принимать важные решения и строить качественные отношения.">
-    <meta property="og:title" content="Хотите разгадать тайны своих снов и лучше понимать свой характер? На нашем сайте вы найдете толкование снов по различным сонникам и описание знаков зодиака. Получите новые знания и научитесь принимать верные решения в жизни.">
-    <meta property="og:description" content="Наш сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака. Мы также предлагаем ежедневные гороскопы для всех знаков зодиака. Мы уверены, что понимание смысла своих снов и знание гороскопа помогают лучше понимать себя и других, принимать важные решения и строить качественные отношения.">
-    <meta property="og:image" content="https://www.mywebsite.com/image.jpg изображения, которое будет использоваться для отображения при шаринге.">
-    <meta property="og:image:alt" content="Фотография кошки, отражающая мистическую атмосферу, связанную со сновидениями">
-    <meta property="og:locale" content="ru_RU">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
+    <title>ПРИСНИЛОСЬ - сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака.</title>
+
+    <x-Index.Linc/>
+    <x-Index.Meta/>
+    <x-Index.ExceptionsIE9/>
+
   </head>
 
   <body>
