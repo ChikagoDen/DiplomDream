@@ -26,3 +26,22 @@ Route::get('/',[IndexController::class,'index'])->name('index');
 
 
 // Route::any('/',[IndexControllerAdmin::class,'index'])->name('admin');
+
+
+Route::get('/infodream',[InfoDreamBookController::class,'index'])->name('infoDreamBook');
+Route::get('/infodream/{words}',[InfoDreamBookWordsController::class,'index'])->name('infoDreamBookWords');
+Route::get('/words',[WordsController::class,'index'])->name('words');
+Route::get('/words/{description}',[WordsDescriptController::class,'index'])->name('wordsDescript');
+
+Route::get('/infohoroscope',[HoroscopeInfoController::class,'index'])->name('horoscopeInfo');
+Route::get('/infohoroscope/{description}',[HoroscopeDescriptController::class,'index'])->name('horoscopeDescript');
+
+
+Route::view('/connection', 'welcome');
+
+// ---МАГАЗИН----
+// Route::get('/shop',[ShopController::class,'index'])->name('shop');
+
+
+
+
