@@ -7,8 +7,6 @@ main{
     border-bottom: 2px solid;
     
     article{
-      width: 80%;
-      flex-basis: 80%;
       margin: 0px 10px 5px 10px;
   
       .h{
@@ -121,8 +119,7 @@ main{
     }
   
     aside{
-      width: 26%;
-      flex-basis: 26%;
+      max-width: 26%;
       flex-shrink: 0;
       text-align: center;
       border-left: 1px solid;

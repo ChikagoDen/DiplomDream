@@ -35,5 +35,6 @@
         <li><a href="#" class="button">Э</a></li>
         <li><a href="#" class="button">Ю</a></li>
         <li><a href="#" class="button">Я</a></li>
+        <li><a href="#" class="button">Все слова</a></li>
     </ul>                
 </section>

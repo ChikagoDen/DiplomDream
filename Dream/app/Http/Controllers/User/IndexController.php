@@ -23,6 +23,7 @@ class IndexController extends Controller
             'getPuttBooks'=>$putBooks,
             'name'=>'Den'
         ];
+        return view("User.dreamBooks",$params);
        return view("User.homeUser",$params); 
     }
 

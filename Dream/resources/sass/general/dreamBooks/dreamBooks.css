@@ -1,0 +1,21 @@
+.words {
+  margin: 0px 0px 5px;
+  text-align: center;
+  background-color: #fec606;
+  border: 1px solid #ffea7a;
+}
+
+.words:hover {
+  border: 1px solid;
+  background-color: #fec606;
+}
+
+.words:active {
+  border: 1px solid;
+  background-color: #fec606;
+}
+
+.qwer {
+  border-bottom: 1px solid;
+}
+/*# sourceMappingURL=dreamBooks.css.map */

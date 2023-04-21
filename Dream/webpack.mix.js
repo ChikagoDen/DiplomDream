@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js', 'resources/js/carusel.js')
     .sass('resources/sass/general/home.scss', 'public/css')
+    .sass('resources/sass/general/DreamBooks/dreamBooks.scss', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);

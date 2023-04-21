@@ -11,17 +11,15 @@
         <x-Index.Header/>
     </header>
     <nav>
-        <x-Index.BasicNavigation/>
+        <x-Index.BasicNavigation :getPuttBooks="$getPuttBooks"/>
         @yield('SourcesNavigation')
     </nav>
     <main>
         <article>
-            <h2 class="h">@yield('h')</h2>
-            <p class="text">@yield('text')</p>
-            @yield('content')
+            @yield('contentMainArticle')
         </article>
         <aside>
-            @yield('sidbar')
+            @yield('sidbarMainAside')
         </aside>
     </main>
     <footer role="contentinfo">

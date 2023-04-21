@@ -1,84 +1,91 @@
 nav{
-    background-color:$primary-color;
-    width: 100%;
+  background-color:$primary-color;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+
+  .basic-navigation{
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 8px;
+
+    select{
+      font-size: 14px; 
+    }
+
+      .basic-navigation-button{
+        outline: none;
+        text-align: center;
+        text-decoration: none;
+        background: $additional-color;
+        display: block;
+        font-size: 16px;
+        border: 1px solid; 
+        border-radius: 3px;
+        padding: 3px 7px;
+      }
+    }
+
+  .h2-navigation{
+    text-align: center;
+    font-size: 16px;
     margin: 0;
     padding: 0;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-  
-    .basic-navigation{
-      padding: 0;
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin: 8px;
-  
-        .basic-navigation-button{
-          outline: none;
-          text-align: center;
-          text-decoration: none;
-          background: $additional-color;
-          display: block;
-          font-size: 16px;
-          border: 1px solid; 
-          border-radius: 3px;
-          padding: 3px 7px;
-        }
-      }
-  
-    .h2-navigation{
-      text-align: center;
-      font-size: 16px;
-      margin: 0;
-      padding: 0;
-    }   
-  
-    .sources-navigation{
+  }   
+
+  .sources-navigation{
+    margin: 10px;
+    padding: 0;
+    text-align: center;
+
+    input[type=search],input[type=submit]{
+      padding: 5px;
+      font-size: 15px;
+    }
+
+    .letters-navigation{
       margin: 10px;
       padding: 0;
-      text-align: center;
-  
-      input[type=search],input[type=submit]{
-        padding: 5px;
-        font-size: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: left;
+      align-items: center;
+
+      .button {
+        background: #ffea7a;
+        border: 1px solid;
+        border-radius: 20%;
+        display: block;
+        font-size: 20px;
+        margin: 5px;
+        outline: none;
+        text-align: center;
+        text-decoration: none;
+        padding: 0px 7px;
       }
-  
-      .letters-navigation{
-        margin: 10px;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: left;
-        align-items: center;
-  
-        .button {
-            width: 27px;
-            height: 26px;
-            outline: none;
-            text-align: center;
-            text-decoration: none;
-            background:$additional-color;
-            display: block;
-            font-size: 22px;
-            border: 1px solid;
-            border-radius: 20%;
-            margin: 5px;
-        }
-        .button:hover {
-            border: 1px solid;
-            border-radius: 20%;
-            margin: 5px;
-            color: white;
-            background-color: rgb(254,198,6);
-          }
-        .button:active {
+      .button:hover {
           border: 1px solid;
           border-radius: 20%;
           margin: 5px;
           color: white;
           background-color: rgb(254,198,6);
+          padding: 0px 7px;
         }
+      .button:active {
+        border: 1px solid;
+        border-radius: 20%;
+        margin: 5px;
+        color: white;
+        background-color: rgb(254,198,6);
+        padding: 0px 7px;
       }
-    } 
-  }
+    }
+  } 
+}
+
+  

@@ -22,4 +22,4 @@
         <span class="dot" onclick="currentSlide($i+1)"></span>
     @endfor
 </div>
-<script src="{{ asset('../resources/js/carusel.js') }}" async></script> 
+<script src="{{ asset('../resources/js/carusel.js') }}" async></script>

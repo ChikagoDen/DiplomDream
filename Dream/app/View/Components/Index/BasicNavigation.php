@@ -11,9 +11,10 @@ class BasicNavigation extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $getPuttBooks;
+    public function __construct($getPuttBooks)
     {
-        //
+        $this->getPuttBooks=$getPuttBooks;
     }
 
     /**
