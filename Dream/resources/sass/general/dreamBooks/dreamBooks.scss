@@ -1,38 +1,70 @@
+.h3Letter{
+    border-top: 1px solid;
+}
 
-.words {
-    background-color: #fec606;
-    border: 1px solid;
-    border-radius: 10px;
-    margin: 0px 10px 8px;
-    text-align: center;
-    padding: 3px 0px;
-  }
-  .words:hover {
-      border: 1px solid;
-      background-color: #fec606;
+.descriptionWordContainer{
+    display: flex;
+    flex-wrap: wrap;
+
+    .containerWord{
+        width: 33%;
+
+        .words {
+            background-color: #fec606;
+            border: 1px solid;
+            border-radius: 10px;
+            margin: 0px 10px 8px;
+            text-align: center;
+            padding: 3px 0px;
+        }
+        .words:hover {
+            border: 1px solid;
+            background-color: #fec606;
+        }
+        .words:active {
+            border: 1px solid;
+            background-color: #fec606;
+        }
+        .discription {
+            background-color: aliceblue;
+            border: 1px solid;
+            border-radius: 10px;
+            margin: 0px 10px 8px;
+            text-align: center;
+            padding: 3px 0px;
+        }
+        .discription:hover {
+            border: 1px solid;
+            //   background-color: #fec606;
+        }
+        .discription:active {
+            border: 1px solid;
+            // background-color: #fec606;
+        }
+        
+        .containerHide{
+         border-bottom: 1px solid;
+        }
+        .discription {
+            background-color: aliceblue;
+            border: 1px solid;
+            border-radius: 10px;
+            margin: 0px 10px 8px;
+            text-align: center;
+            padding: 3px 0px;
+        }
+        .discription:hover {
+            border: 1px solid;
+            //   background-color: #fec606;
+        }
+        .discription:active {
+            border: 1px solid;
+            // background-color: #fec606;
+        }
+
+        .containerHide{
+            border-bottom: 1px solid;
+        }
     }
-  .words:active {
-    border: 1px solid;
-    background-color: #fec606;
 }
 
-.discription {
-    background-color: aliceblue;;
-    border: 1px solid;
-    border-radius: 10px;
-    margin: 0px 10px 8px;
-    text-align: center;
-    padding: 3px 0px;
-  }
-  .discription:hover {
-      border: 1px solid;
-    //   background-color: #fec606;
-    }
-  .discription:active {
-    border: 1px solid;
-    // background-color: #fec606;
-}
-
-.qwer{
- border-bottom: 1px solid;
-}

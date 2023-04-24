@@ -1,21 +1,78 @@
-.words {
-  margin: 0px 0px 5px;
+.h3Letter {
+  border-top: 1px solid;
+}
+
+.descriptionWordContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.descriptionWordContainer .containerWord {
+  width: 33%;
+}
+
+.descriptionWordContainer .containerWord .words {
+  background-color: #fec606;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 0px 10px 8px;
   text-align: center;
-  background-color: #fec606;
-  border: 1px solid #ffea7a;
+  padding: 3px 0px;
 }
 
-.words:hover {
+.descriptionWordContainer .containerWord .words:hover {
   border: 1px solid;
   background-color: #fec606;
 }
 
-.words:active {
+.descriptionWordContainer .containerWord .words:active {
   border: 1px solid;
   background-color: #fec606;
 }
 
-.qwer {
+.descriptionWordContainer .containerWord .discription {
+  display: none;
+  background-color: aliceblue;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 0px 10px 8px;
+  text-align: center;
+  padding: 3px 0px;
+}
+
+.descriptionWordContainer .containerWord .discription:hover {
+  border: 1px solid;
+}
+
+.descriptionWordContainer .containerWord .discription:active {
+  border: 1px solid;
+}
+
+.descriptionWordContainer .containerWord .containerHide {
+  border-bottom: 1px solid;
+}
+
+.discription {
+  background-color: aliceblue;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 0px 10px 8px;
+  text-align: center;
+  padding: 3px 0px;
+}
+
+.discription:hover {
+  border: 1px solid;
+}
+
+.discription:active {
+  border: 1px solid;
+}
+
+.containerHide {
   border-bottom: 1px solid;
 }
 /*# sourceMappingURL=dreamBooks.css.map */

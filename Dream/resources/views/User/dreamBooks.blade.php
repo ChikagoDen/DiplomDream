@@ -10,20 +10,20 @@
         {{$getPuttBooks[0]['discription']}}
     </p>
 
-    <h3 style="border-top: 1px solid;">A</h3>
-    <div style="display: flex;    flex-wrap: wrap; ">
+    <h3 class="h3Letter">A</h3>
+    <div class="descriptionWordContainer">
         @foreach ($getPuttBooks[0]['abc']['words'] as $key=>$value)
             @if ('а'== mb_substr($key, 0, 1))
-            <div class="containerWord" style="width: 33%">
+            <div class="containerWord">
                 <div  id="{{$key}}" >
-                    <a style="cursor:hand;cursor:pointer;" onclick="document.getElementById('{{$key.'1'}}').style.display=''
+                    <a onclick="document.getElementById('{{$key.'1'}}').style.display=''
                         document.getElementById('{{$key}}').style.display='none'">
                         <h4 class="words">{{$key}}</h4>
                     </a>
                 </div>          
                 <div style="display:none ;" id="{{$key.'1'}}"  class="discription">
-                    <a style="cursor:hand;cursor:pointer;" onclick="document.getElementById('{{$key.'1'}}').style.display='none'
-                        document.getElementById('{{$key}}').style.display=''" class="qwer">
+                    <a  onclick="document.getElementById('{{$key.'1'}}').style.display='none'
+                        document.getElementById('{{$key}}').style.display=''" class="containerHide">
                         <h4 class="words">{{$key}} </h4>
                     </a>
                     <p class="text">{{$value}} </p>
@@ -32,20 +32,20 @@
             @endif 
         @endforeach
     </div>
-        <h3 style="border-top: 1px solid;">Б</h3>
-        <div style="display: flex;    flex-wrap: wrap; ">
+        <h3 class="h3Letter">Б</h3>
+        <div class="descriptionWordContainer">
         @foreach ($getPuttBooks[0]['abc']['words'] as $key=>$value)
             @if ('б'== mb_substr($key, 0, 1))
-            <div class="containerWord" style="width: 33%">
+            <div class="containerWord">
                 <div  id="{{$key}}" >
-                    <a style="cursor:hand;cursor:pointer;" onclick="document.getElementById('{{$key.'1'}}').style.display=''
+                    <a  onclick="document.getElementById('{{$key.'1'}}').style.display=''
                         document.getElementById('{{$key}}').style.display='none'">
                         <h4 class="words">{{$key}}</h4>
                     </a>
                 </div>          
-                <div style="display:none ;" id="{{$key.'1'}}"  class="discription">
-                    <a style="cursor:hand;cursor:pointer;" onclick="document.getElementById('{{$key.'1'}}').style.display='none'
-                        document.getElementById('{{$key}}').style.display=''" class="qwer">
+                <div style="display:none ;"  id="{{$key.'1'}}"  class="discription">
+                    <a  onclick="document.getElementById('{{$key.'1'}}').style.display='none'
+                        document.getElementById('{{$key}}').style.display=''" class="containerHide">
                         <h4 class="words">{{$key}} </h4>
                     </a>
                     <p class="text">{{$value}} </p>
@@ -54,20 +54,20 @@
             @endif  
         @endforeach
     </div>
-        <h3 style="border-top: 1px solid;">В</h3>
-    <div style="display: flex;    flex-wrap: wrap; ">
+        <h3 class="h3Letter">В</h3>
+    <div class="descriptionWordContainer">
         @foreach ($getPuttBooks[0]['abc']['words'] as $key=>$value)
             @if ('в'== mb_substr($key, 0, 1))
-            <div class="containerWord" style="width: 33%">
+            <div class="containerWord">
                 <div  id="{{$key}}" >
-                    <a style="cursor:hand;cursor:pointer;" onclick="document.getElementById('{{$key.'1'}}').style.display=''
+                    <a onclick="document.getElementById('{{$key.'1'}}').style.display=''
                         document.getElementById('{{$key}}').style.display='none'">
                         <h4 class="words">{{$key}}</h4>
                     </a>
                 </div>          
-                <div style="display:none ;" id="{{$key.'1'}}"  class="discription">
-                    <a style="cursor:hand;cursor:pointer;" onclick="document.getElementById('{{$key.'1'}}').style.display='none'
-                        document.getElementById('{{$key}}').style.display=''" class="qwer">
+                <div style="display:none ;"  id="{{$key.'1'}}"  class="discription">
+                    <a  onclick="document.getElementById('{{$key.'1'}}').style.display='none'
+                        document.getElementById('{{$key}}').style.display=''" class="containerHide">
                         <h4 class="words">{{$key}} </h4>
                     </a>
                     <p class="text">{{$value}} </p>
