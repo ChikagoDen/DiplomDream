@@ -27,6 +27,9 @@
                         <h4 class="words">{{$key}} </h4>
                     </a>
                     <p class="text">{{$value}} </p>
+                    <p style="font-size: 13px">Это снилось 1 пользователям.</p>
+                    <a href="#" class="words" style="font-size: 12px">Мне тоже снилось</a>
+                    <a href="#"class="words"  style="font-size: 12px">Поделится сном</a>
                 </div>
             </div>
             @endif 

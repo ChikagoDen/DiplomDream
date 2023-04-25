@@ -10,11 +10,12 @@
                         <option value='{{$i}}'>{{$i+1}} {{$getPuttBooks[$i]['title']}}</option>
                     @endfor
                     <option>Слова из всех сонников</option>
+                    <option>Поделится сном</option>
                 </select>
             <input type="submit" value="Посмотреть">
             </p>
         </form>
-        </li>
+    </li>
     <li><a href="#" class="basic-navigation-button">Гороскоп</a></li>
     {{-- <li><a href="#" class="basic-navigation-button">Магазин</a></li> --}}
 </ul>

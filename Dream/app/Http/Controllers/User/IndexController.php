@@ -19,13 +19,15 @@ class IndexController extends Controller
     // }
     public function index(){
         $putBooks=$this->Sonnik2();
+        $putBooks2=$this->SonnikSw();
         $params=[
             'getPuttBooks'=>$putBooks,
-            'name'=>'Den'
+            'getPuttBooks2'=>$putBooks2
         ];
-        return view("User.dreamBooksAll",$params);
+        return view("User.dreamBooksWords",$params);    
+        // return view("User.dreamBooksAll",$params);
         // return view("User.dreamBooks",$params);
-    //    return view("User.homeUser",$params); 
+       return view("User.homeUser",$params); 
     }
 
     

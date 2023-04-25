@@ -15,18 +15,21 @@
             @foreach ($getPuttBooks[$i]['abc']['words'] as $key=>$value)
                 @if ('а'== mb_substr($key, 0, 1))
                 <div class="containerWord">
-                    <div  id="{{$key}}" >
-                        <a onclick="document.getElementById('{{$key.'1'}}').style.display=''
-                            document.getElementById('{{$key}}').style.display='none'">
-                            <h4 class="words">{{$key}}</h4>
+                    <div  id="{{$key}}.{{$getPuttBooks[$i]['title']}}" >
+                        <a onclick="document.getElementById('{{$key}}.{{$i}}').style.display=''
+                            document.getElementById('{{$key}}.{{$getPuttBooks[$i]['title']}}').style.display='none'">
+                            <h4 class="words">{{$key}} из {{$getPuttBooks[$i]['title']}}</h4>
                         </a>
                     </div>          
-                    <div style="display:none ;" id="{{$key.'1'}}"  class="discription">
-                        <a  onclick="document.getElementById('{{$key.'1'}}').style.display='none'
-                            document.getElementById('{{$key}}').style.display=''" class="containerHide">
-                            <h4 class="words">{{$key}} </h4>
+                    <div style="display:none ;" id="{{$key}}.{{$i}}"  class="discription">
+                        <a  onclick="document.getElementById('{{$key}}.{{$i}}').style.display='none'
+                            document.getElementById('{{$key}}.{{$getPuttBooks[$i]['title']}}').style.display=''" class="containerHide">
+                            <h4 class="words">{{$key}} из {{$getPuttBooks[$i]['title']}} </h4>
                         </a>
                         <p class="text">{{$value}} </p>
+                        <p style="font-size: 13px">Это снилось 1 пользователям.</p>
+                        <a href="#" class="words" style="font-size: 12px">Мне тоже снилось</a>
+                        <a href="#"class="words"  style="font-size: 12px">Поделится сном</a>
                     </div>
                 </div>
                 @endif 

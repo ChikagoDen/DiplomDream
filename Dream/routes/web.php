@@ -27,7 +27,6 @@ Route::get('/',[IndexController::class,'index'])->name('index');
 
 // Route::any('/',[IndexControllerAdmin::class,'index'])->name('admin');
 
-
 Route::get('/infodream',[InfoDreamBookController::class,'index'])->name('infoDreamBook');
 Route::get('/infodream/{words}',[InfoDreamBookWordsController::class,'index'])->name('infoDreamBookWords');
 Route::get('/words',[WordsController::class,'index'])->name('words');

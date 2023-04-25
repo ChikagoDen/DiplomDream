@@ -1,3 +1,10 @@
+      .text {
+        font-size: 15px;
+        text-align: justify;
+        text-indent: 25px;
+        margin: 0 10px;
+      }
+
 main{
     display: flex;
     width: 100%;
@@ -14,12 +21,7 @@ main{
         text-align: center;
       }
   
-      .text {
-        font-size: 15px;
-        text-align: justify;
-        text-indent: 25px;
-        margin: 0 10px;
-      }
+
   
       .slideshow-container {
         max-width: 100%;
