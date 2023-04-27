@@ -24,6 +24,51 @@ class Controller extends BaseController
         }
         return $boks;
     }
+        public function Sonnikmy(){
+            $boks3=[
+                'title'=>'user1111',
+                'dreams'=>[
+                    0=>[
+                        'son1'=>'blablabla1'
+                    ], 
+                    1=>[
+                        'son2'=>'blablabla2'
+                    ],
+                ]
+            ];
+        return $boks3;
+    }
+        public function SonnikmyALL(){
+            $boks4=[
+                0=>[
+                    'name'=>'user1111',
+                    'title'=>'son1',
+                    'son1'=>'blablabla1 blablbla blabla1 blablbla blabla1 blablbla blabla1 blablblabl abla1 blablbla blabla1 blablabla1 blablbla blabla1 blablbla blabla1 blablbla blabla1 blablblabl abla1 blablbla blabla1blablbla blabla1 blablbla blabla1 blabl',
+                    'coment'=>[
+                                    'user222'=>'hahahah',
+                                    'user444'=>'hooho',
+                                    'user333'=>'hahahah',
+                                    'user222'=>'hahahah',
+                                ], 
+                    'son2'=>'blablabla2',
+                    'coment2'=>[]
+                ],
+                1=>[
+                    'name'=>'user22222',
+                    'title'=>'nazvanie sna',
+                    'son1'=>'blablabla1',
+                    'coment'=>[], 
+                    'son2'=>'blablabla2',
+                    'coment2'=>[
+                            'user222'=>'hahahah',
+                            'user444'=>'hooho',
+                             'user333'=>'hahahah',
+                            'user222'=>'hahahah',]
+                    ]       
+            ];
+        return $boks4;
+    }
+    
     public function Sonnik2(){
         $boks=[
             [   'title'=>'Сонник  Фрейда',

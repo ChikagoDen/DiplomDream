@@ -14,15 +14,13 @@
                 <p class="text" style="margin: 5px 0;">
                     <em>{{$getPuttBooks[$i]['title']}}</em> </p>
                 <p class="text"><blockquote style="font-size: 15px" class="text">{{$value}}</blockquote></p> 
-                
-
             </div>
             @endif 
         @endforeach
     @endfor
     <div class="containerWord">
-    <p style="font-size: 13px">Это снилось 1 пользователям.</p>
-                <a href="#" class="words" style="font-size: 12px">Мне тоже снилось</a>
-                <a href="#"class="words"  style="font-size: 12px">Поделится сном</a>
-                </div>
+        <p style="font-size: 13px">Это снилось 1 пользователям.</p>
+        <a href="#" class="words" style="font-size: 12px">Мне тоже снилось</a>
+        <a href="#"class="words"  style="font-size: 12px">Поделится сном</a>
+    </div>
 @endsection
