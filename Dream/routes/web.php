@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\IndexControllerAdmin;
+use App\Http\Controllers\User\DreamBooks\DreamBooksController;
 use App\Http\Controllers\User\IndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +27,9 @@ Route::get('',[IndexController::class,'index'])->name('homeUser');
 
 // Route::any('/',[IndexControllerAdmin::class,'index'])->name('admin');
 
-// Route::get('/infodream/{book}',[]);
+Route::get('/infodream',[DreamBooksController::class,'show'])->name('infoDreamBook');
 
-Route::get('/infodream',[InfoDreamBookController::class,'index'])->name('infoDreamBook');
+// Route::get('/infodream',[DreamBooksController::class,'index'])->name('infoDreamBookIndex');
 Route::get('/infodream/{words}',[InfoDreamBookWordsController::class,'index'])->name('infoDreamBookWords');
 Route::get('/words',[WordsController::class,'index'])->name('words');
 Route::get('/words/{description}',[WordsDescriptController::class,'index'])->name('wordsDescript');
