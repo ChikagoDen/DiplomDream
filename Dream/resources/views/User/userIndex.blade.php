@@ -1,11 +1,11 @@
 {{-- {{var_dump($user)}} --}}
 <h1>YTLLOKFB GK</h1> 
-The current UNIX timestamp is {{ time() }}
+{{-- The current UNIX timestamp is {{ time() }} --}}
 
-<h3>Здорово {{$name}}
+{{-- <h3>Здорово {{$name}} --}}
 
 
-@foreach ($getPuttBooks as $user)
+{{-- @foreach ($getPuttBooks as $user)
 @if ($loop->first)
 Это первый{{ $user['id'] }}
 @endif
@@ -14,4 +14,5 @@ The current UNIX timestamp is {{ time() }}
 Это последний.{{ $user['id'] }}
 @endif
     <p>This is user {{ $user['title'] }}</p><br>
-@endforeach
+@endforeach --}}
+{{-- {{$putBooks->user_tabll_name_nick}} --}}

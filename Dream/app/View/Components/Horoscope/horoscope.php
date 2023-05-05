@@ -1,22 +1,20 @@
 <?php
 
-namespace App\View\Components\Index;
+namespace App\View\Components\Horoscope;
 
 use Illuminate\View\Component;
 
-class BasicNavigation extends Component
+class horoscope extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public $getPuttBooks;
-    public function __construct($getPuttBooks)
+    public function __construct()
     {
-        $this->getPuttBooks=$getPuttBooks;
+        //
     }
-
 
     /**
      * Get the view / contents that represent the component.
@@ -25,6 +23,6 @@ class BasicNavigation extends Component
      */
     public function render()
     {
-        return view('components.index.basic-navigation');
+        return view('components.horoscope.horoscope');
     }
 }

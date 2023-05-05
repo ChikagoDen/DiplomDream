@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Index;
+namespace App\View\Components\horoscope;
 
 use Illuminate\View\Component;
 
-class BasicNavigation extends Component
+class sliderHoroscop extends Component
 {
     /**
      * Create a new component instance.
@@ -17,7 +17,6 @@ class BasicNavigation extends Component
         $this->getPuttBooks=$getPuttBooks;
     }
 
-
     /**
      * Get the view / contents that represent the component.
      *
@@ -25,6 +24,6 @@ class BasicNavigation extends Component
      */
     public function render()
     {
-        return view('components.index.basic-navigation');
+        return view('components.horoscope.slider-horoscop');
     }
 }

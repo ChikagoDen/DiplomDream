@@ -11,10 +11,10 @@ class Slider extends Component
      *
      * @return void
      */
-    public $getPuttBooks;
-    public function __construct($getPuttBooks)
+    public $getDateSlider;
+    public function __construct($getDate)
     {
-        $this->getPuttBooks=$getPuttBooks;
+        $this->getDateSlider=$getDate;
     }
 
     /**

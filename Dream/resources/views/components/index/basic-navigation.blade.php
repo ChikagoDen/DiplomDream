@@ -1,5 +1,5 @@
 <ul class="basic-navigation">
-    <li><a href="/" class="basic-navigation-button">Главная страница</a></li>
+    <li><a href="{{route('homeUser')}}" class="basic-navigation-button">Главная страница</a></li>
     <li>
         {{-- "/infodream" --}}
         <form action="formdata" method="get" name="form1" id="1">

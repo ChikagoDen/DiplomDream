@@ -10,15 +10,27 @@
         @foreach ($getPuttBooks3['dreams'][$i] as $key=>$value)
             <div class="containerWord" style="    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);padding: 1px;">
                 <p class="text" style="margin: 5px 0;">
-                    <strong>{{$key}}</strong> 
+                    10/12/2014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{$key}}</strong> 
                 </p>
-                <p class="text"><blockquote style="font-size: 15px" class="text">{{$value}}</blockquote></p> 
+                <p class="text"><blockquote style="font-size: 15px" class="text">{{$value}}</blockquote></p>
+                <p style="text-align: end">
+                    <a href="#" class="basic-navigation-button" style="    background: #fec606;
+                    border: 1px solid;
+                    border-radius: 3px;
+                    font-size: 16px;
+                    outline: none;
+                    padding: 3px 7px;
+                    text-align: center;
+                    margin-right: 10px;
+                    text-decoration: none;">Опубликовать</a> 
+                </p>
             </div>
         @endforeach
     @endfor
     <div>
         <h3 class="h3Letter">Добавить сон.</h3>
         <form action="" method="post">
+            @csrf
             <fieldset style="border:2px solid #fec606">
                 <legend>Добавить сон в свой список.</legend>
                 <label> Придумайте название сна:

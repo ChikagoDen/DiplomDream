@@ -18,14 +18,15 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-Route::get('/',[IndexController::class,'index'])->name('index');
+Route::get('',[IndexController::class,'index'])->name('homeUser');
 // Route::get('/',[IndexController::class,'index'])->middleware('auth');
 // Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
 
 
 
 // Route::any('/',[IndexControllerAdmin::class,'index'])->name('admin');
+
+// Route::get('');
 
 Route::get('/infodream',[InfoDreamBookController::class,'index'])->name('infoDreamBook');
 Route::get('/infodream/{words}',[InfoDreamBookWordsController::class,'index'])->name('infoDreamBookWords');
