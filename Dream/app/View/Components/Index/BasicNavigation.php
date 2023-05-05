@@ -11,13 +11,11 @@ class BasicNavigation extends Component
      *
      * @return void
      */
-    public $getPuttBooks;
-    public function __construct($getPuttBooks)
+    public $getDateList;
+    public function __construct($getDate)
     {
-        $this->getPuttBooks=$getPuttBooks;
+        $this->getDateList=$getDate;
     }
-
-
     /**
      * Get the view / contents that represent the component.
      *

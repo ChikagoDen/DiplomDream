@@ -16,7 +16,6 @@ class Slider extends Component
     {
         $this->getDateSlider=$getDate;
     }
-
     /**
      * Get the view / contents that represent the component.
      *

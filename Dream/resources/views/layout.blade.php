@@ -11,7 +11,7 @@
         <x-Index.Header/>
     </header>
     <nav>
-        <x-Index.BasicNavigation :getPuttBooks="$getPuttBooks"/>
+        <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
         @yield('SourcesNavigation')
     </nav>
     <main>
