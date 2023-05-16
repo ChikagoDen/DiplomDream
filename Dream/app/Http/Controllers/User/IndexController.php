@@ -33,6 +33,8 @@ class IndexController extends Controller
             'getPuttBooks3'=>$putBooks3,
             'getPuttBooks4'=>$putBooks4,
         ];
+
+        // return view("dashboard", $params); 
         // return view("User.Horoscope.horoscope",$params);
         // return view("User.dreamBooksMyAll",$params);
         // return view("User.dreamBooksMy",$params);         

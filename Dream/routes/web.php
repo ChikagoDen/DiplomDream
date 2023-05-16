@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\IndexControllerAdmin;
+use App\Http\Controllers\User\AppController;
 use App\Http\Controllers\User\DreamBooks\DreamBooksController;
 use App\Http\Controllers\User\IndexController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [AppController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
+
+
+require __DIR__.'/auth.php';
+
+
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 Route::get('',[IndexController::class,'index'])->name('homeUser');
 // Route::get('/',[IndexController::class,'index'])->middleware('auth');
 // Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
@@ -42,7 +56,4 @@ Route::view('/connection', 'welcome');
 
 // ---МАГАЗИН----
 // Route::get('/shop',[ShopController::class,'index'])->name('shop');
-
-
-
 

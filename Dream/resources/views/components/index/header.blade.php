@@ -1,34 +1,27 @@
-<style>
+<a  @if (Auth::check())
+        href="{{ route('dashboard') }}"
+    @else
+        href="{{route('homeUser')}}"
+    @endif href="">
 
-
-
-.bod {
-    background: #6ED0F6;
-    color: #fff;
-    font-family: 'Raleway', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    display: flex;
-    position: absolute;
-    width: 100%;
-    height: 70%;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    justify-content: center;
-}
-
-</style>
-
-
-
-<a href="#">
-    <img src="{{asset('../resources/img/logo.png')}}" alt="Логотип организации Приснилось" class="logotype">                    
+    <img src="{{asset('../resources/img/logo.png')}}" alt="Логотип организации Приснилось" class="logotype">
 </a>
 <h1 class="heading">Мы считаем, что понимание смысла снов и гороскопа помогает лучше понимать себя и других, принимать важные решения и улучшать отношения.</h1>
-<a href="#">
-    <p class="authorization">войти</p>
-    {{-- <div class="bod">
+@if (Auth::check())
+    <div style="text-align: center;margin: 0 10px;">
+        <p >Рады Вас видеть</p> 
+        <p>{{ Auth::user()->name }}</p>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                <p>Выход</p>
+            </a>
+        </form>
+    </div>
+@else
+    <a href="{{route('login')}}">
+        <p class="authorization">войти</p>
+    </a>  
+@endif
+  
 
-    </div> --}}
-
-</a>

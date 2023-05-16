@@ -1,1 +1,47 @@
-.h3Letter{border-top:1px solid}.words{border:1px solid;border-radius:10px;margin:0 10px 8px;padding:4px;text-align:center}.words,.words:hover{background-color:#fec606}.words:active,.words:hover{border:1px solid}.words:active{background-color:#fec606}.descriptionWordContainer{display:flex;flex-wrap:wrap}.descriptionWordContainer .containerWord{width:33%}.descriptionWordContainer .containerWord .discription{background-color:#f0f8ff;border:1px solid;border-radius:10px;margin:0 10px 8px;padding:7px;text-align:center}.descriptionWordContainer .containerWord .discription:active,.descriptionWordContainer .containerWord .discription:hover{border:1px solid}.descriptionWordContainer .containerWord .containerHide{border-bottom:1px solid}
+.h3Letter {
+  border-top: 1px solid;
+}
+
+.words {
+  background-color: #fec606;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 0px 10px 8px;
+  text-align: center;
+  padding: 4px;
+}
+
+.words:hover {
+  border: 1px solid;
+  background-color: #fec606;
+}
+
+.words:active {
+  border: 1px solid;
+  background-color: #fec606;
+}
+
+.descriptionWordContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.descriptionWordContainer .containerWord {
+  width: 33%;
+}
+.descriptionWordContainer .containerWord .discription {
+  background-color: aliceblue;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 0px 10px 8px;
+  text-align: center;
+  padding: 7px;
+}
+.descriptionWordContainer .containerWord .discription:hover {
+  border: 1px solid;
+}
+.descriptionWordContainer .containerWord .discription:active {
+  border: 1px solid;
+}
+.descriptionWordContainer .containerWord .containerHide {
+  border-bottom: 1px solid;
+}
