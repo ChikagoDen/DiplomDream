@@ -19,7 +19,7 @@
         <header>
             <x-Index.Header/>
         </header>
-        <div  style="background-color: aqua">
+        <div style="background-color: #ffea7a;">
             {{ $slot }}
         </div>
         <footer role="contentinfo">
