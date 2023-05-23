@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/dreamBooks.css')}}">
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', "Мой сон: добавляйте и читайте свои истории")
 

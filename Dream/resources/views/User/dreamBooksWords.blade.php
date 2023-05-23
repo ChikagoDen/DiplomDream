@@ -1,11 +1,14 @@
 <link rel="stylesheet" href="{{ asset('css/dreamBooks.css')}}">
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', "Толкование снов по ключевым словам: Интерпретация значений сновидений")
-
+@section('SourcesNavigation')
+    <x-Index.SourcesNavigation/>
+@endsection
 @section('contentMainArticle')
     <h2 class="h">Здесь вы найдете интерпретацию значений снов по выбранному ключевому слову. </h2>
     {{-- описание сонника --}}
+    @dump($wordAll)
     <h3 class="h3Letter">Слово:  <strong>{{$temp=array_key_first($getPuttBooks[0]['abc']['words'])}}</strong></h3>
     @for ($i = 0; $i < count($getPuttBooks); $i++)
         @foreach ($getPuttBooks[$i]['abc']['words'] as $key=>$value)

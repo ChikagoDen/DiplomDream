@@ -12,7 +12,7 @@
     </header>
     <nav>
         <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
-        @yield('SourcesNavigation')
+        {{-- <x-Index.SourcesNavigation/> --}}
     </nav>
     <main>
         <article>

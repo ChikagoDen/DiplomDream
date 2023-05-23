@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/dreamBooks.css')}}">
 <link rel="stylesheet" href="{{ asset('css/dreamBooksMyAll.css')}}">
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', "Окунитесь в мир снов: общайтесь и делись впечатлениями")
 

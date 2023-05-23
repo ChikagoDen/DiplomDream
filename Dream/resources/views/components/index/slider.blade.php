@@ -10,7 +10,9 @@
                         justify-content: center;
                         align-items: center;"> 
                     <a  onclick="plusSlides(-1)"><p>назад  &#10094;</p></a>
-                    <h3><a href="#" class="basic-navigation-button" title="Перейти в сонник" style="width: auto;    margin: 0 15px;">{{$getDateSlider[$i]->biblioteca_tabl_name}}</a></h3>
+                    <h3><a href="{{ asset('/infodream?book='.$i+1)}}" class="basic-navigation-button" title="Перейти в сонник" style="width: auto;    margin: 0 15px;">{{$getDateSlider[$i]->biblioteca_tabl_name}}</a></h3>
+                    {{-- <h3><a href="{{ asset('/infodream?book='.$i+1)}}" class="basic-navigation-button" title="Перейти в сонник" style="width: auto;    margin: 0 15px;">{{$getDateSlider[$i]->biblioteca_tabl_name}}</a></h3> --}}
+                    
                     <a  onclick="plusSlides(1)"><p>&#10095;  следующий</p></a>   
                 </div>  
                 <p class="text">

@@ -1,7 +1,7 @@
 <a  @if (Auth::check())
         href="{{ route('dashboard') }}"
     @else
-        href="{{route('homeUser')}}"
+        href="{{ asset('/')}}"
     @endif href="">
 
     <img src="{{asset('../resources/img/logo.png')}}" alt="Логотип организации Приснилось" class="logotype">
@@ -27,7 +27,7 @@
 @endauth
 @guest
     @if (strcmp('login',Route::currentRouteName())==0||strcmp('register',Route::currentRouteName())==0)
-        <a href="{{route('homeUser')}}" style="margin-right: 20px;
+        <a href="{{ asset('/')}}" style="margin-right: 20px;
         background: rgb(255, 234, 122);
         border: 1px solid;
         border-radius: 3px;
