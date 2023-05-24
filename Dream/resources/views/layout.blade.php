@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="ru">
   <head>
     <title>@yield('title')</title>
@@ -13,7 +13,7 @@
     <nav>
         <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
         {{-- <x-Index.SourcesNavigation/> --}}
-    </nav>
+    {{-- </nav>
     <main>
         <article>
             @yield('contentMainArticle')
@@ -25,5 +25,5 @@
     <footer role="contentinfo">
         <x-Index.Footer/>
     </footer>
-  </body>
-</html>
+  </body> --}}
+{{-- </html> --}} 

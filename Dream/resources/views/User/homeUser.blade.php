@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('title', 'ПРИСНИЛОСЬ - сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака.')
 @section('SourcesNavigation')
     <x-Index.SourcesNavigation/>
