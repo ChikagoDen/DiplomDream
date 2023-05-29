@@ -1,5 +1,10 @@
-<ul class="basic-navigation">
-    <li><a href="{{ asset('/')}}" class="basic-navigation-button">Главная страница</a></li>
+<ul class="basic-navigation" style="align-items: flex-start">
+    <li><a href="{{ asset('/')}}" class="basic-navigation-button">Главная страница</a></li> 
+    @if (Auth::check())
+        <li>
+            <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Моя страница снов</a>
+        </li>
+    @endif
     <li>
         <form action="{{route('infoDreamBook')}}" method="get" id="formListDreamBook">
             {{-- @csrf --}}

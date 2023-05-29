@@ -9,10 +9,32 @@ use Illuminate\Support\Facades\DB;
 class DreamBooksMyController extends Controller
 {
     public function index(){
+        if (!empty($_GET)) {
+            if (!empty($_GET['statusShow'])) {
+                $idDream = $_GET['statusShow'];
+                DB::table('dream_book_biblioteca.dream_user_table')
+                    ->where('id_dream_user_table',$idDream)
+                    ->update(['dream_user_access'=>0]);
+            }
+            elseif(!empty($_GET['statusClose'])){
+                $idDream = $_GET['statusClose'];
+                DB::table('dream_book_biblioteca.dream_user_table')
+                    ->where('id_dream_user_table',$idDream)
+                    ->update(['dream_user_access'=>1]);
+            }
+            // редерикт на правила!!!!
+            else return redirect()->back();
+        }
         $listDreamBooks=DB::table('dream_book_biblioteca.biblioteca_tabl')
                         ->select('biblioteca_tabl_name','biblioteca_tabl_discription')
                         ->get();
-
+        $id=Auth()->id();
+        $dataDremMy=DB::table('dream_book_biblioteca.dream_user_table')
+                    // ->select('dream_user_title', 'dream_user_discription', 'dream_user_date', 'dream_user_coment_col','dream_user_access')
+                    ->where('dream_user_Id_User',$id)
+                    ->orderBy('dream_user_date', 'desc')
+                    ->get();
+                    
 
 
         $putBooks=$this->Sonnik2();
@@ -20,6 +42,7 @@ class DreamBooksMyController extends Controller
         $putBooks3=$this->Sonnikmy();
         $putBooks4=$this->SonnikmyALL();
         $params=[
+            'dataDremMy'=>$dataDremMy,
             'getPuttBooks'=>$putBooks,
             'getPuttBooks2'=>$putBooks2,
             'getPuttBooks3'=>$putBooks3,
