@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\DB;
 class DreamBooksMyController extends Controller
 {
     public function index(){
-        $listDreamBooks=DB::select('SELECT biblioteca_tabl_name,biblioteca_tabl_discription FROM dream_book_biblioteca.biblioteca_tabl');
+        $listDreamBooks=DB::table('dream_book_biblioteca.biblioteca_tabl')
+                        ->select('biblioteca_tabl_name','biblioteca_tabl_discription')
+                        ->get();
+
+
 
         $putBooks=$this->Sonnik2();
         $putBooks2=$this->SonnikSw();

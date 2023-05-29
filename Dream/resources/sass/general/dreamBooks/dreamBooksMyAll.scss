@@ -15,7 +15,7 @@
     padding: 3px 7px;
     text-align: center;
     text-decoration: none;
-    width: 62px;
+    width: max-content;
 }
 .container-My-Dream{
     box-shadow: 0 1px 4px #fec606,
@@ -62,7 +62,7 @@
     margin-top: 5px;margin-bottom: 5px;
 }
 .title-comments {
-    border-bottom: 1px solid rgba(34,36,38,.15);
+    border-top: 1px solid rgba(34,36,38,.15);
     color: rgba(0,0,0,.87);
     margin-bottom: 5px;
 }

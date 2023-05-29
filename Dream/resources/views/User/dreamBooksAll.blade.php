@@ -43,6 +43,6 @@
             </div>
         @endforeach
     @else
-    <p class="text">Информация не загружена.</p>
+        <p class="text">Информация не загружена.</p>
     @endif
 @endsection

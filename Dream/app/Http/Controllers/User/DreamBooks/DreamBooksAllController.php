@@ -16,7 +16,9 @@ class DreamBooksAllController extends Controller
         $book=request()->input('book');
         // разобратся с сохранением и передачей данных по всему сайту
         // данные всех сонников
-        $listDreamBooks=DB::select('SELECT biblioteca_tabl_name,biblioteca_tabl_discription, biblioteca_tabl_word_col FROM dream_book_biblioteca.biblioteca_tabl');
+        $listDreamBooks=DB::table('dream_book_biblioteca.biblioteca_tabl')
+                            ->select('biblioteca_tabl_name','biblioteca_tabl_discription')
+                            ->get();
         $wordsStock=[];
         foreach($bookDataAll as $value){
             $temp=mb_substr(mb_strtoupper($value->DreamBookWord), 0, 1, "UTF-8");

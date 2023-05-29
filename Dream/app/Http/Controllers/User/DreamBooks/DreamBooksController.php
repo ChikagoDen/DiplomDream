@@ -29,9 +29,10 @@ class DreamBooksController extends Controller
         else $words=0;
         // разобратся с сохранением и передачей данных по всему сайту
         // данные всех сонников
-        $listDreamBooks=DB::select('SELECT biblioteca_tabl_name,biblioteca_tabl_discription, biblioteca_tabl_word_col FROM dream_book_biblioteca.biblioteca_tabl');
-
-        // выбор слов из сонника
+        $listDreamBooks=DB::table('biblioteca_tabl')
+                        ->select('biblioteca_tabl_name','biblioteca_tabl_discription', 'biblioteca_tabl_word_col')
+                        ->get();
+                        // выбор слов из сонника
         $bookData=DB::select('SELECT * FROM dream_book_biblioteca.dreambook where idDream=:book', ['book'=>$book+1]);
         $wordsStock=[];
         foreach($bookData as $value){

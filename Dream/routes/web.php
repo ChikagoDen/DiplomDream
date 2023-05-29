@@ -22,9 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard', [AppController::class, 'index'])->middleware(['auth'])->name('dashboard');
 require __DIR__.'/auth.php';
 
@@ -35,9 +32,6 @@ require __DIR__.'/auth.php';
 // });
 
 Route::get('/',[IndexController::class,'index'])->name('homeUser');
-// Route::get('/',[IndexController::class,'index'])->middleware('auth');
-// Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
-
 
 
 // Route::any('/',[IndexControllerAdmin::class,'index'])->name('admin');
@@ -46,6 +40,8 @@ Route::get('/infodream',[DreamBooksController::class,'show'])->name('infoDreamBo
 Route::get('/infodreamAll',[DreamBooksAllController::class,'showAll'])->name('infoDreamBooksAll');
 // все сны пользователей
 Route::get('/dreamUserAll',[DreamBooksMyAllController::class,'index'])->name('dreamBooksUserAll');
+Route::post('/dreamUserAll',[DreamBooksMyAllController::class,'coment'])->name('dreamBooksUserAllComent');
+
 // сны пользователя
 Route::get('/dreamUser', [DreamBooksMyController::class,'index'])->name('dreamBooksUser');
 // поиск по слову
