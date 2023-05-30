@@ -44,6 +44,8 @@ Route::post('/dreamUserAll',[DreamBooksMyAllController::class,'coment'])->name('
 
 // сны пользователя
 Route::get('/dreamUser', [DreamBooksMyController::class,'index'])->name('dreamBooksUser');
+Route::post('/dreamUserAddDream',[DreamBooksMyController::class,'addDream'])->name('dreamBooksUserAddDream');
+Route::post('/dreamUserUpdateName', [DreamBooksMyController::class,'updateName'])->name('dreamBooksUserUpdateName');
 // поиск по слову
 Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDreamBooksWord');
 
