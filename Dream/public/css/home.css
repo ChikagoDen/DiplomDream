@@ -184,7 +184,6 @@ main {
 main article {
   flex-grow: 1;
   margin: 0px 10px 5px 10px;
-  max-height: 670px;
   overflow-y: auto;
 }
 main article .h {

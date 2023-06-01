@@ -21,7 +21,8 @@
                 <p class="title-comments"><b>Комментарии:</b> {{$AllDream[$i]->dream_user_coment_col}}</p>
                 <label for="pseudoBtn{{$i}}" class="tmp-navig-button">Посмотреть или прокоментировать</label>
                 <input type="checkbox" id="pseudoBtn{{$i}}" class="coment input">
-                <div class="coment">
+                <div class="coment" style="overflow-y: scroll;
+                max-height: 516px;width: 98%;">
                     @if (Auth::check())
                         <form action="{{route('dreamBooksUserAllComent')}}" method="post" id="formListComent">
                             @csrf
