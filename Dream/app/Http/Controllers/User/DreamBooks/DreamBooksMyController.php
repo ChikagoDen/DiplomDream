@@ -90,5 +90,5 @@ class DreamBooksMyController extends Controller
             ->where('id',$id)
             ->update(['name'=>$newName]);
         return redirect()->route('dreamBooksUser');
-    }    
+    }        
 }

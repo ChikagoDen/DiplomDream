@@ -13,16 +13,20 @@ class DreamBooksWordsController extends Controller
         // разложить строку взять первые символы, если ничего нет??
         // $escapedInput = str_replace('%', '\\%', $input);
         if (isset($_GET['searchWord'])) {
-            $words = $_GET['searchWord'];
-            $wordAll[]=DB::select('SELECT * FROM dream_book_biblioteca.dreambook where dreambook.DreamBookWord LIKE ?',[$words.'%']);
+            $word = $_GET['searchWord'];            
+            if ( $word=="") {
+                return redirect()->back();
+            } 
+            else {
+                $wordAll=DB::table("dream_book_biblioteca.dreambook")
+                        ->where("dreambook.DreamBookWord", "LIKE",$word.'%')
+                        ->get();                
+                }
         }
-        else $words=0;
 
-
-        // $listDreamBooks=DB::select('SELECT biblioteca_tabl_name,biblioteca_tabl_discription FROM dream_book_biblioteca.biblioteca_tabl');
 
         $listDreamBooks=DB::table('dream_book_biblioteca.biblioteca_tabl')
-                        ->select('biblioteca_tabl_name','biblioteca_tabl_discription')
+                        ->select('biblioteca_tabl_name','biblioteca_tabl_discription','id_biblioteca_tabl')
                         ->get();
 
 
@@ -36,7 +40,7 @@ class DreamBooksWordsController extends Controller
             'getPuttBooks3'=>$putBooks3,
             'getPuttBooks4'=>$putBooks4,
             'listDreamBooks'=>$listDreamBooks,
-            'words'=>$words,
+            'words'=>$word,
             'wordAll'=>$wordAll,
 
         ];

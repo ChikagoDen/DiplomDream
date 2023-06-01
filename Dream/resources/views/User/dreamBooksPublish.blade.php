@@ -5,16 +5,27 @@
 @section('title', "Окунитесь в мир снов: общайтесь и делись впечатлениями")
 
 @section('contentMainArticle')
-    <h2 class="h">На этой страничке вы можете посмотреть сны других пользователей и оставить свои комментарии под их постами.</h2>
+    <a href="{{route('dreamBooksUserAll')}}" style="background: #fec606;
+    border: 1px solid;
+    border-radius: 3px;
+    display: block;
+    font-size: 16px;
+    outline: none;
+    padding: 3px 7px;
+    text-align: center;
+    text-decoration: none;
+    width: -moz-max-content;
+    width: max-content;    margin: 5px 0;">Вернутся назад</a>
+    <h2 class="h">Пользователь {{$AllDream[0]->name}} делится своими снами.</h2>
         @php
             $tempUser = array();
         @endphp   
     @for ($i = 0; $i < count($AllDream); $i++)
         @php
-            $tempUser[$AllDream[$i]->id]=$AllDream[$i]->name;
+            $tempUser[]=$AllDream[$i]->name;
         @endphp
         <div>
-            <p style="word-wrap: break-word">Сон пользователя: <strong>{{$AllDream[$i]->name}}</strong> <span class="date">{{$AllDream[$i]->dream_user_date}}</span></p>
+            <p style="word-wrap: break-word"><span class="date">{{$AllDream[$i]->dream_user_date}}</span></p>
             <div class="container-My-Dream">
                 <h4 style="text-align: center; margin-bottom: 5px;">{{$AllDream[$i]->dream_user_title}}</h4>
                 <p class="text" style="margin-bottom: 10px;">{{$AllDream[$i]->dream_user_discription}}</p>
@@ -29,7 +40,7 @@
                                 <p>Поделитесь своими впечатлениями, эмоциями и размышлениями.</p>
                                 <textarea name="descriptionDreamComent" rows="3" cols="10" value="Описание сна" style="width: 100%" ></textarea>
                             </label>
-                            <input type="hidden" name="puth" value="1">
+                            {{-- <input type="hidden" name="puth" value="2"> --}}
                             <input type="hidden" name="userName" value="{{auth()->user()->id}}">
                             <input type="hidden" name="dreamName" value="{{$AllDream[$i]->id_dream_user_table}}">
                             <br>
@@ -76,11 +87,11 @@
                                                                 <p>Поделитесь своими впечатлениями, эмоциями и размышлениями.</p>
                                                                 <textarea name="descriptionDreamComent" rows="3" cols="10" value="Описание сна" style="width: 100%" ></textarea>
                                                             </label>
-                                                            <input type="hidden" name="puth" value="1">
-                                                            <input type="hidden" name="userName" value="{{auth()->user()->id}}">
-                                                            <input type="hidden" name="dreamName" value="{{$AllDream[$i]->id_dream_user_table}}">
-                                                            <input type="hidden" name="commentLevel" value='2'>
-                                                            <input type="hidden" name="commentId" value={{$dataALLComent[$j]->idcomment_table}}>
+                                                            {{-- <input type="hidden" name="puth" value="2"> --}}
+                                                            <input type="text" name="userName" value="{{auth()->user()->id}}" hidden>
+                                                            <input type="text" name="dreamName" value="{{$AllDream[$i]->id_dream_user_table}}" hidden>
+                                                            <input type="text" name="commentLevel" value='2' hidden>
+                                                            <input type="text" name="commentId" value={{$dataALLComent[$j]->idcomment_table}} hidden>
                                                             <br>
                                                             <input type="submit" value="ответить">
                                                         </form>
@@ -128,25 +139,4 @@
             </div>
         <div>
     @endfor
-@endsection
-@section('sidbarMainAside')
-    <h3 style="margin-left:5px ">Сны пользователя:</h3>
-    @forelse ( $tempUser as $key=>$item)
-        <form action="{{route('dreamBooksUserAllPublished')}}" method="post">
-            @csrf
-            <input type="hidden" value={{$key}}  name="nameUser">
-            <input type="submit" value={{$item}} style="outline: none;
-            margin: 0 7%;
-            text-align: center;
-            text-decoration: none;
-            background: rgb(254, 198, 6);
-            display: block;
-            font-size: 16px;
-            border: 1px solid;
-            border-radius: 3px;
-            padding: 3px 7px;">
-        </form>
-    @empty
-        <p>Нет опубликованых снов.</p>
-    @endforelse
 @endsection

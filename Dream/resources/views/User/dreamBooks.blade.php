@@ -32,11 +32,7 @@
                             <p class="text">{{$item[$i]->DreamBookDescription}} </p>
                             <p style="font-size: 13px">Это снилось {{$item[$i]->LikeCol}} пользователям.</p>
                             <a href="{{route('infoDreamBook')}}?book={{$_GET['book']}}&words={{$item[$i]->DreamBookWord}}" class="words" style="font-size: 12px" >Мне тоже снилось</a>
-                            @if (Auth::check())
-                                <a href="{{route('dreamBooksUser')}}" class="words"  style="font-size: 12px">Поделится сном</a>
-                            @else
-                                <a href="{{route('login')}}" class="words"  style="font-size: 12px">Поделится сном</a>
-                            @endif
+                                <a  href="{{route('dreamBooksUser')}}" class="words"  style="font-size: 12px">Поделится сном</a>
                         </div>
                     </div>
                 @endfor

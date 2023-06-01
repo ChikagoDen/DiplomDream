@@ -41,11 +41,12 @@ Route::get('/infodreamAll',[DreamBooksAllController::class,'showAll'])->name('in
 // все сны пользователей
 Route::get('/dreamUserAll',[DreamBooksMyAllController::class,'index'])->name('dreamBooksUserAll');
 Route::post('/dreamUserAll',[DreamBooksMyAllController::class,'coment'])->name('dreamBooksUserAllComent');
-
+Route::post('/dreamUserPublished', [DreamBooksMyAllController::class,'showDreamUser'])->name('dreamBooksUserAllPublished');
 // сны пользователя
 Route::get('/dreamUser', [DreamBooksMyController::class,'index'])->name('dreamBooksUser');
 Route::post('/dreamUserAddDream',[DreamBooksMyController::class,'addDream'])->name('dreamBooksUserAddDream');
 Route::post('/dreamUserUpdateName', [DreamBooksMyController::class,'updateName'])->name('dreamBooksUserUpdateName');
+
 // поиск по слову
 Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDreamBooksWord');
 

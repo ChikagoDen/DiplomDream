@@ -9,6 +9,9 @@ $footer-color:rgb(237, 92, 8);
   opacity: $opacity;
 }
 
+p{
+  word-wrap: break-word;
+}
 a{
   @include a-body(1);
   transition:0.2s;

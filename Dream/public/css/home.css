@@ -1,3 +1,7 @@
+p {
+  word-wrap: break-word;
+}
+
 a {
   border: 0;
   text-decoration: none;
@@ -180,7 +184,8 @@ main {
 main article {
   flex-grow: 1;
   margin: 0px 10px 5px 10px;
-  max-width: 720px;
+  max-height: 670px;
+  overflow-y: auto;
 }
 main article .h {
   text-align: center;
@@ -199,7 +204,7 @@ main article .slideshow-container .mySlides .numbertext {
   top: -15px;
 }
 main article .slideshow-container .mySlides .nested-container {
-  width: 100%;
+  width: 99%;
   min-height: 190px;
   border: 1px solid;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -271,6 +276,8 @@ main aside {
   flex-shrink: 0;
   text-align: center;
   border-left: 1px solid;
+  max-height: 670px;
+  overflow-y: auto;
 }
 main aside .horoscope {
   list-style: none;
