@@ -30,15 +30,15 @@ class DreamBooksWordsController extends Controller
                         ->get();
 
 
-        $putBooks=$this->Sonnik2();
-        $putBooks2=$this->SonnikSw();
-        $putBooks3=$this->Sonnikmy();
-        $putBooks4=$this->SonnikmyALL();
+        // $putBooks=$this->Sonnik2();
+        // $putBooks2=$this->SonnikSw();
+        // $putBooks3=$this->Sonnikmy();
+        // $putBooks4=$this->SonnikmyALL();
         $params=[
-            'getPuttBooks'=>$putBooks,
-            'getPuttBooks2'=>$putBooks2,
-            'getPuttBooks3'=>$putBooks3,
-            'getPuttBooks4'=>$putBooks4,
+            // 'getPuttBooks'=>$putBooks,
+            // 'getPuttBooks2'=>$putBooks2,
+            // 'getPuttBooks3'=>$putBooks3,
+            // 'getPuttBooks4'=>$putBooks4,
             'listDreamBooks'=>$listDreamBooks,
             'words'=>$word,
             'wordAll'=>$wordAll,

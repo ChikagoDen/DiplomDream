@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class IndexControllerAdmin extends Controller
+class IndexController extends Controller
 {
-    public function index(){
-     echo("<h1>ТЕСТ</h1>")  ;
-    }
-
+    //$ php artisan make:controller Admin/IndexController
 }

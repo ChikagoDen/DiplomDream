@@ -25,12 +25,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', [AppController::class, 'index'])->middleware(['auth'])->name('dashboard');
 require __DIR__.'/auth.php';
 
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/',[IndexController::class,'index'])->name('homeUser');
 
 
@@ -41,23 +35,46 @@ Route::get('/infodreamAll',[DreamBooksAllController::class,'showAll'])->name('in
 // все сны пользователей
 Route::get('/dreamUserAll',[DreamBooksMyAllController::class,'index'])->name('dreamBooksUserAll');
 Route::post('/dreamUserAll',[DreamBooksMyAllController::class,'coment'])->name('dreamBooksUserAllComent');
+// Route::match(['get', 'post'],'/dreamUserAll',[DreamBooksMyAllController::class,'index'])->name('dreamBooksUserAll');
 Route::post('/dreamUserPublished', [DreamBooksMyAllController::class,'showDreamUser'])->name('dreamBooksUserAllPublished');
 // сны пользователя
-Route::get('/dreamUser', [DreamBooksMyController::class,'index'])->name('dreamBooksUser');
-Route::post('/dreamUserAddDream',[DreamBooksMyController::class,'addDream'])->name('dreamBooksUserAddDream');
-Route::post('/dreamUserUpdateName', [DreamBooksMyController::class,'updateName'])->name('dreamBooksUserUpdateName');
-
+// групировка по контроллеру
+Route::controller(DreamBooksMyController::class)->group( function(){
+    Route::get('/dreamUser', 'index')->name('dreamBooksUser');
+    Route::post('/dreamUserAddDream','addDream')->name('dreamBooksUserAddDream');
+    Route::post('/dreamUserUpdateName', 'updateName')->name('dreamBooksUserUpdateName');
+});
 // поиск по слову
 Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDreamBooksWord');
 
+// Администратирование
 
+    Route::get('/admin',[IndexControllerAdmin::class,'index'])->middleware('verified')->name('index');
+
+// ->middleware('verified');
+// Route::middleware(['web'])->group(function () {
+//     //
+// });
+
+
+// Route::prefix('admin')->group(function () {
+//     Route::get('/infodream', function () {
+//         // Соответствует URL-адресу `/admin/users` ...
+//     });
+// });
+// Route::name('admin.')->group(function () {
+//     Route::get('/infodream', function () {
+//         // Маршруту присвоено имя `admin.infodream` ...
+//     })->name('infodream');
+// });
 
 // Route::get('/infodream/{words}',[InfoDreamBookWordsController::class,'index'])->name('infoDreamBookWords');
 // Route::get('/words',[WordsController::class,'index'])->name('words');
-Route::get('/words/{description}',[WordsDescriptController::class,'index'])->name('wordsDescript');
+// Route::get('/words/{description}',[WordsDescriptController::class,'index'])->name('wordsDescript');
 
-Route::get('/infohoroscope',[HoroscopeInfoController::class,'index'])->name('horoscopeInfo');
-Route::get('/infohoroscope/{description}',[HoroscopeDescriptController::class,'index'])->name('horoscopeDescript');
+// для гороскопа
+// Route::get('/infohoroscope',[HoroscopeInfoController::class,'index'])->name('horoscopeInfo');
+// Route::get('/infohoroscope/{description}',[HoroscopeDescriptController::class,'index'])->name('horoscopeDescript');
 
 
 Route::view('/connection', 'welcome');

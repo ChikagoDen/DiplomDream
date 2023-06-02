@@ -21,17 +21,17 @@ class IndexController extends Controller
     public function index(){
         $listDreamBooks=DB::select('SELECT biblioteca_tabl_name,biblioteca_tabl_discription FROM dream_book_biblioteca.biblioteca_tabl');
 
-        $putBooks=$this->Sonnik2();
-        $putBooks2=$this->SonnikSw();
-        $putBooks3=$this->Sonnikmy();
-        $putBooks4=$this->SonnikmyALL();
+        // $putBooks=$this->Sonnik2();
+        // $putBooks2=$this->SonnikSw();
+        // $putBooks3=$this->Sonnikmy();
+        // $putBooks4=$this->SonnikmyALL();
         $params=[
             'listDreamBooks'=>$listDreamBooks,
 
-            'getPuttBooks'=>$putBooks,
-            'getPuttBooks2'=>$putBooks2,
-            'getPuttBooks3'=>$putBooks3,
-            'getPuttBooks4'=>$putBooks4,
+            // 'getPuttBooks'=>$putBooks,
+            // 'getPuttBooks2'=>$putBooks2,
+            // 'getPuttBooks3'=>$putBooks3,
+            // 'getPuttBooks4'=>$putBooks4,
         ];
 
         // return view("dashboard", $params); 

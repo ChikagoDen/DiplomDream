@@ -139,6 +139,7 @@ class DreamBooksMyAllController extends Controller
 
 
     public function coment(){
+        
         if (is_null(request()->input('puth'))) {
              $puth=2;
         }
