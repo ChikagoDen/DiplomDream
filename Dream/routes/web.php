@@ -49,8 +49,12 @@ Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDrea
 
 // Администратирование
 
-    Route::get('/admin',[IndexControllerAdmin::class,'index'])->middleware('verified')->name('index');
-
+    Route::get('/admin',[IndexControllerAdmin::class,'index'])->middleware('checkIsAdmin')->name('indexAdmin');
+    Route::post('/adminAddDreamBooks',[IndexControllerAdmin::class,'addFile'])->name('addFile');
+    Route::post('/admin',[IndexControllerAdmin::class,'addBD'])->name('addBD');
+    Route::get('admin/InfoDreamBook',[IndexControllerAdmin::class,'editDreamBook'])->name('infoDreamModeration');
+    Route::post('admin/InfoDreamBook',[IndexControllerAdmin::class,'editDreamBookedit'])->name('infoDreamModerationEdit');
+    Route::post('admin/adminTest',[IndexControllerAdmin::class,'editWordDreamBookedit'])->name('infoDreamModerationText');
 // ->middleware('verified');
 // Route::middleware(['web'])->group(function () {
 //     //

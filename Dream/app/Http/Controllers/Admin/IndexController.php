@@ -8,4 +8,5 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
     //$ php artisan make:controller Admin/IndexController
+    
 }

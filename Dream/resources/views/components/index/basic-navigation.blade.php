@@ -1,5 +1,10 @@
 <ul class="basic-navigation" style="align-items: flex-start">
-    <li><a href="{{ asset('/')}}" class="basic-navigation-button">Главная страница</a></li> 
+    <li>
+<a  @if (Auth::check())
+        href="{{ route('dashboard') }}"
+    @else
+        href="{{ asset('/')}}"
+    @endif href=""class="basic-navigation-button"> Главная страница</a></li> 
     @if (Auth::check())
         <li>
             <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Моя страница снов</a>

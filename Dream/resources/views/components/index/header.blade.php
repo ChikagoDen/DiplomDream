@@ -16,7 +16,7 @@
         <p>{{ Auth::user()->name }}</p>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+            <a href="{{route('logout')}}" onclick="event.preventDefault(); this.closest('form').submit();">
                 <p style="background: rgb(255, 234, 122);
                 border: 1px solid;
                 border-radius: 3px;
