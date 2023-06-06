@@ -4,11 +4,11 @@
 <ul class="basic-navigation" style="align-items: flex-start">
     <li><a href="{{ route('dashboard') }}" class="basic-navigation-button">Главная страница</a></li> 
     <li>
-        <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Страница управления Юзерами</a>
+        <a href="{{route('infoUserAdmin')}}" class="basic-navigation-button">Страница управления Юзерами</a>
     </li>
-    <li><a href="{{ asset('/')}}" class="basic-navigation-button">Страница модерирования снов</a></li> 
+    <li><a href="{{ route('infoDreamUser')}}" class="basic-navigation-button">Страница модерирования снов</a></li> 
     <li>
-        <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Страница модерирования коментов</a>
+        <a href="{{route('infoCommentUser')}}" class="basic-navigation-button">Страница модерирования коментов</a>
     </li>
     <li>
         <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Страница добавления сонника</a>

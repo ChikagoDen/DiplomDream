@@ -78,7 +78,7 @@ class IndexControllerAdmin extends Controller
             ];
             return view("Admin.adminEditDreamBook",$params);
     }
-
+// редакт соник
     public function editDreamBook(){
         $dreamBooks=DB::table('biblioteca_tabl')
             ->select('*')
@@ -145,7 +145,7 @@ class IndexControllerAdmin extends Controller
         return view("Admin.adminEditDreamBook",$params);
     }
 
-
+// редакт слова
 
     public function editWordDreamBookedit(){
         if (!is_null(request()->input('idDreamBook'))) {
@@ -190,6 +190,136 @@ class IndexControllerAdmin extends Controller
             'biblioteca_tabl_word_col'=>$biblioteca_tabl_word_col,            
         ];
         return view("Admin.adminEditWordDreamBook",$params);
+    }
+
+    // редакт юзер
+    public function infoUserAdmin()
+    {
+
+        $user=DB::table('users')
+        ->select('*')
+        ->get();
+
+            $params=[
+            'user'=>$user,
+        ];
+        return view("Admin.adminEditUser",$params);
+    }
+    // редакт юзер
+    public function editUserAdmin()
+    {
+        if (!is_null(request()->input('id'))) {
+            $id=request()->input('id');
+   } 
+    if (!is_null(request()->input('name'))) {
+            $name=request()->input('name');
+   }
+    if (!is_null(request()->input('email'))) {
+        $email=request()->input('email');
+   }
+    if (!is_null(request()->input('is_admin'))) {
+            $is_admin=request()->input('is_admin');
+   }           
+    if (!is_null(request()->input('status'))) {
+            $status=request()->input('status');
+   } 
+   if ($_POST["action"] =="Редактировать") {
+        DB::table('users')
+            ->where('id',$id)
+            ->update([
+            'name' =>$name,
+            'email'=>$email,
+            'is_admin'=>$is_admin,
+            'status'=>$status,
+            ]);
+    } else if ($_POST["action"] == "Удалить") {
+        DB::table('users')
+        ->where('id',$id)
+        ->update([
+            'status'=>2,
+        ]);
+    }
+
+        // $user=DB::table('users')
+        // ->select('*')
+        // ->get();
+
+        //     $params=[
+        //     'user'=>$user,
+        // ];
+        return redirect()->route('infoUserAdmin');        
+        // return view("Admin.adminEditUser",$params);
+    }
+
+    public function infoDreamUser(){
+        $dream_user_table=DB::table('dream_user_table')
+        ->join('users','dream_user_Id_User','id')
+            ->select('*')
+            ->orderBy('name')
+            ->get();
+
+            $params=[
+            'dream_user_table'=>$dream_user_table,
+        ];
+        return view("Admin.adminEditDreamUser",$params);
+    }
+
+
+    public function editDreamUser(){
+        if (!is_null(request()->input('id_dream_user_table'))) {
+                $id_dream_user_table=request()->input('id_dream_user_table');
+       } 
+
+       if ($_POST["action"] =="Заблокировать") {
+            DB::table('dream_user_table')
+                ->where('id_dream_user_table',$id_dream_user_table)
+                ->update([
+                'dream_user_access' =>2,
+                ]);
+        } else if ($_POST["action"] == "Удалить") {
+            DB::table('dream_user_table')
+                ->where('id_dream_user_table',$id_dream_user_table)
+                ->update([
+                'dream_user_access' =>3,
+                ]);
+        }
+        return redirect()->route('infoDreamUser');
+    }
+
+    // модерация коментов
+    public function infoCommentUser(){
+        $comment_table=DB::table('comment_table')
+        ->join('users','comment_id_user','id')
+            ->select('*')
+            ->orderBy('name')
+            ->get();
+
+            $params=[
+            'comment_table'=>$comment_table,
+        ];
+        return view("Admin.adminEditCommentUser",$params);
+    }
+
+
+    public function editCommentUser(){
+        if (!is_null(request()->input('idcomment_table'))) {
+                $idcomment_table=request()->input('idcomment_table');
+       } 
+
+       if ($_POST["action"] =="Заблокировать") {
+            DB::table('comment_table')
+                ->where('idcomment_table',$idcomment_table)
+                ->update([
+                'comment_status' =>1,
+                ]);
+        } else if ($_POST["action"] == "Разблокировать") {
+            DB::table('comment_table')
+            ->where('idcomment_table',$idcomment_table)
+            ->update([
+            'comment_status' =>0,
+                ]);
+        }
+        return redirect()->route('infoCommentUser');
     }
 
 

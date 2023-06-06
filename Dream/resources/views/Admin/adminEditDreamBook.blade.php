@@ -4,11 +4,11 @@
 <ul class="basic-navigation" style="align-items: flex-start">
     <li><a href="{{ route('dashboard') }}" class="basic-navigation-button">Главная страница</a></li> 
     <li>
-        <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Страница управления Юзерами</a>
+        <a href="{{route('infoUserAdmin')}}" class="basic-navigation-button">Страница управления Юзерами</a>
     </li>
-    <li><a href="{{ asset('/')}}" class="basic-navigation-button">Страница модерирования снов</a></li> 
+    <li><a href="{{ route('infoDreamUser')}}" class="basic-navigation-button">Страница модерирования снов</a></li> 
     <li>
-        <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Страница модерирования коментов</a>
+        <a href="{{route('infoCommentUser')}}" class="basic-navigation-button">Страница модерирования коментов</a>
     </li>
     <li>
         <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Страница добавления сонника</a>
@@ -47,7 +47,7 @@
             <input type="hidden" value="{{$dreamBooks[$i]->biblioteca_tabl_word_col}}" name="biblioteca_tabl_word_col">
             <input type="submit" name="action" value="Редактировать">            
             <input type="submit" name="action" value="Удалить" />
-            <input type="submit" name="action" value="Перейти редактировать сслова и значения" />
+            <input type="submit" name="action" value="Перейти редактировать слова и значения в соннике" />
         </fieldset>
     </form>
     @endfor
