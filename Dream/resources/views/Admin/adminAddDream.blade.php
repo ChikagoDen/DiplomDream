@@ -2,46 +2,62 @@
 @section('title', 'moderator')
 @section('SourcesNavigation')
 <ul class="basic-navigation" style="align-items: flex-start">
-    <li><a href="{{ route('dashboard') }}" class="basic-navigation-button">Главная страница</a></li> 
-    <li>
-        <a href="{{route('infoUserAdmin')}}" class="basic-navigation-button">Страница управления Юзерами</a>
+    <li style="margin: 5px;">
+        <a href="{{ route('dashboard') }}" class="basic-navigation-button">Главная страница</a>
+    </li> 
+    <li style="margin: 5px;">
+        <a href="{{route('infoUserAdmin')}}" class="basic-navigation-button">Управление пользователями</a>
     </li>
-    <li><a href="{{route('infoDreamUser')}}" class="basic-navigation-button">Страница модерирования снов</a></li> 
-    <li>
-        <a href="{{route('infoCommentUser')}}" class="basic-navigation-button">Страница модерирования коментов</a>
+    <li style="margin: 5px;">
+        <a href="{{ route('infoDreamUser')}}" class="basic-navigation-button">Модерация снов пользователей</a>
+    </li> 
+    <li style="margin: 5px;">
+        <a href="{{route('infoCommentUser')}}" class="basic-navigation-button">Модерация коментов пользователей</a>
     </li>
-    <li>
-        <a href="{{route('dreamBooksUser')}}" class="basic-navigation-button">Страница добавления сонника</a>
+    <li style="margin: 5px;">
+        <a href="{{route('addDreamBook')}}" class="basic-navigation-button">Добавить сонник</a>
     </li>
-    <li>
-        <a href="{{route('indexAdmin')}}" class="basic-navigation-button">Главная админа</a>
+    <li style="margin: 5px;">
+        <a href="{{route('infoDreamModeration')}}" class="basic-navigation-button">Редактирование сонников</a>
     </li>
-    
+    <li style="margin: 5px;">
+        <a href={{route('indexAdmin')}} class="basic-navigation-button" style="color:red">Администрирование</a>
+    </li>
 </ul>
 @endsection
 @section('contentMainArticle')
-    <h2 class="h">Проверка</h2>
-    {{-- @php
-        $i=0;
-    @endphp --}}
-    {{-- @foreach ( $lines as $key=>$item)
-        <h5>{{$key.')'.$item}}</h5>
-    @endforeach --}}
-{{-- @dd($filename); --}}
-    <form action="{{route('addBD')}}" method="post">
-        @csrf
-            <label for="discriptionDreamBook">Описание, информация о соннике для посетителей</label>
-            <input type="text" name="discriptionDreamBook">
+    <h2 class="h">Загрузка новвых сонников</h2>
+    @if (empty($filename))
+        <form action="{{route('addFile')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <label for="file">Добавить сонник</label>
             <br>
-            <label for="discriptionDreamBookMy">Пометки о соннике для себя</label>
-            <input type="text" name="discriptionDreamBookMy">
+            <input type="file" name="file" id="file" class="@error('word') is-invalid @enderror">
+            @error('file')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <br><br>
+            <input type="submit" value="Добавить">
+        </form>
+    @endif
+    @if ( !empty($filename) )
+        <form action="{{route('addBD')}}" method="post">
+            @csrf
+                <label for="discriptionDreamBook">Описание, информация о соннике для посетителей</label>
+                <br>
+                <textarea name="discriptionDreamBook" cols="135" rows="10"></textarea>
+                <br>
+                <label for="discriptionDreamBookMy">Пометки о соннике для себя</label>
+                <br>
+                <textarea name="discriptionDreamBookMy" cols="135" rows="4"></textarea>
+                <br>
+                <label for="author">Автор сонника</label>
+                <br>
+                <input type="text" name="author">
+                <br>            
+                <input type="hidden" name="filePatch" value="{{$filename}}">
             <br>
-            <label for="author">Автор сонника</label>
-            <input type="text" name="author">
-            <br>            
-            <input type="text" name="filePatch" value="{{$filename}}">
-        <br>
-        <input type="submit" value="Загрузить в базу данных">
-    </form> 
-
+            <input type="submit" value="Загрузить в базу данных">
+        </form> 
+    @endif 
 @endsection

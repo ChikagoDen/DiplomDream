@@ -12,74 +12,82 @@ class IndexControllerAdmin extends Controller
     public function index(){
         return view("Admin.adminIndex");
     }
+    // добавить сонник
+    public function addDreamBook(){
+        return view("Admin.adminAddDream");
+    } 
+    // 1) добавить файл
     public function addFile(Request $request)
-    {   header('Content-Type: text/html; charset=utf-8');
-        if($request->hasFile('word')){
-            $word=$request->file('word');
-            $word->storeAs("DreamBooks",$word->getClientOriginalName(),'public');
-            $filename =public_path().'\\storage\\DreamBooks\\'.$word->getClientOriginalName();
-            // dd($filename);
+    {   
+        if($request->hasFile('file')){
+            $file=$request->file('file');
+            // сохраняем файл у себ
+            $file->storeAs("DreamBooks",$file->getClientOriginalName(),'public');
+            // записываем путь до файла
+            $filename =public_path().'\\storage\\DreamBooks\\'.$file->getClientOriginalName();
+        //    читаем файл
             $text = file_get_contents($filename);
-            $lines = explode("F", $text);
-            // dd($text);
-
-
+            // создаем массив из строк с разделителем F
+            // $lines = explode("F", $text);
             $params=[
-                'lines'=>$lines,
+                // 'lines'=>$lines,
                 'filename'=>$filename,
-
             ];
             return view("Admin.adminAddDream",$params);
-
         }
-        dd("0");
+        return redirect()->back();
     }
+    // 2) записываем в бд
     public function addBD(){
-        // if (is_null(request()->input('nameUser'))) {
-        //     return redirect()->back();
-        //  }
         $biblioteca_tabl_discription=request()->input('discriptionDreamBook');
         $biblioteca_tabl_comment=request()->input('discriptionDreamBookMy');
         $biblioteca_tabl_author=request()->input('author');
         $filename=request()->input('filePatch');
-            $text = file_get_contents($filename);
-            $lines = explode("F", $text);
-            
-        $biblioteca_tabl_name=$lines[0];
-        $id_biblioteca_tabl=DB::table('biblioteca_tabl')
-                ->insertGetId([
-                    'biblioteca_tabl_author'=>$biblioteca_tabl_author,                    
-                    'biblioteca_tabl_name'=>$biblioteca_tabl_name,
-                    'biblioteca_tabl_discription'=> $biblioteca_tabl_discription, 
-                    'biblioteca_tabl_comment'=>$biblioteca_tabl_comment, 
-                ],'id_biblioteca_tabl'); 
-           
-        $buffer = str_replace(array("\r", "\n"), '', $lines);
+        $text = file_get_contents($filename);
+        $lines = explode("F", $text);
+   
 
-        for ($i=1; $i < count($buffer)-1; $i++) { 
-            $tmp['DreamBookWord']=$buffer[$i];
-            $tmp['DreamBookDescription']=$buffer[$i+1];
-            $tmp['idDream']=$id_biblioteca_tabl;
-            if ($i%2) {  
-                 DB::table('dreambook')
-                    ->insert([
-                        'DreamBookWord'=>$tmp['DreamBookWord'],
-                        'DreamBookDescription'=>$tmp['DreamBookDescription'],
-                        'idDream'=>$tmp['idDream']
-                    ]);   
-            }
+
+        $biblioteca_tabl_name=$lines[0];
+        // вставка начальных данных и получение id
+        $id_biblioteca_tabl=DB::table('biblioteca_tabl')
+            ->insertGetId([
+                'biblioteca_tabl_author'=>$biblioteca_tabl_author,                    
+                'biblioteca_tabl_name'=>$biblioteca_tabl_name,
+                'biblioteca_tabl_discription'=> $biblioteca_tabl_discription, 
+                'biblioteca_tabl_comment'=>$biblioteca_tabl_comment, 
+            ],'id_biblioteca_tabl'); 
+        // избавляемся от "\r", "\n"
+        $buffer= str_replace(array("\r", "\n"), '', $lines);
+        foreach ($buffer as  $value) {
+            $buffer2[]=ltrim( $value);
         }
+            for ($i=1; $i < count($buffer2)-1; $i++) { 
+                $tmp['DreamBookWord']=ltrim($buffer2[$i]);
+                $tmp['DreamBookDescription']=$buffer2[$i+1];
+                $tmp['idDream']=$id_biblioteca_tabl;
+            // вставляем слова и определения
+                if ($i%2) {  
+                    DB::table('dreambook')
+                        ->insert([
+                            'DreamBookWord'=>$tmp['DreamBookWord'],
+                            'DreamBookDescription'=>$tmp['DreamBookDescription'],
+                            'idDream'=>$tmp['idDream']
+                        ]);   
+                }
+            }
     
-            $dreamBooks=DB::table('biblioteca_tabl')
-                ->select('*')
-                ->get();
-            $params=[
-                'dreamBooks'=>$dreamBooks,
-            ];
-            return view("Admin.adminEditDreamBook",$params);
+        // $dreamBooks=DB::table('biblioteca_tabl')
+        //     ->select('*')
+        //     ->get();
+        // $params=[
+        //     'dreamBooks'=>$dreamBooks,
+        // ];
+        return redirect()->route('infoDreamModeration');
+        // return view("Admin.adminEditDreamBook",$params);
     }
-// редакт соник
-    public function editDreamBook(){
+// редактирование сонника
+    public function infoDreamModeration(){
         $dreamBooks=DB::table('biblioteca_tabl')
             ->select('*')
             ->get();
@@ -88,66 +96,84 @@ class IndexControllerAdmin extends Controller
         ];
         return view("Admin.adminEditDreamBook",$params);
     }
-    public function editDreamBookedit(){
+
+    public function editDreamBook(){
         if (!is_null(request()->input('id_biblioteca_tabl'))) {
-                $id_biblioteca_tabl=request()->input('id_biblioteca_tabl');
-       } 
+            $id_biblioteca_tabl=request()->input('id_biblioteca_tabl');
+       }
+         else {
+            return redirect()->back();}
+        
         if (!is_null(request()->input('biblioteca_tabl_word_col'))) {
-                $biblioteca_tabl_word_col=request()->input('biblioteca_tabl_word_col');
-       }           
+            $biblioteca_tabl_word_col=request()->input('biblioteca_tabl_word_col');
+       }
+         else {
+            return redirect()->back();} 
+
         if (!is_null(request()->input('biblioteca_tabl_name'))) {
             $biblioteca_tabl_name=request()->input('biblioteca_tabl_name');
           
-       } 
+       }
+         else {
+            return redirect()->back();} 
+
         if (!is_null(request()->input('biblioteca_tabl_discription'))) {
             $biblioteca_tabl_discription=request()->input('biblioteca_tabl_discription');
        }
+         else {
+            return redirect()->back(); }
+
         if (!is_null(request()->input('biblioteca_tabl_comment'))) {
             $biblioteca_tabl_comment=request()->input('biblioteca_tabl_comment');
-       } 
+       }
+         else {
+            return redirect()->back(); } 
+
         if (!is_null(request()->input('biblioteca_tabl_author'))) {
             $biblioteca_tabl_author=request()->input('biblioteca_tabl_author');
-
        }
+         else {
+            return redirect()->back();}
+
        if ($_POST["action"] =="Редактировать") {
             DB::table('biblioteca_tabl')
-                   ->where('id_biblioteca_tabl',$id_biblioteca_tabl)
+                ->where('id_biblioteca_tabl',$id_biblioteca_tabl)
                 ->update([
-                'biblioteca_tabl_discription' =>$biblioteca_tabl_discription,
-                'biblioteca_tabl_name'=>$biblioteca_tabl_name,
-                'biblioteca_tabl_comment'=> $biblioteca_tabl_comment,
-                'biblioteca_tabl_author'=>$biblioteca_tabl_author
+                    'biblioteca_tabl_discription' =>$biblioteca_tabl_discription,
+                    'biblioteca_tabl_name'=>$biblioteca_tabl_name,
+                    'biblioteca_tabl_comment'=> $biblioteca_tabl_comment,
+                    'biblioteca_tabl_author'=>$biblioteca_tabl_author
                 ]);
-    } else if ($_POST["action"] == "Удалить") {
-        DB::table('biblioteca_tabl')->where('id_biblioteca_tabl',$id_biblioteca_tabl)->delete();
-    } 
-    else if ($_POST["action"] == "Перейти редактировать сслова и значения") {
+        } 
+         else if ($_POST["action"] == "Удалить") {
+            DB::table('biblioteca_tabl')->where('id_biblioteca_tabl',$id_biblioteca_tabl)->delete();
+         } 
+         else if ($_POST["action"] == "Перейти редактировать слова и значения в соннике") {
+            $dreamBookWords=DB::table('dreambook')
+                            ->select('*')
+                            ->where('idDream',$id_biblioteca_tabl)
+                            ->get();
+            $params=[
+                'dreamBookWords'=>$dreamBookWords,
+                'biblioteca_tabl_name'=>$biblioteca_tabl_name,
+                'biblioteca_tabl_word_col'=>$biblioteca_tabl_word_col,            
+            ];
+            return view("Admin.adminEditWordDreamBook",$params);
+         }
 
-        $dreamBooks=DB::table('dreambook')
-            ->select('*')
-            ->where('idDream',$id_biblioteca_tabl)
-            ->get();
-        $params=[
-            'dreamBooks'=>$dreamBooks,
-            'biblioteca_tabl_name'=>$biblioteca_tabl_name,
-            'biblioteca_tabl_word_col'=>$biblioteca_tabl_word_col,            
-        ];
-        return view("Admin.adminEditWordDreamBook",$params);
+        // $dreamBooks=DB::table('biblioteca_tabl')
+        //                 ->select('*')
+        //                 ->get();
+        // $params=[
+        //     'dreamBooks'=>$dreamBooks,
+
+        // ];
+        return redirect()->route('infoDreamModeration');
     }
 
-        $dreamBooks=DB::table('biblioteca_tabl')
-            ->select('*')
-            ->get();
-        $params=[
-            'dreamBooks'=>$dreamBooks,
+// редакт слова и значения
 
-        ];
-        return view("Admin.adminEditDreamBook",$params);
-    }
-
-// редакт слова
-
-    public function editWordDreamBookedit(){
+    public function editWordDreamBook(){
         if (!is_null(request()->input('idDreamBook'))) {
                 $idDreamBook=request()->input('idDreamBook');
        } 
@@ -165,7 +191,6 @@ class IndexControllerAdmin extends Controller
        }           
         if (!is_null(request()->input('DreamBookDescription'))) {
             $DreamBookDescription=request()->input('DreamBookDescription');
-          
        } 
   
        if ($_POST["action"] =="Редактировать") {
@@ -175,27 +200,25 @@ class IndexControllerAdmin extends Controller
                 'DreamBookWord' =>$DreamBookWord,
                 'DreamBookDescription'=>$DreamBookDescription,
                 ]);
-    } else if ($_POST["action"] == "Удалить") {
-        DB::table('dreambook')->where('idDreamBook',$idDreamBook)->delete();
-    } 
-
-
-        $dreamBooks=DB::table('dreambook')
-            ->select('*')
-            ->where('idDream', $idDream)
-            ->get();
+        } 
+         else if ($_POST["action"] == "Удалить") {
+            DB::table('dreambook')->where('idDreamBook',$idDreamBook)->delete();
+        }    
+        $dreamBookWords=DB::table('dreambook')
+                            ->select('*')
+                            ->where('idDream',$idDream)
+                            ->get();
         $params=[
-            'dreamBooks'=>$dreamBooks,
+            'dreamBookWords'=>$dreamBookWords,
             'biblioteca_tabl_name'=>$biblioteca_tabl_name,
             'biblioteca_tabl_word_col'=>$biblioteca_tabl_word_col,            
         ];
-        return view("Admin.adminEditWordDreamBook",$params);
+            return view("Admin.adminEditWordDreamBook",$params);
     }
 
-    // редакт юзер
+// редакт юзер
     public function infoUserAdmin()
     {
-
         $user=DB::table('users')
         ->select('*')
         ->get();
@@ -205,60 +228,51 @@ class IndexControllerAdmin extends Controller
         ];
         return view("Admin.adminEditUser",$params);
     }
-    // редакт юзер
+
     public function editUserAdmin()
     {
         if (!is_null(request()->input('id'))) {
             $id=request()->input('id');
-   } 
-    if (!is_null(request()->input('name'))) {
-            $name=request()->input('name');
-   }
-    if (!is_null(request()->input('email'))) {
-        $email=request()->input('email');
-   }
-    if (!is_null(request()->input('is_admin'))) {
-            $is_admin=request()->input('is_admin');
-   }           
-    if (!is_null(request()->input('status'))) {
-            $status=request()->input('status');
-   } 
-   if ($_POST["action"] =="Редактировать") {
-        DB::table('users')
-            ->where('id',$id)
-            ->update([
-            'name' =>$name,
-            'email'=>$email,
-            'is_admin'=>$is_admin,
-            'status'=>$status,
-            ]);
-    } else if ($_POST["action"] == "Удалить") {
-        DB::table('users')
-        ->where('id',$id)
-        ->update([
-            'status'=>2,
-        ]);
-    }
-
-        // $user=DB::table('users')
-        // ->select('*')
-        // ->get();
-
-        //     $params=[
-        //     'user'=>$user,
-        // ];
+        } 
+        if (!is_null(request()->input('name'))) {
+                $name=request()->input('name');
+        }
+        if (!is_null(request()->input('email'))) {
+            $email=request()->input('email');
+        }
+        if (!is_null(request()->input('is_admin'))) {
+                $is_admin=request()->input('is_admin');
+        }           
+        if (!is_null(request()->input('status'))) {
+                $status=request()->input('status');
+        } 
+        if ($_POST["action"] =="Редактировать") {
+            DB::table('users')
+                ->where('id',$id)
+                ->update([
+                    'name' =>$name,
+                    'email'=>$email,
+                    'is_admin'=>$is_admin,
+                    'status'=>$status,
+                ]);
+        } else if ($_POST["action"] == "Удалить") {
+            DB::table('users')
+                ->where('id',$id)
+                ->update([
+                    'status'=>2,
+                 ]);
+        }
         return redirect()->route('infoUserAdmin');        
-        // return view("Admin.adminEditUser",$params);
     }
 
     public function infoDreamUser(){
         $dream_user_table=DB::table('dream_user_table')
-        ->join('users','dream_user_Id_User','id')
-            ->select('*')
-            ->orderBy('name')
-            ->get();
+                            ->join('users','dream_user_Id_User','id')
+                            ->select('*')
+                            ->orderBy('name')
+                            ->get();
 
-            $params=[
+        $params=[
             'dream_user_table'=>$dream_user_table,
         ];
         return view("Admin.adminEditDreamUser",$params);

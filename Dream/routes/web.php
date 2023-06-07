@@ -27,8 +27,6 @@ require __DIR__.'/auth.php';
 
 Route::get('/',[IndexController::class,'index'])->name('homeUser');
 
-
-// Route::any('/',[IndexControllerAdmin::class,'index'])->name('admin');
 // просмотр сонников
 Route::get('/infodream',[DreamBooksController::class,'show'])->name('infoDreamBook');
 Route::get('/infodreamAll',[DreamBooksAllController::class,'showAll'])->name('infoDreamBooksAll');
@@ -50,19 +48,22 @@ Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDrea
 // Администратирование
 
     Route::get('/admin',[IndexControllerAdmin::class,'index'])->middleware('checkIsAdmin')->name('indexAdmin');
+  // добавление сонника в бд    
     // добавление файла
-    Route::post('/adminAddDreamBooks',[IndexControllerAdmin::class,'addFile'])->name('addFile');
+    Route::get('/adminAddDreamBook',[IndexControllerAdmin::class,'addDreamBook'])->name('addDreamBook');
+    Route::post('/adminAddDreamBook',[IndexControllerAdmin::class,'addFile'])->name('addFile');
     // добавление сонника в бд
-    Route::post('/admin',[IndexControllerAdmin::class,'addBD'])->name('addBD');
-    Route::get('admin/InfoDreamBook',[IndexControllerAdmin::class,'editDreamBook'])->name('infoDreamModeration');
+    Route::post('/adminAddBD',[IndexControllerAdmin::class,'addBD'])->name('addBD');
+ // падает сюда - редактирование сонника
+    Route::get('admin/InfoDreamBook',[IndexControllerAdmin::class,'infoDreamModeration'])->name('infoDreamModeration');
     // редакт сонников
-    Route::post('admin/InfoDreamBook',[IndexControllerAdmin::class,'editDreamBookedit'])->name('infoDreamModerationEdit');
-    // редактирование слов и значений
-    Route::post('admin/adminWordEdit',[IndexControllerAdmin::class,'editWordDreamBookedit'])->name('infoDreamModerationText');
-    // редакт юзера
+    Route::post('admin/InfoDreamBook',[IndexControllerAdmin::class,'editDreamBook'])->name('editDreamBook');
+ // редактирование слов и значений
+    Route::post('admin/adminWordEdit',[IndexControllerAdmin::class,'editWordDreamBook'])->name('editWordDreamBook');
+ // редакт юзера
     Route::get('admin/editUser',[IndexControllerAdmin::class,'infoUserAdmin'])->name('infoUserAdmin');
     Route::post('admin/editUser',[IndexControllerAdmin::class,'editUserAdmin'])->name('editUserAdmin');
-    // редакт снов пользователей 
+ // редакт снов пользователей 
     Route::get('admin/editDreamUser',[IndexControllerAdmin::class,'infoDreamUser'])->name('infoDreamUser');
     Route::post('admin/editDreamUser',[IndexControllerAdmin::class,'editDreamUser'])->name('editDreamUser'); 
     // модерация коментов

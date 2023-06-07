@@ -30,9 +30,9 @@ class DreamBooksMyController extends Controller
             }
             else return redirect()->back();
         }
-        $listDreamBooks=DB::table('dream_book_biblioteca.biblioteca_tabl')
-                        ->select('biblioteca_tabl_name','biblioteca_tabl_discription')
-                        ->get();
+        $listDreamBooks=DB::table('biblioteca_tabl')
+                            ->select('*')
+                            ->get();
         $id=Auth()->id();
         $dataDremMy=DB::table('dream_book_biblioteca.dream_user_table')
                     ->where('dream_user_Id_User',$id)

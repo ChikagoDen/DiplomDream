@@ -6,13 +6,11 @@
     <x-Index.SourcesNavigation/>
 @endsection
 @section('contentMainArticle')
-    @if (($_GET['book']<count($listDreamBooks)))
-    <h2 class="h">{{ $listDreamBooks[$_GET['book']]->biblioteca_tabl_name}} содержит слов - {{ $listDreamBooks[$_GET['book']]->biblioteca_tabl_word_col}}. </h2>
-    {{-- описание сонника --}}
-    <p class="text" >    
-        {{ $listDreamBooks[$_GET['book']]->biblioteca_tabl_discription}}
-    </p>
     @if (!@empty($wordsStock))
+        <h2 class="h">{{ $bookData[0]->biblioteca_tabl_name}} содержит слов - {{ $bookData[0]->biblioteca_tabl_word_col}}. </h2>
+        <p class="text" >    
+            {{ $bookData[0]->biblioteca_tabl_discription}}
+        </p>
         @foreach ($wordsStock as $key=>$item)
             <h3 class="h3Letter">{{$key}}</h3>
             <div class="descriptionWordContainer">
@@ -38,8 +36,5 @@
                 @endfor
             </div>
         @endforeach
-    @endif
-    @else
-        <p class="text">Нет такого сонника.</p>
     @endif
 @endsection
