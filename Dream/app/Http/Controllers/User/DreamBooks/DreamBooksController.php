@@ -21,7 +21,13 @@ class DreamBooksController extends Controller
         if (isset($_GET['words'])) {
             $words = $_GET['words'];
             if (!is_numeric($words)) {
-                DB::update('UPDATE `dream_book_biblioteca`.`dreambook` SET `LikeCol` = `LikeCol`+1 WHERE `DreamBookWord` =?',[$words]);
+                DB::table('dreambook')
+                ->where(`DreamBookWord`,$words)
+                ->increment(`LikeCol`);
+                // DB::table(`dreambook`)
+                //     ->where(`DreamBookWord`,$words)
+                //     ->update([`LikeCol`=>(`LikeCol`+1)]);
+                // DB::update('UPDATE `dream_book_biblioteca`. SET `LikeCol` = `LikeCol`+1 WHERE `DreamBookWord` =?',[$words]);
             }
             else return redirect()->back();
         }
@@ -29,8 +35,8 @@ class DreamBooksController extends Controller
         // разобратся с сохранением и передачей данных по всему сайту
         // данные всех сонников
         $listDreamBooks=DB::table('biblioteca_tabl')
-                        ->select('*')
-                        ->get();
+                            ->select('*')
+                            ->get();
                         // выбор слов из сонника
         $bookData=DB::table('dreambook')
                     ->join('biblioteca_tabl','id_biblioteca_tabl','idDream')

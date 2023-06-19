@@ -21,12 +21,12 @@ class IndexControllerAdmin extends Controller
     {   
         if($request->hasFile('file')){
             $file=$request->file('file');
-            // сохраняем файл у себ
+            // сохраняем файл у себя
             $file->storeAs("DreamBooks",$file->getClientOriginalName(),'public');
             // записываем путь до файла
             $filename =public_path().'\\storage\\DreamBooks\\'.$file->getClientOriginalName();
         //    читаем файл
-            $text = file_get_contents($filename);
+            // $text = file_get_contents($filename);
             // создаем массив из строк с разделителем F
             // $lines = explode("F", $text);
             $params=[
@@ -45,9 +45,6 @@ class IndexControllerAdmin extends Controller
         $filename=request()->input('filePatch');
         $text = file_get_contents($filename);
         $lines = explode("F", $text);
-   
-
-
         $biblioteca_tabl_name=$lines[0];
         // вставка начальных данных и получение id
         $id_biblioteca_tabl=DB::table('biblioteca_tabl')
@@ -58,12 +55,12 @@ class IndexControllerAdmin extends Controller
                 'biblioteca_tabl_comment'=>$biblioteca_tabl_comment, 
             ],'id_biblioteca_tabl'); 
         // избавляемся от "\r", "\n"
-        $buffer= str_replace(array("\r", "\n"), '', $lines);
-        foreach ($buffer as  $value) {
-            $buffer2[]=ltrim( $value);
+        $buffer= str_replace(array("\r", "\n","\"\""), '', $lines);
+        foreach ($buffer as  $value) { 
+            $buffer2[]=ltrim($value);
         }
             for ($i=1; $i < count($buffer2)-1; $i++) { 
-                $tmp['DreamBookWord']=ltrim($buffer2[$i]);
+                $tmp['DreamBookWord']=$buffer2[$i];
                 $tmp['DreamBookDescription']=$buffer2[$i+1];
                 $tmp['idDream']=$id_biblioteca_tabl;
             // вставляем слова и определения
@@ -112,28 +109,20 @@ class IndexControllerAdmin extends Controller
 
         if (!is_null(request()->input('biblioteca_tabl_name'))) {
             $biblioteca_tabl_name=request()->input('biblioteca_tabl_name');
-          
        }
-         else {
-            return redirect()->back();} 
+
 
         if (!is_null(request()->input('biblioteca_tabl_discription'))) {
             $biblioteca_tabl_discription=request()->input('biblioteca_tabl_discription');
        }
-         else {
-            return redirect()->back(); }
 
         if (!is_null(request()->input('biblioteca_tabl_comment'))) {
             $biblioteca_tabl_comment=request()->input('biblioteca_tabl_comment');
        }
-         else {
-            return redirect()->back(); } 
 
         if (!is_null(request()->input('biblioteca_tabl_author'))) {
             $biblioteca_tabl_author=request()->input('biblioteca_tabl_author');
        }
-         else {
-            return redirect()->back();}
 
        if ($_POST["action"] =="Редактировать") {
             DB::table('biblioteca_tabl')
@@ -160,14 +149,6 @@ class IndexControllerAdmin extends Controller
             ];
             return view("Admin.adminEditWordDreamBook",$params);
          }
-
-        // $dreamBooks=DB::table('biblioteca_tabl')
-        //                 ->select('*')
-        //                 ->get();
-        // $params=[
-        //     'dreamBooks'=>$dreamBooks,
-
-        // ];
         return redirect()->route('infoDreamModeration');
     }
 
@@ -197,8 +178,8 @@ class IndexControllerAdmin extends Controller
             DB::table('dreambook')
                 ->where('idDreamBook',$idDreamBook)
                 ->update([
-                'DreamBookWord' =>$DreamBookWord,
-                'DreamBookDescription'=>$DreamBookDescription,
+                    'DreamBookWord' =>$DreamBookWord,
+                    'DreamBookDescription'=>$DreamBookDescription,
                 ]);
         } 
          else if ($_POST["action"] == "Удалить") {
@@ -220,8 +201,8 @@ class IndexControllerAdmin extends Controller
     public function infoUserAdmin()
     {
         $user=DB::table('users')
-        ->select('*')
-        ->get();
+                    ->select('*')
+                    ->get();
 
             $params=[
             'user'=>$user,
@@ -255,7 +236,7 @@ class IndexControllerAdmin extends Controller
                     'is_admin'=>$is_admin,
                     'status'=>$status,
                 ]);
-        } else if ($_POST["action"] == "Удалить") {
+         } else if ($_POST["action"] == "Удалить") {
             DB::table('users')
                 ->where('id',$id)
                 ->update([
@@ -264,7 +245,7 @@ class IndexControllerAdmin extends Controller
         }
         return redirect()->route('infoUserAdmin');        
     }
-
+// модерация снов пользователя
     public function infoDreamUser(){
         $dream_user_table=DB::table('dream_user_table')
                             ->join('users','dream_user_Id_User','id')
@@ -303,10 +284,10 @@ class IndexControllerAdmin extends Controller
     // модерация коментов
     public function infoCommentUser(){
         $comment_table=DB::table('comment_table')
-        ->join('users','comment_id_user','id')
-            ->select('*')
-            ->orderBy('name')
-            ->get();
+                        ->join('users','comment_id_user','id')
+                        ->select('*')
+                        ->orderBy('name')
+                        ->get();
 
             $params=[
             'comment_table'=>$comment_table,
@@ -323,18 +304,13 @@ class IndexControllerAdmin extends Controller
        if ($_POST["action"] =="Заблокировать") {
             DB::table('comment_table')
                 ->where('idcomment_table',$idcomment_table)
-                ->update([
-                'comment_status' =>1,
-                ]);
+                ->update(['comment_status' =>1,]);
         } else if ($_POST["action"] == "Разблокировать") {
             DB::table('comment_table')
             ->where('idcomment_table',$idcomment_table)
-            ->update([
-            'comment_status' =>0,
-                ]);
+            ->update(['comment_status' =>0,]);
         }
         return redirect()->route('infoCommentUser');
     }
-
 
 }

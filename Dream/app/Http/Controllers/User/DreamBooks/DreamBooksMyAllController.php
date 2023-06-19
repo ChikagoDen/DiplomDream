@@ -14,7 +14,7 @@ class DreamBooksMyAllController extends Controller
             $idComent = $_GET['idComent'];
 
             if (is_numeric($idComent)) {
-                DB::table('dream_book_biblioteca.comment_table')
+                DB::table('comment_table')
                     ->where('idcomment_table', '=', $idComent)
                     ->increment('comment_like');
             }
@@ -24,7 +24,7 @@ class DreamBooksMyAllController extends Controller
             $idComent = $_GET['comentId'];
 
             if (is_numeric($idComent)) {
-                DB::table('dream_book_biblioteca.comment_table')
+                DB::table('comment_table')
                     ->where('idcomment_table', '=', $idComent)
                     ->decrement('comment_like');
             }
@@ -37,14 +37,14 @@ class DreamBooksMyAllController extends Controller
 
 
         // все по коментам
-        $dataALLComent=DB::table("dream_book_biblioteca.comment_table")
-            ->join("dream_book_biblioteca.dream_user_table","comment_id_dream","=","id_dream_user_table")
-            ->join("dream_book_biblioteca.users","comment_id_user","=","id")
-            ->select("idcomment_table","comment_id_dream","dream_user_title","dream_user_discription","comment_id_user",
-                    "name","comment_discription","comment_nesting_level","comment_date","comment_id_user_answer","comment_status","comment_like")
-            ->orderByDesc("idcomment_table")
-            ->where("comment_status","!=",1) 
-            ->get();
+        $dataALLComent=DB::table("comment_table")
+                        ->join("dream_user_table","comment_id_dream","=","id_dream_user_table")
+                        ->join("users","comment_id_user","=","id")
+                        ->select("idcomment_table","comment_id_dream","dream_user_title","dream_user_discription","comment_id_user",
+                                "name","comment_discription","comment_nesting_level","comment_date","comment_id_user_answer","comment_status","comment_like")
+                        ->orderByDesc("idcomment_table")
+                        ->where("comment_status","!=",1) 
+                        ->get();
         // $dataALLComent=DB::select('SELECT idcomment_table,
         // comment_id_dream, dream_user_title, dream_user_discription,
         // comment_id_user, name, comment_discription, comment_nesting_level,
@@ -52,13 +52,13 @@ class DreamBooksMyAllController extends Controller
         //  FROM dream_book_biblioteca.comment_table,dream_user_table,users where comment_id_dream=id_dream_user_table And comment_id_user=id   order by idcomment_table desc');
 
         // все сны
-        $AllDream=DB::table('dream_book_biblioteca.dream_user_table')
-        ->join('users',"dream_user_Id_User","=","users.id")        
-        ->select('id_dream_user_table',
-        'dream_user_title','dream_user_discription','dream_user_Id_User','id','name','dream_user_date','dream_user_coment_col')
-        ->orderByDesc("dream_user_date")
-        ->where("dream_user_access","=",1)
-        ->get();
+        $AllDream=DB::table('dream_user_table')
+                    ->join('users',"dream_user_Id_User","=","users.id")        
+                    ->select('id_dream_user_table',
+                    'dream_user_title','dream_user_discription','dream_user_Id_User','id','name','dream_user_date','dream_user_coment_col')
+                    ->orderByDesc("dream_user_date")
+                    ->where("dream_user_access","=",1)
+                    ->get();
         // $AllDream=Db::select('SELECT id_dream_user_table,
         // dream_user_title,dream_user_discription,dream_user_Id_User,dream_user_access,id,name,dream_user_date,dream_user_coment_col
         //  FROM dream_book_biblioteca.dream_user_table, users where dream_user_Id_User=id order by dream_user_date desc;');
@@ -107,13 +107,13 @@ class DreamBooksMyAllController extends Controller
 
         // все по коментам
         $dataALLComent=DB::table("dream_book_biblioteca.comment_table")
-            ->join("dream_book_biblioteca.dream_user_table","comment_id_dream","=","id_dream_user_table")
-            ->join("dream_book_biblioteca.users","comment_id_user","=","id")
-            ->select("idcomment_table","comment_id_dream","dream_user_title","dream_user_discription","comment_id_user",
-                    "name","comment_discription","comment_nesting_level","comment_date","comment_id_user_answer","comment_status","comment_like")
-            ->orderByDesc("idcomment_table")
-            ->where("comment_status","!=",1) 
-            ->get();
+                        ->join("dream_book_biblioteca.dream_user_table","comment_id_dream","=","id_dream_user_table")
+                        ->join("dream_book_biblioteca.users","comment_id_user","=","id")
+                        ->select("idcomment_table","comment_id_dream","dream_user_title","dream_user_discription","comment_id_user",
+                                "name","comment_discription","comment_nesting_level","comment_date","comment_id_user_answer","comment_status","comment_like")
+                        ->orderByDesc("idcomment_table")
+                        ->where("comment_status","!=",1) 
+                        ->get();
         // $dataALLComent=DB::select('SELECT idcomment_table as Ncoment,
         // comment_id_dream as Nsna, dream_user_title as TitlSna, dream_user_discription as opisSna,
         // comment_id_user as NktoComentit, name, comment_discription as textComent, comment_nesting_level as levelComent,
@@ -123,13 +123,13 @@ class DreamBooksMyAllController extends Controller
         // все сны
         
         $AllDream=DB::table('dream_book_biblioteca.dream_user_table')
-                ->join('users',"dream_user_Id_User","=","users.id")        
-                ->select('id_dream_user_table',
-                'dream_user_title','dream_user_discription','dream_user_Id_User','id','name','dream_user_date','dream_user_coment_col')
-                ->orderByDesc("dream_user_date")
-                ->where("dream_user_access","=",1)
-                ->where("dream_user_Id_User",$idUser)
-                ->get();
+                    ->join('users',"dream_user_Id_User","=","users.id")        
+                    ->select('id_dream_user_table',
+                            'dream_user_title','dream_user_discription','dream_user_Id_User','id','name','dream_user_date','dream_user_coment_col')
+                    ->orderByDesc("dream_user_date")
+                    ->where("dream_user_access","=",1)
+                    ->where("dream_user_Id_User",$idUser)
+                    ->get();
         $params=[
             'AllDream'=>$AllDream,
             'listDreamBooks'=>$listDreamBooks,
@@ -153,20 +153,22 @@ class DreamBooksMyAllController extends Controller
             return redirect()->back();
         } 
         elseif (number_format(request()->input('commentLevel'))==2) {
-            DB::table('dream_book_biblioteca.comment_table')->insert([
-                'comment_id_dream' =>number_format(request()->input('dreamName')),
-                'comment_id_user' => number_format(request()->input('userName')),
-                'comment_discription' => request()->input('descriptionDreamComent'),
-                'comment_nesting_level'=>2,
-                'comment_id_user_answer'=>number_format(request()->input('commentId'))
+            DB::table('dream_book_biblioteca.comment_table')
+                ->insert([
+                    'comment_id_dream' =>number_format(request()->input('dreamName')),
+                    'comment_id_user' => number_format(request()->input('userName')),
+                    'comment_discription' => request()->input('descriptionDreamComent'),
+                    'comment_nesting_level'=>2,
+                    'comment_id_user_answer'=>number_format(request()->input('commentId'))
                 ]); 
         } 
         else{            
-            DB::table('dream_book_biblioteca.comment_table')->insert([
-            'comment_id_dream' =>number_format(request()->input('dreamName')),
-            'comment_id_user' => number_format(request()->input('userName')),
-            'comment_discription' => request()->input('descriptionDreamComent'),
-            ]); 
+            DB::table('dream_book_biblioteca.comment_table')
+                ->insert([
+                    'comment_id_dream' =>number_format(request()->input('dreamName')),
+                    'comment_id_user' => number_format(request()->input('userName')),
+                    'comment_discription' => request()->input('descriptionDreamComent'),
+                ]); 
         }
         
         
@@ -177,13 +179,13 @@ class DreamBooksMyAllController extends Controller
 
         // все по коментам
         $dataALLComent=DB::table("dream_book_biblioteca.comment_table")
-        ->join("dream_book_biblioteca.dream_user_table","comment_id_dream","=","id_dream_user_table")
-        ->join("dream_book_biblioteca.users","comment_id_user","=","id")
-        ->select("idcomment_table","comment_id_dream","dream_user_title","dream_user_discription","comment_id_user",
-                "name","comment_discription","comment_nesting_level","comment_date","comment_id_user_answer","comment_status","comment_like")
-        ->orderByDesc("idcomment_table")
-        ->where("comment_status","!=",1) 
-        ->get();
+                        ->join("dream_book_biblioteca.dream_user_table","comment_id_dream","=","id_dream_user_table")
+                        ->join("dream_book_biblioteca.users","comment_id_user","=","id")
+                        ->select("idcomment_table","comment_id_dream","dream_user_title","dream_user_discription","comment_id_user",
+                                "name","comment_discription","comment_nesting_level","comment_date","comment_id_user_answer","comment_status","comment_like")
+                        ->orderByDesc("idcomment_table")
+                        ->where("comment_status","!=",1) 
+                        ->get();
 
         // $dataALLComent=DB::select('SELECT idcomment_table as Ncoment,
         // comment_id_dream as Nsna, dream_user_title as TitlSna, dream_user_discription as opisSna,
@@ -192,12 +194,12 @@ class DreamBooksMyAllController extends Controller
         //  FROM dream_book_biblioteca.comment_table,dream_user_table,users where comment_id_dream=id_dream_user_table And comment_id_user=id   order by idcomment_table desc');
         // все сны
         $AllDream=DB::table('dream_book_biblioteca.dream_user_table')
-            ->join('users',"dream_user_Id_User","=","users.id")        
-            ->select('id_dream_user_table',
-            'dream_user_title','dream_user_discription','dream_user_Id_User','id','name','dream_user_date','dream_user_coment_col')
-            ->orderByDesc("dream_user_date")
-            ->where("dream_user_access","=",1)
-            ->get();
+                    ->join('users',"dream_user_Id_User","=","users.id")        
+                    ->select('id_dream_user_table',
+                      'dream_user_title','dream_user_discription','dream_user_Id_User','id','name','dream_user_date','dream_user_coment_col')
+                    ->orderByDesc("dream_user_date")
+                    ->where("dream_user_access","=",1)
+                    ->get();
         $params=[
             'AllDream'=>$AllDream,
             'listDreamBooks'=>$listDreamBooks,

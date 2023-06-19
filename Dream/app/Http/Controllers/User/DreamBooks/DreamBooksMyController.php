@@ -10,21 +10,24 @@ class DreamBooksMyController extends Controller
 {
     public function index(){
         if (!empty($_GET)) {
+            // опублтковать сон
             if (!empty($_GET['statusShow'])) {
                 $idDream = $_GET['statusShow'];
-                DB::table('dream_book_biblioteca.dream_user_table')
+                DB::table('dream_user_table')
                     ->where('id_dream_user_table',$idDream)
                     ->update(['dream_user_access'=>0]);
             }
+            // заблокировать сон
             elseif(!empty($_GET['statusClose'])){
                 $idDream = $_GET['statusClose'];
-                DB::table('dream_book_biblioteca.dream_user_table')
+                DB::table('dream_user_table')
                     ->where('id_dream_user_table',$idDream)
                     ->update(['dream_user_access'=>1]);
             }
+            // удалить сон
             elseif(!empty($_GET['statusDelete'])){
                 $idDream = $_GET['statusDelete'];
-                DB::table('dream_book_biblioteca.dream_user_table')
+                DB::table('dream_user_table')
                     ->where('id_dream_user_table',$idDream)
                     ->update(['dream_user_access'=>3]);
             }
@@ -67,9 +70,9 @@ class DreamBooksMyController extends Controller
                     
         DB::table('dream_book_biblioteca.dream_user_table')
             ->insert([
-                        'dream_user_title' =>$dream_user_title,
-                        'dream_user_Id_User' => number_format($id),
-                        'dream_user_discription' => $dream_user_discription,
+                'dream_user_title' =>$dream_user_title,
+                'dream_user_Id_User' => number_format($id),
+                'dream_user_discription' => $dream_user_discription,
             ]); 
         return redirect()->route('dreamBooksUser');
     }

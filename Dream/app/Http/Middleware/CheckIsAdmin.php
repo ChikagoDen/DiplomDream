@@ -24,8 +24,8 @@ class CheckIsAdmin
         }
         if (Auth::user()->is_admin==0) {
            return redirect()->back();
-            
         }
+      
         return $next($request);
     }
 }

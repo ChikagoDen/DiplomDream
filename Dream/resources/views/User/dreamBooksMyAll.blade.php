@@ -8,12 +8,13 @@
     <h2 class="h">На этой страничке вы можете посмотреть сны других пользователей и оставить свои комментарии под их постами.</h2>
         @php
             $tempUser = array();
-        @endphp   
+        @endphp
+             
     @for ($i = 0; $i < count($AllDream); $i++)
         @php
             $tempUser[$AllDream[$i]->id]=$AllDream[$i]->name;
         @endphp
-        <div>
+        <div> 
             <p style="word-wrap: break-word">Сон пользователя: <strong>{{$AllDream[$i]->name}}</strong> <span class="date">{{$AllDream[$i]->dream_user_date}}</span></p>
             <div class="container-My-Dream">
                 <h4 style="text-align: center; margin-bottom: 5px;">{{$AllDream[$i]->dream_user_title}}</h4>
@@ -132,11 +133,13 @@
 @endsection
 @section('sidbarMainAside')
     <h3 style="margin-left:5px ">Сны пользователя:</h3>
+
     @forelse ( $tempUser as $key=>$item)
         <form action="{{route('dreamBooksUserAllPublished')}}" method="post">
             @csrf
             <input type="hidden" value={{$key}}  name="nameUser">
-            <input type="submit" value={{$item}} style="outline: none;
+            <input type="submit" value="{{$item}}" style="outline: none;
+            
             margin: 0 7%;
             text-align: center;
             text-decoration: none;
@@ -146,7 +149,7 @@
             border: 1px solid;
             border-radius: 3px;
             padding: 3px 7px;">
-        </form>
+        </form> 
     @empty
         <p>Нет опубликованых снов.</p>
     @endforelse

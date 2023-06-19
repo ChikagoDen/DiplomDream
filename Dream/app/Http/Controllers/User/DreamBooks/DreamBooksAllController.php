@@ -11,11 +11,11 @@ class DreamBooksAllController extends Controller
     public function showAll(){
         $abc = $this->array;
         $bookDataAll=DB::table('dreambook')
-                    ->join('biblioteca_tabl','idDream','id_biblioteca_tabl')
-                    ->select('*')
-                    ->orderBy('DreamBookWord')
-                    ->get();
-    
+                        ->join('biblioteca_tabl','idDream','id_biblioteca_tabl')
+                        ->select('*')
+                        ->orderBy('DreamBookWord')
+                        ->get();
+        
         
         // $bookDataAll=DB::select('SELECT DreamBookWord, DreamBookDescription, biblioteca_tabl_name, biblioteca_tabl_author, idDreamBook,LikeCol FROM dream_book_biblioteca.dreambook, dream_book_biblioteca.biblioteca_tabl where dream_book_biblioteca.dreambook.idDream=dream_book_biblioteca.biblioteca_tabl.id_biblioteca_tabl order by DreamBookWord');
         

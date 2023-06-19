@@ -19,8 +19,8 @@ class DreamBooksWordsController extends Controller
             } 
             else {
                 $wordAll=DB::table("dream_book_biblioteca.dreambook")
-                        ->where("dreambook.DreamBookWord", "LIKE",$word.'%')
-                        ->get();                
+                            ->where("dreambook.DreamBookWord", "LIKE",$word.'%')
+                            ->get();                
                 }
         }
 

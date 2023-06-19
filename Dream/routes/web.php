@@ -96,7 +96,7 @@ Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDrea
 // Route::get('/infohoroscope/{description}',[HoroscopeDescriptController::class,'index'])->name('horoscopeDescript');
 
 
-Route::view('/connection', 'welcome');
+// Route::view('/connection', 'welcome');
 
 // ---МАГАЗИН----
 // Route::get('/shop',[ShopController::class,'index'])->name('shop');
