@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\biblioteca_tabl;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    
     /**
      * Register any application services.
      *
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $listDreamBooks=biblioteca_tabl::get(); 
+        view()->share('listDreamBooks', $listDreamBooks);
     }
 }

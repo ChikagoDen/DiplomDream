@@ -26,9 +26,9 @@ class DreamBooksAllController extends Controller
         // $book=request()->input('book');
         // разобратся с сохранением и передачей данных по всему сайту
         // данные всех сонников
-        $listDreamBooks=DB::table('biblioteca_tabl')
-                            ->select('*')
-                            ->get();
+        // $listDreamBooks=DB::table('biblioteca_tabl')
+        //                     ->select('*')
+        //                     ->get();
         $wordsStock=[];
         foreach($bookDataAll as $value){
             // первая буква в слове
@@ -47,7 +47,7 @@ class DreamBooksAllController extends Controller
         $params=[
             'sumWordCol'=>$sumWordCol,
             'wordsStock'=>$wordsStock,
-            'listDreamBooks'=>$listDreamBooks,
+            // 'listDreamBooks'=>$listDreamBooks,
         ];
         return view("User.dreamBooksAll",$params);
     }

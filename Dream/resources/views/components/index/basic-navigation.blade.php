@@ -15,11 +15,11 @@
         <form action="{{route('infoDreamBook')}}" method="get" id="formListDreamBook">
             <div class="basic-navigation-button">
                 <select name="book"  form="formListDreamBook" title="listDreamBook">
-                    @for ($i = 0; $i < count($getDateList); $i++)
-                        <option value={{$getDateList[$i]->id_biblioteca_tabl}}>{{$i+1}}. {{$getDateList[$i]->biblioteca_tabl_name}}.</option>
+                    @for ($i = 0; $i < count($listDreamBooks); $i++)
+                        <option value={{$listDreamBooks[$i]->id_biblioteca_tabl}}>{{$i+1}}. {{$listDreamBooks[$i]->biblioteca_tabl_name}}.</option>
                     @endfor
-                    <option value=1000000>{{count($getDateList)+1}}. Все сонники.</option>
-                    <option value=-1>{{count($getDateList)+2}}. Сны других пользователей.</option>
+                    <option value=1000000>{{count($listDreamBooks)+1}}. Все сонники.</option>
+                    <option value=-1>{{count($listDreamBooks)+2}}. Сны других пользователей.</option>
                 </select>
                 <input type="submit" value="Посмотреть">
             </div>

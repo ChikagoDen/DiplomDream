@@ -59,7 +59,7 @@ class DreamBooksController extends Controller
         }  
         $params=[
             'wordsStock'=>$wordsStock,
-            'listDreamBooks'=>$listDreamBooks,
+            // 'listDreamBooks'=>$listDreamBooks,
             'bookData'=>$bookData,
         ];
         return view("User.dreamBooks",$params);

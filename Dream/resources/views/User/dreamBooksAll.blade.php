@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/dreamBooks.css')}}">
-@extends('layouts.app')
+@extends('layouts.app',['listDreamBooks'=>$listDreamBooks])
+
+@dd($listDreamBooks);
 @section('SourcesNavigation')
     <x-Index.SourcesNavigation/>
 @endsection

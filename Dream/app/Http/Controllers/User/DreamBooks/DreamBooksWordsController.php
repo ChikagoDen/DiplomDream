@@ -39,7 +39,7 @@ class DreamBooksWordsController extends Controller
             // 'getPuttBooks2'=>$putBooks2,
             // 'getPuttBooks3'=>$putBooks3,
             // 'getPuttBooks4'=>$putBooks4,
-            'listDreamBooks'=>$listDreamBooks,
+            // 'listDreamBooks'=>$listDreamBooks,
             'words'=>$word,
             'wordAll'=>$wordAll,
 

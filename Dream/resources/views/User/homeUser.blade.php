@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('title', 'ПРИСНИЛОСЬ - сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака.')
 @section('SourcesNavigation')
     <x-Index.SourcesNavigation/>
@@ -17,7 +16,7 @@
         значение и влияние на вашу жизнь. С помощью нашего сайта вы сможете получить новые идеи, озарения и увидеть свою жизнь
         по-новому.
     </p>
-    <x-Index.Slider :getDate="$listDreamBooks">
+    <x-Index.Slider>
         <x-slot name="h">
             <h2 class="h">Используемые сонники</h2>
         </x-slot>                    
