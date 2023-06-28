@@ -41,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function dreamUserTables(){
+        return $this->hasMany(dream_user_table::class,'dream_user_Id_User','id');
+    }
 }

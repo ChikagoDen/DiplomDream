@@ -26,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $listDreamBooks=biblioteca_tabl::get(); 
-        view()->share('listDreamBooks', $listDreamBooks);
+        view()->share('listDreamBooks',  $listDreamBooks);
     }
 }

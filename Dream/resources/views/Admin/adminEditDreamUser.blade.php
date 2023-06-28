@@ -16,49 +16,58 @@
 </ul>
 @endsection
 @section('contentMainArticle')
-{{-- @dd($dream_user_table) --}}
     <h2 class="h">Модерация снов пользователей</h2>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <h3>Внимание ошибки!!!</h3>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @for ($i = 0; $i < count($dream_user_table); $i++)
-    <h3>Сон пользователя {{$dream_user_table[$i]->name}}  название сна:{{$dream_user_table[$i]->dream_user_title}}
-    количество коментов к нему: {{$dream_user_table[$i]->dream_user_coment_col}}</h3>
-    <p>Пользовател зарегистрировался {{$dream_user_table[$i]->created_at}}</p>
-    <p>Его провиль:
-        @if ($dream_user_table[$i]->status==1)
-            заблокирован
-        @elseif($dream_user_table[$i]->status==2)
-            удален
-        @else 
-            рабочий
-        @endif 
-    </p>
-    <p>Его роль:
-        @if ($dream_user_table[$i]->is_admin>0)
-            модератор
-        @else 
-            пользователь
-        @endif 
-    </p>
-    <form action="{{route('editDreamUser')}}" method="post" id="{{$i}}">
-        @csrf
-        <fieldset style="border:2px solid #fec606">
-            <legend><h3>Сон {{$dream_user_table[$i]->dream_user_title}}</h3></legend>
-                <p>Описание слова: {{$dream_user_table[$i]->dream_user_discription}}</p>
-                <p>В данный момент сон:
-                    @if ($dream_user_table[$i]->dream_user_access==0)
-                        не опубликован
-                    @elseif($dream_user_table[$i]->dream_user_access==1)
-                        опубликован
-                    @elseif($dream_user_table[$i]->dream_user_access==2)   
-                        заблокирован                 
-                    @else   
-                        удален 
-                    @endif
-                </p>
-            <br><br>
-            <input type="hidden" value="{{$dream_user_table[$i]->id_dream_user_table}}" name="id_dream_user_table">
-            <input type="submit" name="action" value="Заблокировать">            
-            <input type="submit" name="action" value="Удалить" />
-        </fieldset>
-    </form>
+        <h3>Сон пользователя {{$dream_user_table[$i]->name}}  название сна:{{$dream_user_table[$i]->dream_user_title}}
+        количество коментов к нему: {{$dream_user_table[$i]->dream_user_coment_col}}</h3>
+        <p>Пользовател зарегистрировался {{$dream_user_table[$i]->created_at}}</p>
+        <p>Его провиль:
+            @if ($dream_user_table[$i]->status==1)
+                заблокирован
+            @elseif($dream_user_table[$i]->status==2)
+                удален
+            @else 
+                рабочий
+            @endif 
+        </p>
+        <p>Его роль:
+            @if ($dream_user_table[$i]->is_admin>0)
+                модератор
+            @else 
+                пользователь
+            @endif 
+        </p>
+        <form action="{{route('editDreamUser')}}" method="post" id="{{$i}}">
+            @csrf
+            <fieldset style="border:2px solid #fec606">
+                <legend><h3>Сон {{$dream_user_table[$i]->dream_user_title}}</h3></legend>
+                    <p>Описание слова: {{$dream_user_table[$i]->dream_user_discription}}</p>
+                    <p>В данный момент сон:
+                        @if ($dream_user_table[$i]->dream_user_access==0)
+                            не опубликован
+                        @elseif($dream_user_table[$i]->dream_user_access==1)
+                            опубликован
+                        @elseif($dream_user_table[$i]->dream_user_access==2)   
+                            заблокирован                 
+                        @else   
+                            удален 
+                        @endif
+                    </p>
+                <br><br>
+                <input type="hidden" value="{{$dream_user_table[$i]->id_dream_user_table}}" name="id_dream_user_table">
+                <input type="submit" name="action" value="Заблокировать">            
+                <input type="submit" name="action" value="Удалить" />
+            </fieldset>
+        </form>
     @endfor
 @endsection

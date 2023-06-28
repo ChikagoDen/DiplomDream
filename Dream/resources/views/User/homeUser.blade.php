@@ -26,3 +26,28 @@
     <h3>Гороскоп</h3>
     <x-Index.Horoscope/>
 @endsection
+
+{{-- @if (count($errors) > 0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif --}}
+
+{{-- <label for="title">Post Title</label>
+
+<input id="title" type="text" name="title" class="@error('title') is-invalid @enderror">
+
+@error('title')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror --}}
+
+{{-- 
+Laravel также содержит глобального помощника old. Если вы показываете входные данные прошлого запроса в шаблоне Blade,
+ то удобнее использовать помощник old для повторного заполнения формы. Если для какого-то поля не были предоставлены данные в
+  прошлом запросе, то будет возвращен null:
+
+<input type="text" name="title" value="{{ old('title') }}"> --}}

@@ -27,8 +27,18 @@
 @endsection
 @section('contentMainArticle')
     <h2 class="h">Редактор слов и их значений</h2>
+    <h3>{{$biblioteca_tabl_name}} содержит слов: {{$biblioteca_tabl_word_col}}</h3> 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <h3>Внимание ошибки!!!</h3>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif   
     @for ($i = 0; $i < count($dreamBookWords); $i++)
-    <h3>{{$biblioteca_tabl_name}} содержит слов: {{$biblioteca_tabl_word_col}}</h3>
     <form action="{{route('editWordDreamBook')}}" method="post" id="{{$i}}">
         @csrf
         <fieldset style="border:2px solid #fec606">
@@ -42,7 +52,6 @@
                 <textarea name="DreamBookDescription"   cols="135" rows="8">{{$dreamBookWords[$i]->DreamBookDescription}}</textarea>
             </label>            
             <br><br>
-
             <input type="hidden" value="{{$biblioteca_tabl_name}}" name="biblioteca_tabl_name">
             <input type="hidden" value="{{$biblioteca_tabl_word_col}}" name="biblioteca_tabl_word_col">            
             <input type="hidden" value="{{$dreamBookWords[$i]->idDream}}" name="idDream">

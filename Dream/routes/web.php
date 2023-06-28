@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\IndexControllerAdmin;
+use App\Http\Controllers\Admin\Library\BibliotecaTablController;
+use App\Http\Controllers\Admin\Library\DreambookController;
+use App\Http\Controllers\Admin\User\DreamUser\DreamUserTableController;
+use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\User\AppController;
 use App\Http\Controllers\User\DreamBooks\DreamBooksAllController;
 use App\Http\Controllers\User\DreamBooks\DreamBooksController;
@@ -48,27 +52,27 @@ Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDrea
 // Администратирование
 
     Route::get('/admin',[IndexControllerAdmin::class,'index'])->middleware('checkIsAdmin')->name('indexAdmin');
-  // добавление сонника в бд    
-    // добавление файла
-    Route::get('/adminAddDreamBook',[IndexControllerAdmin::class,'addDreamBook'])->name('addDreamBook');
-    Route::post('/adminAddDreamBook',[IndexControllerAdmin::class,'addFile'])->name('addFile');
-    // добавление сонника в бд
-    Route::post('/adminAddBD',[IndexControllerAdmin::class,'addBD'])->name('addBD');
+  // добавление сонника в бд   
+    Route::get('/adminCreateDreamBook',[BibliotecaTablController::class,'createDreamBook'])->middleware('checkIsAdmin')->name('addDreamBook');
+    // добавление файла   
+    Route::post('/adminCreateDreamBook',[BibliotecaTablController::class,'addFile'])->middleware('checkIsAdmin')->name('addFile'); 
+    //добавление в бд  
+    Route::post('/adminAddBD',[BibliotecaTablController::class,'addBD'])->middleware('checkIsAdmin')->name('addBD');
  // падает сюда - редактирование сонника
-    Route::get('admin/InfoDreamBook',[IndexControllerAdmin::class,'infoDreamModeration'])->name('infoDreamModeration');
+    Route::get('admin/InfoDreamBook',[DreambookController::class,'infoDreamModeration'])->middleware('checkIsAdmin')->name('infoDreamModeration');
     // редакт сонников
-    Route::post('admin/InfoDreamBook',[IndexControllerAdmin::class,'editDreamBook'])->name('editDreamBook');
+    Route::post('admin/InfoDreamBook',[DreambookController::class,'editDreamBook'])->middleware('checkIsAdmin')->name('editDreamBook');
  // редактирование слов и значений
-    Route::post('admin/adminWordEdit',[IndexControllerAdmin::class,'editWordDreamBook'])->name('editWordDreamBook');
+    Route::post('admin/adminWordEdit',[DreambookController::class,'editWordDreamBook'])->middleware('checkIsAdmin')->name('editWordDreamBook');
  // редакт юзера
-    Route::get('admin/editUser',[IndexControllerAdmin::class,'infoUserAdmin'])->name('infoUserAdmin');
-    Route::post('admin/editUser',[IndexControllerAdmin::class,'editUserAdmin'])->name('editUserAdmin');
+    Route::get('admin/editUser',[UserController::class,'infoUserAdmin'])->middleware('checkIsAdmin')->name('infoUserAdmin');
+    Route::post('admin/editUser',[UserController::class,'editUserAdmin'])->middleware('checkIsAdmin')->name('editUserAdmin');
  // редакт снов пользователей 
-    Route::get('admin/editDreamUser',[IndexControllerAdmin::class,'infoDreamUser'])->name('infoDreamUser');
-    Route::post('admin/editDreamUser',[IndexControllerAdmin::class,'editDreamUser'])->name('editDreamUser'); 
+    Route::get('admin/editDreamUser',[DreamUserTableController::class,'infoDreamUser'])->middleware('checkIsAdmin')->name('infoDreamUser');
+    Route::post('admin/editDreamUser',[DreamUserTableController::class,'editDreamUser'])->middleware('checkIsAdmin')->name('editDreamUser'); 
     // модерация коментов
-    Route::get('admin/editCommentUser',[IndexControllerAdmin::class,'infoCommentUser'])->name('infoCommentUser');
-    Route::post('admin/editCommentUser',[IndexControllerAdmin::class,'editCommentUser'])->name('editCommentUser');     
+    Route::get('admin/editCommentUser',[IndexControllerAdmin::class,'infoCommentUser'])->middleware('checkIsAdmin')->name('infoCommentUser');
+    Route::post('admin/editCommentUser',[IndexControllerAdmin::class,'editCommentUser'])->middleware('checkIsAdmin')->name('editCommentUser');     
 
 // ->middleware('verified');
 // Route::middleware(['web'])->group(function () {

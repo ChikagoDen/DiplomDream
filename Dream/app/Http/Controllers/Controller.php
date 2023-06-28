@@ -20,10 +20,4 @@ class Controller extends BaseController
         'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ы', 'Э', 'Ю', 'Я'
     ];
   
-    // public function __construct()
-    // {                   
-    //     $listDreamBooks=biblioteca_tabl::get(); 
-    //   // передать переменную всем шаблонам, сделано через сервиспровайдер class AppServiceProvider extends ServiceProvider
-    //   View::share('listDreamBooks',  $listDreamBooks);
-    // }
 }

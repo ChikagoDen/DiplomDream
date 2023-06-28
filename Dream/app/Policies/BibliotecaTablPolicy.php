@@ -41,7 +41,7 @@ class BibliotecaTablPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->is_admin >=1; 
     }
 
     /**
@@ -89,6 +89,6 @@ class BibliotecaTablPolicy
      */
     public function forceDelete(User $user, biblioteca_tabl $bibliotecaTabl)
     {
-        //
+        //1
     }
 }
