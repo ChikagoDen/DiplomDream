@@ -10,12 +10,6 @@ class AppController extends Controller
 {
 
     public function index(){
-        $listDreamBooks=DB::table('biblioteca_tabl')
-                        ->select("*")
-                        ->get();
-        $params=[
-            'listDreamBooks'=>$listDreamBooks,
-        ];
-        return view('dashboard', $params);
+        return view('dashboard');
     }
 }

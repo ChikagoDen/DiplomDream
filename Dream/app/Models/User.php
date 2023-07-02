@@ -45,4 +45,10 @@ class User extends Authenticatable
     public function dreamUserTables(){
         return $this->hasMany(dream_user_table::class,'dream_user_Id_User','id');
     }
+    public function commentTableUser(){
+        return $this->hasMany(comment_table::class,'comment_id_user','id');
+    }
+    public function  commentTableUserAnswer(){
+        return $this->hasMany(comment_table::class,'comment_id_user_answer','id');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\DreamBooks;
 
 use App\Http\Controllers\Controller;
+use App\Models\dreambook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,28 +22,17 @@ class DreamBooksController extends Controller
         if (isset($_GET['words'])) {
             $words = $_GET['words'];
             if (!is_numeric($words)) {
-                DB::table('dreambook')
-                ->where(`DreamBookWord`,$words)
-                ->increment(`LikeCol`);
-                // DB::table(`dreambook`)
-                //     ->where(`DreamBookWord`,$words)
-                //     ->update([`LikeCol`=>(`LikeCol`+1)]);
-                // DB::update('UPDATE `dream_book_biblioteca`. SET `LikeCol` = `LikeCol`+1 WHERE `DreamBookWord` =?',[$words]);
+                dreambook::where("DreamBookWord", "LIKE",$words)->increment("LikeCol");
             }
             else return redirect()->back();
         }
-        // else $words=0;
-        // разобратся с сохранением и передачей данных по всему сайту
-        // данные всех сонников
-        $listDreamBooks=DB::table('biblioteca_tabl')
-                            ->select('*')
-                            ->get();
-                        // выбор слов из сонника
-        $bookData=DB::table('dreambook')
-                    ->join('biblioteca_tabl','id_biblioteca_tabl','idDream')
-                    ->select('*')
-                    ->where('idDream',$book)
-                    ->get();
+            // выбор слов из сонника
+        $bookData=dreambook::with('DreambookBiblioteca_tabl')->where('idDream',$book)->get();    
+        // $bookData=DB::table('dreambook')
+        //             ->join('biblioteca_tabl','id_biblioteca_tabl','idDream')
+        //             ->select('*')
+        //             ->where('idDream',$book)
+        //             ->get();
                      
         $wordsStock=[];
         foreach($bookData as $value){
@@ -59,7 +49,6 @@ class DreamBooksController extends Controller
         }  
         $params=[
             'wordsStock'=>$wordsStock,
-            // 'listDreamBooks'=>$listDreamBooks,
             'bookData'=>$bookData,
         ];
         return view("User.dreamBooks",$params);

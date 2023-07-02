@@ -5,6 +5,16 @@
 
 @section('contentMainArticle')
     <h2 class="h">На этой страничке вы можете посмотреть историю своих снов, а также поделится ими с другими пользователями.</h2>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <h3>Внимание ошибки!!!</h3>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if (Auth::check())
             <h3 class="h3Letter">Мои сны.</h3>
         @for ($i = 0; $i < count($dataDremMy); $i++)
@@ -82,20 +92,20 @@
     @else
         <p>Чтобы делится снами и оставлять комментарии нужно зарегестрироваться и войти.</p>
         <div style="    display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: center;">
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;">
                    <a href="{{route('login')}}" style="outline: none;
-            text-align: center;
-            text-decoration: none;
-            background: rgb(254, 198, 6);
-            display: block;
-            font-size: 16px;
-            border: 1px solid;
-            border-radius: 3px;
-            padding: 3px 7px;
-            width: min-content;
-    margin: 0 15px;">
+                        text-align: center;
+                        text-decoration: none;
+                        background: rgb(254, 198, 6);
+                        display: block;
+                        font-size: 16px;
+                        border: 1px solid;
+                        border-radius: 3px;
+                        padding: 3px 7px;
+                        width: min-content;
+                        margin: 0 15px;">
             {{-- class="basic-navigation-button" --}}
             Войти
         </a> 

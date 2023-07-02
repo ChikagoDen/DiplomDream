@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\User\DreamBooks;
 
 use App\Http\Controllers\Controller;
+use App\Models\dreambook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DreamBooksWordsController extends Controller
 {
     public function index(){
-
         // разложить строку взять первые символы, если ничего нет??
         // $escapedInput = str_replace('%', '\\%', $input);
         if (isset($_GET['searchWord'])) {
@@ -18,16 +18,14 @@ class DreamBooksWordsController extends Controller
                 return redirect()->back();
             } 
             else {
-                $wordAll=DB::table("dream_book_biblioteca.dreambook")
-                            ->where("dreambook.DreamBookWord", "LIKE",$word.'%')
-                            ->get();                
-                }
+                $wordAll=dreambook::where("DreamBookWord", "LIKE",$word.'%')->get();
+            }
         }
 
 
-        $listDreamBooks=DB::table('biblioteca_tabl')
-                            ->select('*')
-                            ->get();
+        // $listDreamBooks=DB::table('biblioteca_tabl')
+        //                     ->select('*')
+        //                     ->get();
 
 
         // $putBooks=$this->Sonnik2();

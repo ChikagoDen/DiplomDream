@@ -12,41 +12,32 @@ use Illuminate\Support\Facades\DB;
 class DreamUserTableController extends Controller
 {
     // модерация снов пользователя
-    // тут ченить можно сделать?
+    // тут ченить можно сделать с полями?
     public function infoDreamUser(){
-// $dream_user_table=User::find(15);
-// $dream_user_table->dreamUserTables;
-$dream_user_tables=dream_user_table::find(16);
-$dream_user_tables->user;
-
-        dd($dream_user_tables);
-         $dream_user_table=dream_user_table::addSelect([
-            'name'=>User::select('name')->whereColumn('id','dream_user_Id_User')
-         ] )->get();
+        // что лучше?
+        // $dream_user_table=dream_user_table::all();
+        // или   oredr by name 
+        $dream_user_table=dream_user_table::with(['user' => function ($query) {
+            $query->orderBy('name', 'asc');}])
+            ->get();
         $params=[
             'dream_user_table'=>$dream_user_table,
         ];
         return view("Admin.adminEditDreamUser",$params);
     }
-
-
     public function editDreamUser(){
         if (!is_null(request()->input('id_dream_user_table'))) {
-                $id_dream_user_table=request()->input('id_dream_user_table');
+            $id_dream_user_table=request()->input('id_dream_user_table');
        } 
 
        if ($_POST["action"] =="Заблокировать") {
-            DB::table('dream_user_table')
-                ->where('id_dream_user_table',$id_dream_user_table)
-                ->update([
-                'dream_user_access' =>2,
-                ]);
-        } else if ($_POST["action"] == "Удалить") {
-            DB::table('dream_user_table')
-                ->where('id_dream_user_table',$id_dream_user_table)
-                ->update([
-                'dream_user_access' =>3,
-                ]);
+            $dream_user_table=dream_user_table::where('id_dream_user_table',$id_dream_user_table)->first();
+            $dream_user_table->dream_user_access=2;
+            $dream_user_table->save();
+        } else if ($_POST["action"] == "Разблокировать") {
+            $dream_user_table=dream_user_table::where('id_dream_user_table',$id_dream_user_table)->first();
+            $dream_user_table->dream_user_access=0;
+            $dream_user_table->save();
         }
         return redirect()->route('infoDreamUser');
     }

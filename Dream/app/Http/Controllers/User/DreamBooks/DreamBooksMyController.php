@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\User\DreamBooks;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Storedream_user_tableRequest;
+use App\Models\dream_user_table;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,46 +16,37 @@ class DreamBooksMyController extends Controller
             // опублтковать сон
             if (!empty($_GET['statusShow'])) {
                 $idDream = $_GET['statusShow'];
-                DB::table('dream_user_table')
-                    ->where('id_dream_user_table',$idDream)
-                    ->update(['dream_user_access'=>0]);
+                $dream_user_table=dream_user_table::where('id_dream_user_table',$idDream)->first();
+                $dream_user_table->dream_user_access=0;
+                $dream_user_table->save();
             }
-            // заблокировать сон
+            // снять с публикации
             elseif(!empty($_GET['statusClose'])){
                 $idDream = $_GET['statusClose'];
-                DB::table('dream_user_table')
-                    ->where('id_dream_user_table',$idDream)
-                    ->update(['dream_user_access'=>1]);
+                $dream_user_table=dream_user_table::where('id_dream_user_table',$idDream)->first();
+                $dream_user_table->dream_user_access=1;
+                $dream_user_table->save();                
             }
             // удалить сон
             elseif(!empty($_GET['statusDelete'])){
                 $idDream = $_GET['statusDelete'];
-                DB::table('dream_user_table')
-                    ->where('id_dream_user_table',$idDream)
-                    ->update(['dream_user_access'=>3]);
+                $dream_user_table=dream_user_table::where('id_dream_user_table',$idDream)->first();
+                $dream_user_table->dream_user_access=3;
+                $dream_user_table->save();
             }
             else return redirect()->back();
         }
-        $listDreamBooks=DB::table('biblioteca_tabl')
-                            ->select('*')
-                            ->get();
         $id=Auth()->id();
-        $dataDremMy=DB::table('dream_book_biblioteca.dream_user_table')
-                    ->where('dream_user_Id_User',$id)
-                    ->orderBy('dream_user_date', 'desc')
-                    ->get();
-                    
-
-
-
+        $dataDremMy=dream_user_table::where('dream_user_Id_User',$id)
+                                    ->orderBy('dream_user_date', 'desc')
+                                    ->get();        
         $params=[
             'dataDremMy'=>$dataDremMy,
-            // 'listDreamBooks'=>$listDreamBooks,
         ];
         return view("User.dreamBooksMy",$params);         
     }
-    public function addDream(){
-        // запись комента
+    public function addDream(Storedream_user_tableRequest $request){
+        // запись сна
         if (is_null(request()->input('descriptionDream'))) {
             return redirect()->back();
         } 
@@ -67,31 +61,47 @@ class DreamBooksMyController extends Controller
         if (is_null($dream_user_title)) {
             $dream_user_title="Мой сон";
         }
-                    
-        DB::table('dream_book_biblioteca.dream_user_table')
-            ->insert([
-                'dream_user_title' =>$dream_user_title,
-                'dream_user_Id_User' => number_format($id),
-                'dream_user_discription' => $dream_user_discription,
-            ]); 
+        sleep(5);
+        $dream_user_tableTemp=dream_user_table::orderByDesc('id_dream_user_table')->limit(1)->get();
+        $sim = similar_text($dream_user_tableTemp[0]->dream_user_discription, $dream_user_discription,$percent);
+        if ($sim==0) {
+            
+            $dream_user_table=new dream_user_table;
+            $dream_user_table->dream_user_title=$dream_user_title;
+            $dream_user_table->dream_user_Id_User=number_format($id);        
+            $dream_user_table->dream_user_discription=$dream_user_discription;
+            $dream_user_table->save(); 
+        } else {
+            return redirect()->back();
+        }
+
         return redirect()->route('dreamBooksUser');
     }
     public function updateName(){
-        // запись комента
+        // изменение имени
         if (is_null(request()->input('newName'))) {
             return redirect()->back();
         } 
         else {   
              $newName=request()->input('newName');
+
         } 
         $id=Auth()->id();
         if (!number_format($id)) {
             return redirect()->back();
+        }
+        $UserTemp=User::all();
+        foreach  ($UserTemp as $key => $value) {
+
+            if (strcasecmp($value->name,$newName)==0) {
+                return redirect()->back();
+            }
+             else {
+                $User=User::where('id',$id)->first(); 
+                $User->name=$newName;
+                $User->save();     
+            }
         } 
-                   
-        DB::table('dream_book_biblioteca.users')
-            ->where('id',$id)
-            ->update(['name'=>$newName]);
         return redirect()->route('dreamBooksUser');
     }        
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\IndexControllerAdmin;
 use App\Http\Controllers\Admin\Library\BibliotecaTablController;
 use App\Http\Controllers\Admin\Library\DreambookController;
+use App\Http\Controllers\Admin\User\CommentTableController;
 use App\Http\Controllers\Admin\User\DreamUser\DreamUserTableController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\User\AppController;
@@ -36,7 +37,7 @@ Route::get('/infodream',[DreamBooksController::class,'show'])->name('infoDreamBo
 Route::get('/infodreamAll',[DreamBooksAllController::class,'showAll'])->name('infoDreamBooksAll');
 // все сны пользователей
 Route::get('/dreamUserAll',[DreamBooksMyAllController::class,'index'])->name('dreamBooksUserAll');
-Route::post('/dreamUserAll',[DreamBooksMyAllController::class,'coment'])->name('dreamBooksUserAllComent');
+Route::post('/dreamUserAll',[DreamBooksMyAllController::class,'coment'])->middleware(['auth'])->name('dreamBooksUserAllComent');
 // Route::match(['get', 'post'],'/dreamUserAll',[DreamBooksMyAllController::class,'index'])->name('dreamBooksUserAll');
 Route::post('/dreamUserPublished', [DreamBooksMyAllController::class,'showDreamUser'])->name('dreamBooksUserAllPublished');
 // сны пользователя
@@ -71,8 +72,8 @@ Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDrea
     Route::get('admin/editDreamUser',[DreamUserTableController::class,'infoDreamUser'])->middleware('checkIsAdmin')->name('infoDreamUser');
     Route::post('admin/editDreamUser',[DreamUserTableController::class,'editDreamUser'])->middleware('checkIsAdmin')->name('editDreamUser'); 
     // модерация коментов
-    Route::get('admin/editCommentUser',[IndexControllerAdmin::class,'infoCommentUser'])->middleware('checkIsAdmin')->name('infoCommentUser');
-    Route::post('admin/editCommentUser',[IndexControllerAdmin::class,'editCommentUser'])->middleware('checkIsAdmin')->name('editCommentUser');     
+    Route::get('admin/editCommentUser',[CommentTableController::class,'infoCommentUser'])->middleware('checkIsAdmin')->name('infoCommentUser');
+    Route::post('admin/editCommentUser',[CommentTableController::class,'editCommentUser'])->middleware('checkIsAdmin')->name('editCommentUser');     
 
 // ->middleware('verified');
 // Route::middleware(['web'])->group(function () {

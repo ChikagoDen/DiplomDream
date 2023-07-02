@@ -13,6 +13,10 @@ class biblioteca_tabl extends Model
     // const CREATED_AT = 'biblioteca_tabl_data';1
     public $timestamps = false;
 
+    public function Biblioteca_tablDreamUserTables(){
+        return $this->hasMany(dreambook::class,'idDream','id_biblioteca_tabl');
+    }
+
 
 
 }

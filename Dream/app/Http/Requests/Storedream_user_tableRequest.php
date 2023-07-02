@@ -13,7 +13,9 @@ class Storedream_user_tableRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        if($this->user()->is_admin >= 1){
+            return true; 
+       }
     }
 
     /**
@@ -24,7 +26,9 @@ class Storedream_user_tableRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "titleDream"=>'bail|nullable|string|max:120',
+            "descriptionDream"=>'bail|required|string|max:2000',
         ];
     }
+
 }

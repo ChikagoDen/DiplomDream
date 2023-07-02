@@ -11,4 +11,8 @@ class dreambook extends Model
     protected $table = 'dreambook';
     protected $primaryKey = 'idDreamBook';
     public $timestamps = false;
+
+    public function DreambookBiblioteca_tabl(){
+        return $this->belongsTo(biblioteca_tabl::class,'idDream','id_biblioteca_tabl');
+    }
 }

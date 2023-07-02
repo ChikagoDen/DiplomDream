@@ -7,9 +7,9 @@
 @endsection
 @section('contentMainArticle')
     @if (!@empty($wordsStock))
-        <h2 class="h">{{ $bookData[0]->biblioteca_tabl_name}} содержит слов - {{ $bookData[0]->biblioteca_tabl_word_col}}. </h2>
+        <h2 class="h">{{ $bookData[0]->DreambookBiblioteca_tabl->biblioteca_tabl_name}} содержит слов - {{ $bookData[0]->DreambookBiblioteca_tabl->biblioteca_tabl_word_col}}. </h2>
         <p class="text" >    
-            {{ $bookData[0]->biblioteca_tabl_discription}}
+            {{ $bookData[0]->DreambookBiblioteca_tabl->biblioteca_tabl_discription}}
         </p>
         @foreach ($wordsStock as $key=>$item)
             <h3 class="h3Letter">{{$key}}</h3>

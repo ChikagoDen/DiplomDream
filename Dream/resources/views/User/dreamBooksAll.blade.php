@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/dreamBooks.css')}}">
-@extends('layouts.app',['listDreamBooks'=>$listDreamBooks])
-
-@dd($listDreamBooks);
+@extends('layouts.app')
 @section('SourcesNavigation')
     <x-Index.SourcesNavigation/>
 @endsection
@@ -24,7 +22,7 @@
                                 <p class="words">
                                     <strong>{{$item[$i]->DreamBookWord}}</strong> 
                                     <br>
-                                    из {{$item[$i]->biblioteca_tabl_name}} 
+                                    из {{$item[$i]->DreambookBiblioteca_tabl->biblioteca_tabl_name}} 
                                 </p>
                             </a>
                         </div>          
@@ -34,7 +32,7 @@
                                 <p class="words">
                                     <strong>{{$item[$i]->DreamBookWord}}</strong> 
                                     <br>
-                                    из {{$item[$i]->biblioteca_tabl_name}} 
+                                    из {{$item[$i]->DreambookBiblioteca_tabl->biblioteca_tabl_name}} 
                                 </p>
                             </a>
                             <p class="text" style="margin-bottom: 10px">{{$item[$i]->DreamBookDescription}} </p>

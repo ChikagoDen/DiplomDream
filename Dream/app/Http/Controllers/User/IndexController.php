@@ -10,13 +10,6 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
     public function index(){
-        // $listDreamBooks=biblioteca_tabl::get();     
-
-        // $params=[
-        //     'listDreamBooks'=>$listDreamBooks,
-        // ];
-        // view("layouts.app", $params);
-        // return view("User.homeUser")->with($params); 
        return view("User.homeUser"); 
     }
 }

@@ -9,13 +9,12 @@
         @php
             $tempUser = array();
         @endphp
-             
     @for ($i = 0; $i < count($AllDream); $i++)
         @php
-            $tempUser[$AllDream[$i]->id]=$AllDream[$i]->name;
+            $tempUser[$AllDream[$i]->user->id]=$AllDream[$i]->user->name;
         @endphp
         <div> 
-            <p style="word-wrap: break-word">Сон пользователя: <strong>{{$AllDream[$i]->name}}</strong> <span class="date">{{$AllDream[$i]->dream_user_date}}</span></p>
+            <p style="word-wrap: break-word">Сон пользователя: <strong>{{$AllDream[$i]->user->name}}</strong> <span class="date">{{$AllDream[$i]->dream_user_date}}</span></p>
             <div class="container-My-Dream">
                 <h4 style="text-align: center; margin-bottom: 5px;">{{$AllDream[$i]->dream_user_title}}</h4>
                 <p class="text" style="margin-bottom: 10px;">{{$AllDream[$i]->dream_user_discription}}</p>
@@ -53,7 +52,7 @@
                                     <li class="media">
                                         <div class="div1" style="align-items: baseline;">
                                             <img class="img-rounded" src={{asset('../resources/img/user_faise/winkingSmail.svg')}} alt="Улыбающийся смайлик">
-                                            <a href="#"><h4 class="author" style="margin-bottom: 5px">{{$dataALLComent[$j]->name}}</h4></a> 
+                                            <a href="#"><h4 class="author" style="margin-bottom: 5px">{{$dataALLComent[$j]->userCommit->name}}</h4></a> 
                                             <span class="date">{{$dataALLComent[$j]->comment_date}}</span>                                                               
                                         </div>
                                         <p class="media-text">{{$dataALLComent[$j]->comment_discription}}</p>
@@ -99,7 +98,7 @@
                                                     <div class="media2">
                                                         <div class="div1" style="align-items: baseline;">
                                                             <img class="img-rounded" src={{asset('../resources/img/user_faise/thinkingSmail.svg')}} alt="Задумчивыйсмайлик">
-                                                                <a href="#"><h4 class="author" style="margin-bottom: 5px">{{$dataALLComent[$k]->name}}</h4> </a>
+                                                                <a href="#"><h4 class="author" style="margin-bottom: 5px">{{$dataALLComent[$k]->userCommit->name}}</h4> </a>
                                                             <span class="date">{{$dataALLComent[$k]->comment_date}}</span>
                                                         </div>
                                                         <div class="media-body">
