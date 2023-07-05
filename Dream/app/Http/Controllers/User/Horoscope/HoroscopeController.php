@@ -20,11 +20,4 @@ class HoroscopeController extends Controller
         ];
         return view("User.Horoscope.horoscope",$params);
     }
-    // public function index($id_user_tabl=1){
-    //     $putBooks=DB::select('SELECT user_tabll_name_nick,user_tabl_date_of_registration,user_tabl_password FROM dream_book_website.user_tabl where id_user_tabl=:id_user_tabl',
-    // ['id_user_tabl'=>$id_user_tabl]);
-        
-
-    //    return view("User.userIndex",['putBooks'=>$putBooks[0]]); 
-    // }
 }

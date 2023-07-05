@@ -1,0 +1,263 @@
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP TABLE IF EXISTS `biblioteca_tabl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `biblioteca_tabl` (
+  `id_biblioteca_tabl` int NOT NULL AUTO_INCREMENT,
+  `biblioteca_tabl_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'название книги',
+  `biblioteca_tabl_discription` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'описание книги ',
+  `biblioteca_tabl_comment` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `biblioteca_tabl_author` varchar(45) DEFAULT NULL COMMENT 'автор',
+  `biblioteca_tabl_data` datetime DEFAULT CURRENT_TIMESTAMP,
+  `biblioteca_tabl_word_col` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_biblioteca_tabl`),
+  UNIQUE KEY `biblioteca_tabl_name_UNIQUE` (`biblioteca_tabl_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='библиотека книг статей гороскопов';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `comment_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comment_table` (
+  `idcomment_table` int NOT NULL AUTO_INCREMENT,
+  `comment_id_dream` int NOT NULL COMMENT 'ид сна который коментят',
+  `comment_id_user` int NOT NULL COMMENT 'ид кто коментит',
+  `comment_discription` varchar(250) NOT NULL DEFAULT '0',
+  `comment_nesting_level` int NOT NULL DEFAULT '1' COMMENT 'уровень вложености 1-первый 2-второй',
+  `comment_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `comment_id_user_answer` int NOT NULL DEFAULT '0' COMMENT 'на какой комент1 уровня ответили',
+  `comment_status` int NOT NULL DEFAULT '0' COMMENT 'статус 0-активный 1-заблокирован',
+  `comment_like` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idcomment_table`),
+  KEY `FKdream_idx` (`comment_id_dream`),
+  KEY `FKuser_idx` (`comment_id_user`),
+  CONSTRAINT `FKdream` FOREIGN KEY (`comment_id_dream`) REFERENCES `dream_user_table` (`id_dream_user_table`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FKuserComment` FOREIGN KEY (`comment_id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='коментарии';
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `comment_table_AFTER_INSERT` AFTER INSERT ON `comment_table` FOR EACH ROW BEGIN
+
+SET @temp:=(SELECT `comment_id_dream` FROM `comment_table` WHERE `idcomment_table`=NEW.`idcomment_table`); 
+
+	UPDATE `dream_book_biblioteca`.`dream_user_table` SET `dream_user_coment_col` = `dream_user_coment_col`+1 WHERE (`id_dream_user_table`=@temp);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `comment_table_AFTER_UPDATE` AFTER UPDATE ON `comment_table` FOR EACH ROW BEGIN
+IF NEW.comment_status=1 THEN BEGIN
+	SET @temp:=(SELECT `comment_id_dream` FROM `comment_table` WHERE `idcomment_table`=OLD.`idcomment_table`);  
+	UPDATE `dream_book_biblioteca`.`dream_user_table` SET `dream_user_coment_col` = `dream_user_coment_col`-1 WHERE (`id_dream_user_table`=@temp);
+END; END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+DROP TABLE IF EXISTS `discription_book_tabl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `discription_book_tabl` (
+  `id_discription_book_tabl` int NOT NULL AUTO_INCREMENT,
+  `discription_book_tabl_id_biblioteca_tabl` int NOT NULL COMMENT 'библиотека',
+  `discription_book_tabl_word` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'для сонников - начальное слово',
+  `discription_book_tabl_text` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT 'Описание слов, текс',
+  `discription_book_tabl_data` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_discription_book_tabl`),
+  KEY `discription_book_tabl_word_INDEX` (`discription_book_tabl_word`),
+  KEY `discription_book_tabl_id_biblioteca_tabl_FK_idx` (`discription_book_tabl_id_biblioteca_tabl`),
+  CONSTRAINT `discription_book_tabl_id_biblioteca_tabl_FK` FOREIGN KEY (`discription_book_tabl_id_biblioteca_tabl`) REFERENCES `biblioteca_tabl` (`id_biblioteca_tabl`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `dream_user_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `dream_user_table` (
+  `id_dream_user_table` int NOT NULL AUTO_INCREMENT,
+  `dream_user_title` varchar(120) NOT NULL DEFAULT 'без названия',
+  `dream_user_discription` varchar(2000) NOT NULL DEFAULT '0',
+  `dream_user_Id_User` int NOT NULL,
+  `dream_user_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dream_user_access` int NOT NULL DEFAULT '1' COMMENT 'досту 1-опубликован\n0-не опубликован\n2-заблокирован\n3-удален',
+  `dream_user_coment_col` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_dream_user_table`),
+  KEY `FKuser_idx` (`dream_user_Id_User`),
+  CONSTRAINT `FKuser` FOREIGN KEY (`dream_user_Id_User`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='сны пользователей';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `dreambook`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `dreambook` (
+  `idDreamBook` int NOT NULL AUTO_INCREMENT,
+  `DreamBookWord` varchar(45) DEFAULT NULL COMMENT 'слова для поиска',
+  `DreamBookDescription` mediumtext COMMENT 'описание слов',
+  `idDream` int NOT NULL COMMENT 'ид сонника',
+  `LikeCol` int DEFAULT '0',
+  PRIMARY KEY (`idDreamBook`),
+  KEY `FKbiblioteka_idx` (`idDream`),
+  CONSTRAINT `FKbiblioteka` FOREIGN KEY (`idDream`) REFERENCES `biblioteca_tabl` (`id_biblioteca_tabl`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Сонник';
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `dreambook_AFTER_INSERT` AFTER INSERT ON `dreambook` FOR EACH ROW BEGIN
+UPDATE `biblioteca_tabl`
+ SET `biblioteca_tabl_word_col` = (
+	SELECT count(idDream) FROM `dreambook` where NEW.`idDream`= `id_biblioteca_tabl`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `dreambook_BEFORE_UPDATE` BEFORE UPDATE ON `dreambook` FOR EACH ROW BEGIN
+UPDATE `biblioteca_tabl`
+SET `biblioteca_tabl_word_col` = (
+	SELECT count(idDream) FROM `dreambook` where `idDream`= `id_biblioteca_tabl` 
+
+);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `password_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_table` (
+  `idpassword_table` int NOT NULL,
+  `password_tablecol` varchar(120) NOT NULL,
+  `remember_token` varchar(120) DEFAULT NULL,
+  `password_user_id` int NOT NULL,
+  `password_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `password_bloc` int DEFAULT NULL COMMENT '1 -заблочен\n2-рабочий',
+  PRIMARY KEY (`idpassword_table`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='таблица для авторизации';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `personal_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_admin` int NOT NULL DEFAULT '0' COMMENT 'роль 1-модер',
+  `status` int NOT NULL DEFAULT '0' COMMENT 'статус-0-рабочий, 1-заблокирован, 2-удален',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1);
+INSERT INTO `migrations` VALUES (2,'2014_10_12_100000_create_password_resets_table',1);
+INSERT INTO `migrations` VALUES (3,'2019_08_19_000000_create_failed_jobs_table',1);
+INSERT INTO `migrations` VALUES (4,'2019_12_14_000001_create_personal_access_tokens_table',1);
+INSERT INTO `migrations` VALUES (5,'2023_06_02_085122_alter_table_users_add_is_admin',2);
+INSERT INTO `migrations` VALUES (6,'2023_06_06_032326_alter_table_users_add_status',3);

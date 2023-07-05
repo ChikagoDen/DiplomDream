@@ -3,35 +3,42 @@
 namespace App\Http\Controllers\User\DreamBooks;
 
 use App\Http\Controllers\Controller;
+use App\Models\dreambook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DreamBooksWordsController extends Controller
 {
     public function index(){
-
         // разложить строку взять первые символы, если ничего нет??
         // $escapedInput = str_replace('%', '\\%', $input);
         if (isset($_GET['searchWord'])) {
-            $words = $_GET['searchWord'];
-            $wordAll[]=DB::select('SELECT * FROM dream_book_biblioteca.dreambook where dreambook.DreamBookWord LIKE ?',[$words.'%']);
+            $word = $_GET['searchWord'];            
+            if ( $word=="") {
+                return redirect()->back();
+            } 
+            else {
+                $wordAll=dreambook::where("DreamBookWord", "LIKE",$word.'%')->get();
+            }
         }
-        else $words=0;
 
 
-        $listDreamBooks=DB::select('SELECT biblioteca_tabl_name,biblioteca_tabl_discription FROM dream_book_biblioteca.biblioteca_tabl');
+        // $listDreamBooks=DB::table('biblioteca_tabl')
+        //                     ->select('*')
+        //                     ->get();
 
-        $putBooks=$this->Sonnik2();
-        $putBooks2=$this->SonnikSw();
-        $putBooks3=$this->Sonnikmy();
-        $putBooks4=$this->SonnikmyALL();
+
+        // $putBooks=$this->Sonnik2();
+        // $putBooks2=$this->SonnikSw();
+        // $putBooks3=$this->Sonnikmy();
+        // $putBooks4=$this->SonnikmyALL();
         $params=[
-            'getPuttBooks'=>$putBooks,
-            'getPuttBooks2'=>$putBooks2,
-            'getPuttBooks3'=>$putBooks3,
-            'getPuttBooks4'=>$putBooks4,
-            'listDreamBooks'=>$listDreamBooks,
-            'words'=>$words,
+            // 'getPuttBooks'=>$putBooks,
+            // 'getPuttBooks2'=>$putBooks2,
+            // 'getPuttBooks3'=>$putBooks3,
+            // 'getPuttBooks4'=>$putBooks4,
+            // 'listDreamBooks'=>$listDreamBooks,
+            'words'=>$word,
             'wordAll'=>$wordAll,
 
         ];

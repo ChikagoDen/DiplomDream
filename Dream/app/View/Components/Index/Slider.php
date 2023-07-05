@@ -11,11 +11,11 @@ class Slider extends Component
      *
      * @return void
      */
-    public $getDateSlider;
-    public function __construct($getDate)
-    {
-        $this->getDateSlider=$getDate;
-    }
+    // public $listDreamBooks;
+    // public function __construct($getDate)
+    // {
+    //     $this->listDreamBooks=$getDate;
+    // }
     /**
      * Get the view / contents that represent the component.
      *

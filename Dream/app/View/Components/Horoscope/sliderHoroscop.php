@@ -11,11 +11,11 @@ class sliderHoroscop extends Component
      *
      * @return void
      */
-    public $getPuttBooks;
-    public function __construct($getPuttBooks)
-    {
-        $this->getPuttBooks=$getPuttBooks;
-    }
+    // public $getPuttBooks;
+    // public function __construct($getPuttBooks)
+    // {
+    //     $this->getPuttBooks=$getPuttBooks;
+    // }
 
     /**
      * Get the view / contents that represent the component.

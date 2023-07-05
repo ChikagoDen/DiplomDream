@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\biblioteca_tabl;
+use App\Models\dreambook;
+use App\Policies\BibliotecaTablPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -14,6 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        biblioteca_tabl::class=>BibliotecaTablPolicy::class,
+        
     ];
 
     /**
