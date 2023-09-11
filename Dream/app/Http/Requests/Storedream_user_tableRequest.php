@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class Storedream_user_tableRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class Storedream_user_tableRequest extends FormRequest
      */
     public function authorize()
     {
-        if($this->user()->is_admin >= 1){
+        if(Auth::check()){
             return true; 
        }
     }
