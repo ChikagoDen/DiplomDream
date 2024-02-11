@@ -5,6 +5,7 @@
             @else
                 href="{{ asset('/')}}"
             @endif class="basic-navigation-button"> Главная страница</a>
+
     </li> 
     @if (Auth::check())
         <li>
@@ -12,7 +13,7 @@
         </li>
     @endif
     <li>
-        <form action="{{route('infoDreamBook')}}" method="get" id="formListDreamBook">
+        <form action="{{route('infoDreamBook')}}" method="get" id="formListDreamBook" class="formListDreamBook">
             <div class="basic-navigation-button">
                 <select name="book"  form="formListDreamBook" title="listDreamBook">
                     @for ($i = 0; $i < count($listDreamBooks); $i++)
@@ -29,5 +30,5 @@
         <li><a href={{route('indexAdmin')}} class="basic-navigation-button" style="color:red">Администрирование</a></li>
     @endif
     {{-- <li><a href="#" class="basic-navigation-button">Гороскоп</a></li> --}}
-    {{-- <li><a href="#" class="basic-navigation-button">Магазин</a></li> --}}
+    <li><a href={{route('shop')}} class="basic-navigation-button">Товары для сна</a></li>
 </ul>

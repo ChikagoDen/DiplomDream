@@ -15,6 +15,10 @@ nav{
     margin: 8px;
     flex-wrap: wrap;
 
+    .formListDreamBook{
+      margin: 0;
+    }
+
     select{
       font-size: 14px; 
     }
@@ -29,6 +33,7 @@ nav{
         border: 1px solid; 
         border-radius: 3px;
         padding: 3px 7px;
+        margin: 5px;
       }
     }
 

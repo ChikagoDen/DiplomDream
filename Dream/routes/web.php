@@ -13,6 +13,7 @@ use App\Http\Controllers\User\DreamBooks\DreamBooksMyAllController;
 use App\Http\Controllers\User\DreamBooks\DreamBooksMyController;
 use App\Http\Controllers\User\DreamBooks\DreamBooksWordsController;
 use App\Http\Controllers\User\IndexController;
+use App\Http\Controllers\User\Shop\ShopController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -104,5 +105,5 @@ Route::get('/words',[DreamBooksWordsController::class, 'index'])->name('infoDrea
 // Route::view('/connection', 'welcome');
 
 // ---МАГАЗИН----
-// Route::get('/shop',[ShopController::class,'index'])->name('shop');
+Route::get('/shop',[ShopController::class,'index'])->name('shop');
 

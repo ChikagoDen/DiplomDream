@@ -72,7 +72,7 @@ header .heading {
 }
 header .authorization {
   width: 55px;
-  background-image: url("/resources/img/icon/entrance_black.svg");
+  background-image: url("/Dream/resources/img/icon/entrance_black.svg");
   background-size: contain;
   height: 70px;
   background-position: top;
@@ -100,6 +100,9 @@ nav .basic-navigation {
   margin: 8px;
   flex-wrap: wrap;
 }
+nav .basic-navigation .formListDreamBook {
+  margin: 0;
+}
 nav .basic-navigation select {
   font-size: 14px;
 }
@@ -113,6 +116,7 @@ nav .basic-navigation .basic-navigation-button {
   border: 1px solid;
   border-radius: 3px;
   padding: 3px 7px;
+  margin: 5px;
 }
 nav .h2-navigation {
   text-align: center;

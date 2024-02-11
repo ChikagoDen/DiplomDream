@@ -20,4 +20,10 @@ class Controller extends BaseController
         'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ы', 'Э', 'Ю', 'Я'
     ];
   
+    public $category = [
+        'podushka',
+        'matras',
+        'izoteruika',
+        'kniga'
+    ];
 }

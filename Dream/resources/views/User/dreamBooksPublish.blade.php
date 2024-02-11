@@ -1,7 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css/dreamBooks.css')}}">
 <link rel="stylesheet" href="{{ asset('css/dreamBooksMyAll.css')}}">
 @extends('layouts.app')
-
+@section('SourcesNavigation')
+    <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
+@endsection
 @section('title', "Окунитесь в мир снов: общайтесь и делись впечатлениями")
 
 @section('contentMainArticle')

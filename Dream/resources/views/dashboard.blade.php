@@ -1,8 +1,9 @@
 @extends('layouts.app')
-@section('title', 'ПРИСНИЛОСЬ - сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака.')
 @section('SourcesNavigation')
+    <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
     <x-Index.SourcesNavigation/>
 @endsection
+@section('title', 'ПРИСНИЛОСЬ - сайт предоставляет толкование снов по различным сонникам и описание знаков зодиака.')
 @section('contentMainArticle')
     <h2 class="h">"ПРИСНИЛОСЬ" - сайт, где вы можете узнать значение своих снов и получить гороскоп по дате рождения.</h2>
     <p class="text">    
