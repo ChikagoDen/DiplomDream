@@ -3,6 +3,7 @@
 
 @section('title', 'Исследуйте мир снов: обширный каталог сонников на все случаи жизни')
 @section('SourcesNavigation')
+    <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
     <x-Index.SourcesNavigation/>
 @endsection
 @section('contentMainArticle')

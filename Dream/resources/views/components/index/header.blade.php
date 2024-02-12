@@ -26,10 +26,10 @@
 @guest
     @if (strcmp('login',Route::currentRouteName())==0||strcmp('register',Route::currentRouteName())==0)
         <a href="{{ asset('/')}}" style="margin-right: 20px;
-        background: rgb(255, 234, 122);
-        border: 1px solid;
-        border-radius: 3px;
-        padding: 3px 7px;">Главная</a>
+            background: rgb(255, 234, 122);
+            border: 1px solid;
+            border-radius: 3px;
+            padding: 3px 7px;">Главная</a>
     @else
         <a href="{{route('login')}}">
             <p class="authorization">войти</p>

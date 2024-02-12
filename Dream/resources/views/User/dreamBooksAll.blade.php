@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/dreamBooks.css')}}">
 @extends('layouts.app')
 @section('SourcesNavigation')
+    <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
     <x-Index.SourcesNavigation/>
 @endsection
 @section('title', 'Исследуйте мир снов: обширный каталог сонников на все случаи жизни')

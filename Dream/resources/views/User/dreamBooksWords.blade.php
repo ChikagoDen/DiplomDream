@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css/dreamBooks.css')}}">
 @extends('layouts.app')
-
-@section('title', "Толкование снов по ключевым словам: Интерпретация значений сновидений")
 @section('SourcesNavigation')
+    <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
     <x-Index.SourcesNavigation/>
 @endsection
+@section('title', "Толкование снов по ключевым словам: Интерпретация значений сновидений")
+
 
 @section('contentMainArticle')
     <h2 class="h">Здесь вы найдете интерпретацию значений снов по выбранному ключевому слову. </h2>

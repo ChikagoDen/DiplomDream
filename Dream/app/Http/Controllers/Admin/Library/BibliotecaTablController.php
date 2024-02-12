@@ -24,6 +24,7 @@ class BibliotecaTablController extends Controller
             $file->storeAs("DreamBooks",$file->getClientOriginalName(),'public');
             // записываем путь до файла
             $filename =public_path().'\\storage\\DreamBooks\\'.$file->getClientOriginalName();
+            // $filename =public_path().'\/storage\/DreamBooks\/'.$file->getClientOriginalName(); для Линукс
             $params=['filename'=>$filename, ];
             return view("Admin.adminAddDream",$params);
         }
@@ -34,6 +35,7 @@ class BibliotecaTablController extends Controller
         $biblioteca_tabl=new biblioteca_tabl;        
         $filename=request()->input('filePatch');
         $text = file_get_contents($filename);
+
         $lines = explode("F", $text);
         $biblioteca_tabl_name=$lines[0];
         // вставка начальных данных и получение id

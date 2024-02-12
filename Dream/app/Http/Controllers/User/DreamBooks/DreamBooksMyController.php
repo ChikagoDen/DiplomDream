@@ -46,6 +46,7 @@ class DreamBooksMyController extends Controller
         return view("User.dreamBooksMy",$params);         
     }
     public function addDream(Storedream_user_tableRequest $request){
+
         // запись сна
         if (is_null(request()->input('descriptionDream'))) {
             return redirect()->back();
@@ -57,23 +58,34 @@ class DreamBooksMyController extends Controller
         if (!number_format($id)) {
             return redirect()->back();
         } 
+     
         $dream_user_title=request()->input('titleDream');
         if (is_null($dream_user_title)) {
             $dream_user_title="Мой сон";
         }
         sleep(5);
         $dream_user_tableTemp=dream_user_table::orderByDesc('id_dream_user_table')->limit(1)->get();
-        $sim = similar_text($dream_user_tableTemp[0]->dream_user_discription, $dream_user_discription,$percent);
-        if ($sim==0) {
-            
+        if (!isset($dream_user_tableTemp[0])) {
             $dream_user_table=new dream_user_table;
             $dream_user_table->dream_user_title=$dream_user_title;
             $dream_user_table->dream_user_Id_User=number_format($id);        
             $dream_user_table->dream_user_discription=$dream_user_discription;
             $dream_user_table->save(); 
-        } else {
-            return redirect()->back();
         }
+        else{
+            $sim = similar_text($dream_user_tableTemp[0]->dream_user_discription, $dream_user_discription,$percent);
+            if ($sim==0) {
+                $dream_user_table=new dream_user_table;
+                $dream_user_table->dream_user_title=$dream_user_title;
+                $dream_user_table->dream_user_Id_User=number_format($id);        
+                $dream_user_table->dream_user_discription=$dream_user_discription;
+                $dream_user_table->save(); 
+            } 
+            else {
+                return redirect()->back();
+            }
+        }
+
 
         return redirect()->route('dreamBooksUser');
     }

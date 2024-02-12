@@ -29,7 +29,7 @@
             </header>
             <div class="min-h-screen bg-gray-100">
                 <nav>
-                    <x-Index.BasicNavigation :getDate="$listDreamBooks"/>
+                    {{-- <x-Index.BasicNavigation :getDate="$listDreamBooks"/> --}}
                     @yield('SourcesNavigation')
                 </nav>
                 <main>
